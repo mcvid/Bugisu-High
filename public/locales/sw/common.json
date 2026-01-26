@@ -1,0 +1,100 @@
+{
+    "app": {
+        "title": "Bugisu High School",
+        "tagline": "Ubora, Uadilifu, na Huduma"
+    },
+    "nav": {
+        "home": "Nyumbani",
+        "overview": "Muhtasari",
+        "tour": "Ziara ya Mtandaoni",
+        "about": "Kuhusu Sisi",
+        "admissions": "Udasi",
+        "academics": "Masomo",
+        "student_life": "Maisha ya Wanafunzi",
+        "events": "Matukio",
+        "news": "Habari",
+        "gallery": "Matunzio",
+        "resources": "Nyenzo",
+        "calendar": "Kalenda",
+        "sports": "Michezo",
+        "clubs": "Vilabu",
+        "contact": "Wasiliana",
+        "login": "Ingia",
+        "tour_title": "Tembelea Shule Yetu",
+        "tour_desc": "Tembelea shule yetu kwa njia ya mtandao popote ulipo.",
+        "tour_btn": "Anza Ziara"
+    },
+    "footer": {
+        "about": "Tunajitahidi kwa ubora.",
+        "address": "Anwani",
+        "phone": "Simu",
+        "email": "Barua Pepe",
+        "quick_links": "Viungo vya Haraka",
+        "resources": "Nyenzo",
+        "newsletter_title": "Pata Taarifa",
+        "newsletter_desc": "Jiandikishe kwa jarida letu kwa habari za hivi punde na sasisho za kimasomo.",
+        "newsletter_placeholder": "Barua Pepe Yako",
+        "newsletter_btn": "Jiunge",
+        "newsletter_success": "Asante kwa kujiandikisha!",
+        "newsletter_already": "Tayari umejiandikisha!",
+        "newsletter_error": "Imeshindikana kujiandikisha. Tafadhali jaribu tena.",
+        "latest_news": "Habari za Hivi Punde",
+        "no_news": "Hakuna habari mpya",
+        "rights": "Haki zote zimehifadhiwa."
+    },
+    "common": {
+        "loading": "Inapakia...",
+        "more": "Zaidi",
+        "back": "Nyuma",
+        "submit": "Tuma",
+        "cancel": "Ghairi",
+        "close": "Funga",
+        "timer": {
+            "days": "Siku",
+            "hours": "Saada",
+            "minutes": "Dakika",
+            "seconds": "Sekunde"
+        }
+    },
+    "search": {
+        "placeholder": "Tafuta kurasa, matukio, watu...",
+        "empty_title": "Andika kutafuta shuleni kote...",
+        "try": "Jaribu:",
+        "fees": "Karo",
+        "exams": "Mitihani",
+        "football": "Mpira",
+        "headteacher": "Mwalimu Mkuu",
+        "no_results": "Hakuna matokeo kwa",
+        "types": {
+            "page": "Ukurasa",
+            "article": "Makala",
+            "event": "Tukio",
+            "staff": "Wafanyakazi",
+            "teacher": "Mwalimu",
+            "resource": "Rasilimali",
+            "media": "Vyombo vya Habari",
+            "feature": "Kipengele",
+            "portal": "Tovuti",
+            "action": "Hatua",
+            "info": "Maelezo"
+        }
+    },
+    "shortcuts": {
+        "intake": "Tarehe za Udahili",
+        "requirements": "Mahitaji",
+        "calendar": "Kalenda",
+        "fees": "Ada za Shule",
+        "updates": "Habari Mpya",
+        "alerts": "Tahadhari"
+    },
+    "mobile": {
+        "share": "Shiriki",
+        "refresh": "Vuta ili Upate Mpya",
+        "utilities": "Huduma za Haraka",
+        "parent_student": "Viungo muhimu kwa wazazi na wanafunzi.",
+        "digital_id": "Vitambulisho",
+        "recent_updates": "Mabadiliko ya Hivi Karibuni",
+        "no_updates": "Hakuna habari mpya kwa sasa.",
+        "done": "Tayari"
+    }
+}

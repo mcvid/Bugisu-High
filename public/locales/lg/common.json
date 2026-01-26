@@ -1,0 +1,100 @@
+{
+    "app": {
+        "title": "Bugisu High School",
+        "tagline": "Obutalibumalirivu, Obwesimbu, n'Obuweereza"
+    },
+    "nav": {
+        "home": "Awaka",
+        "overview": "Enyanjula",
+        "tour": "Okulambula",
+        "about": "Ebikutwako",
+        "admissions": "Okuyingira",
+        "academics": "Eby'emisomo",
+        "student_life": "Obulamu bwa Bayizi",
+        "events": "Emikolo",
+        "news": "Amawulire",
+        "gallery": "Ebifaananyi",
+        "resources": "Ebikozesebwa",
+        "calendar": "Kalenda",
+        "sports": "Emizannyo",
+        "clubs": "Ebibiina",
+        "contact": "Tuukirira",
+        "login": "Yingira",
+        "tour_title": "Lambula Essomero",
+        "tour_desc": "Tambula mu ssomero mu ngeri y'ekifaananyi.",
+        "tour_btn": "Tandika Okulambula"
+    },
+    "footer": {
+        "about": "Tufuba mu buwanguzi.",
+        "address": "Endagiriro",
+        "phone": "Essimu",
+        "email": "Email",
+        "quick_links": "Ebikunizo ebangu",
+        "resources": "Ebikozesebwa",
+        "newsletter_title": "Manya ebipya",
+        "newsletter_desc": "Wandiisa email yo ofunenga amawulire agasembyeyo n'ebipya ebikwata ku kusoma.",
+        "newsletter_placeholder": "Email Yo",
+        "newsletter_btn": "Yegatte",
+        "newsletter_success": "Weebale kuwandiika emayile yo!",
+        "newsletter_already": "Wawandiika dda emayile yo!",
+        "newsletter_error": "Tekisobose kuwandiika emayile yo. Gezaako nate.",
+        "latest_news": "Amawulire Agaka",
+        "no_news": "Tewali mawulire mapya",
+        "rights": "Byonna bikuumiddwa."
+    },
+    "common": {
+        "loading": "Tukyalinda...",
+        "more": "Ebirala",
+        "back": "Mabega",
+        "submit": "Weereza",
+        "cancel": "Sazaamu",
+        "close": "Ggalawo",
+        "timer": {
+            "days": "Ennaku",
+            "hours": "Essaawa",
+            "minutes": "Ddakika",
+            "seconds": "Ssekonda"
+        }
+    },
+    "search": {
+        "placeholder": "Noonya empapula, ebibeerawo, abantu...",
+        "empty_title": "Wandiika okunoonya mu ssomero lyonna...",
+        "try": "Gezaako:",
+        "fees": "Ebisale",
+        "exams": "Ebibuuzo",
+        "football": "Omupiira",
+        "headteacher": "Omukulu w'essomero",
+        "no_results": "Tewali kirabiddwa ku",
+        "types": {
+            "page": "Olupapula",
+            "article": "Ekitundu",
+            "event": "Ekikolebwa",
+            "staff": "Abakozi",
+            "teacher": "Omusomesa",
+            "resource": "Ebiwandiiko",
+            "media": "Ebifananyi",
+            "feature": "Ekyenjawulo",
+            "portal": "Vvamuliro",
+            "action": "Kola",
+            "info": "Bubaka"
+        }
+    },
+    "shortcuts": {
+        "intake": "Ennaku z'okuyingira",
+        "requirements": "Ebikwetaagisa",
+        "calendar": "Kalenda",
+        "fees": "Ebisale by'essomero",
+        "updates": "Ebipya",
+        "alerts": "Okulabula"
+    },
+    "mobile": {
+        "share": "Gabanako",
+        "refresh": "Sika ofune ebipya",
+        "utilities": "Amangu agayinza okuyamba",
+        "parent_student": "Ebikulu eri abazadde n'abayizi.",
+        "digital_id": "ID ey'ekuuma",
+        "recent_updates": "Ebipya ebikaka",
+        "no_updates": "Tewali bipya mu kaseera kano.",
+        "done": "Kiwedde"
+    }
+}

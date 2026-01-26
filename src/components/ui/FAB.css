@@ -1,0 +1,108 @@
+.fab-container {
+    position: fixed;
+    bottom: 90px;
+    /* Above the bottom nav */
+    right: 20px;
+    z-index: 1001;
+    display: none;
+    /* Hidden by default, shown on mobile */
+    flex-direction: column-reverse;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.fab-main {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: var(--color-orange);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fab-main:hover {
+    transform: scale(1.05);
+    background-color: #ea580c;
+}
+
+.fab-main.active {
+    transform: rotate(90deg);
+    background-color: var(--color-grey-dark);
+}
+
+.fab-options {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 12px;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fab-container.open .fab-options {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+}
+
+.fab-option {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--color-grey-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.fab-option:hover {
+    background-color: var(--color-grey-light);
+    color: var(--color-orange);
+}
+
+.fab-label {
+    position: absolute;
+    right: 60px;
+    background-color: var(--color-grey-dark);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+}
+
+.fab-option:hover .fab-label {
+    opacity: 1;
+}
+
+/* Show on mobile */
+@media (max-width: 900px) {
+    .fab-container {
+        display: flex;
+    }
+}
+
+/* Adjust for safe areas */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .fab-container {
+        bottom: calc(90px + env(safe-area-inset-bottom));
+    }
+}

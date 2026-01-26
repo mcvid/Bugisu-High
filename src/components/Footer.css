@@ -1,0 +1,180 @@
+.footer {
+    padding-top: 4rem;
+    background-color: #f9fafb;
+    /* Slightly lighter grey than section-grey default if needed, or stick to var */
+    background-color: var(--color-grey-light);
+    border-top: 1px solid var(--color-grey-medium);
+    margin-top: auto;
+    /* Push to bottom if content is short */
+}
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 3rem;
+}
+
+/* Base Column Styles */
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+    /* Base min-width */
+}
+
+/* Specific flex grows for wider content */
+.footer-column.newsletter-col,
+.footer-column.latest-news-col {
+    flex: 1.5;
+}
+
+.footer-heading {
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+    color: var(--color-black);
+}
+
+.footer-text {
+    color: var(--color-grey-dark);
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+}
+
+.footer-contact p {
+    margin-bottom: 0.5rem;
+    color: var(--color-grey-dark);
+}
+
+.footer-links li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-links a {
+    color: var(--color-grey-dark);
+    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--color-orange);
+}
+
+.footer-bottom {
+    background-color: var(--color-black);
+    /* Dark footer bottom */
+    color: white;
+    /* Light text */
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.footer-bottom p {
+    color: #9ca3af;
+}
+
+/* Updated Layout for 5 Columns */
+@media (min-width: 1200px) {
+    .footer-container {
+        gap: 5rem;
+    }
+}
+
+.footer-news-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.footer-news-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #e5e7eb;
+}
+
+.footer-news-title {
+    display: block;
+    line-height: 1.3;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--color-grey-dark);
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-news-title:hover {
+    color: var(--color-orange);
+}
+
+.footer-news-date {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    display: block;
+}
+
+.footer-newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.footer-newsletter-form input {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    background: white;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.footer-newsletter-form input:focus {
+    border-color: var(--color-orange);
+}
+
+.footer-newsletter-form button {
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    border: none;
+    background: var(--color-orange);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.footer-newsletter-form button:hover {
+    background: var(--color-orange-dark, #e67e22);
+}
+
+.footer-newsletter-form button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .footer-column {
+        min-width: 45%;
+        /* Allow 2 columns on tablets/large phones */
+        flex: 1 1 45%;
+    }
+
+    .footer-container {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-column {
+        min-width: 100%;
+        /* Full stack on small mobile */
+        flex: 1 1 100%;
+    }
+}

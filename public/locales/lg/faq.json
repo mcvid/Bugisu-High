@@ -1,0 +1,41 @@
+{
+    "hero_title": "Ebibuuzo Ebitera Okubuuza",
+    "hero_subtitle": "Olina ebibuuzo? Tulina eby'okuddamu.",
+    "categories": {
+        "general": "Eby'awamu",
+        "admissions": "Okuyingira",
+        "academics": "Eby'emisomo",
+        "student_life": "Obulamu bwa Bayizi"
+    },
+    "general": {
+        "q1": "Bugisu High School esangibwa wa?",
+        "a1": "Bugisu High School esangibwa mu Mbale, Uganda, okumpi n'ekibuga wakati.",
+        "q2": "Essomero lya kusoma ku tto oba lya sulawo?",
+        "a2": "Tulina okusomerako n'okusulawo okusobola okuwa obuweereza ebyenjawulo eri abawandiisi n'abazadde.",
+        "q3": "Essaawa za ofiisi ze ki?",
+        "a3": "Ofiisi enkulu eggulawo okuva ku Mmande okutuuka ku Lwokutaano essaawa 2:00 ez'oku makya okutuuka ku 11:00 ez'olweggulo, ne ku Lwomukaaga essaawa 3:00 okutuuka ku 7:00."
+    },
+    "admissions": {
+        "q1": "Ddi lwe mutandika okuyingiza abayizi aba kalenda empya?",
+        "a1": "Okuyingiza abayizi kutandika mu mwezi gwa Museenene (November) ogw'omwaka oguddako. Naye tukkiriza okumanya ebisingawo ebbanga lyonna.",
+        "q2": "Ebisaanyizo eby'okuyingira mu S1 ze ki?",
+        "a2": "Abasaba okuyingira mu S1 balina okuba ne PLE results slip, ebbaluwa okuva mu ssomero gye wavudde, n'ebifaananyi bibiri ebya paasipooti.",
+        "q3": "Mugaba bbasale?",
+        "a3": "Yee, tuguwa bbasale okusinziira ku ngeri omuyizi gye yakolamu mu PLE ne UCE."
+    },
+    "academics": {
+        "q1": "Kalenda y'emisomo gye mukozesa ye ki?",
+        "a1": "Tugoberera Kalenda y'Eggwanga ya Uganda ekwata ku masomo ga O-Level ne A-Level.",
+        "q2": "Musomesa kompyuta?",
+        "a2": "Yee, kompyuta lisomo lya mpaka mu O-Level era n'abo mu A-Level basobola okulironda, nga tulina ne labu ya kompyuta emanyiddwa obulungi."
+    },
+    "student_life": {
+        "q1": "Mizannyo ki egiriyo?",
+        "a1": "Tulina emizannyo mingi omuli Omupiira, Netball, Okuyimba, Okuzina n'Omuzannyo, Kibiina ky'Okuwakanya (Debating), n'ekya Sayansi.",
+        "q2": "Waliwo ne nnaasi mu ssomero?",
+        "a2": "Yee, tulina sikibeya (sickbay) erimu eddagala era ne nnaasi asobola okuyamba mu mbeera y'obulwadde ey'amangu essaawa 24."
+    },
+    "cta_title": "Okyalina ebibuuzo?",
+    "cta_desc": "Tuli wano okukuyamba. Tuukirira ofiisi y'okuyingibwa obutereevu.",
+    "cta_btn": "Tuukirira"
+}

@@ -1,0 +1,101 @@
+{
+    "app": {
+        "title": "Bugisu High School",
+        "tagline": "Excellence, Integrity, and Service"
+    },
+    "nav": {
+        "home": "Home",
+        "overview": "Overview",
+        "tour": "Virtual Tour",
+        "about": "About Us",
+        "admissions": "Admissions",
+        "academics": "Academics",
+        "student_life": "Student Life",
+        "events": "Events",
+        "news": "News",
+        "gallery": "Gallery",
+        "resources": "Resources",
+        "calendar": "Calendar",
+        "sports": "Sports",
+        "clubs": "Clubs",
+        "cta_visit": "Plan a Visit",
+        "tour_title": "Explore Our Campus",
+        "tour_desc": "Take a 360-degree virtual tour of our facilities from anywhere in the world.",
+        "tour_btn": "Start Virtual Tour",
+        "contact": "Contact",
+        "login": "Login"
+    },
+    "footer": {
+        "about": "We strive in excellence.",
+        "address": "Address",
+        "phone": "Phone",
+        "email": "Email",
+        "quick_links": "Quick Links",
+        "resources": "Resources",
+        "newsletter_title": "Stay Updated",
+        "newsletter_desc": "Subscribe to our newsletter for the latest news and academic updates.",
+        "newsletter_placeholder": "Your Email",
+        "newsletter_btn": "Join",
+        "newsletter_success": "Thank you for subscribing!",
+        "newsletter_already": "You are already subscribed!",
+        "newsletter_error": "Failed to subscribe. Please try again.",
+        "latest_news": "Latest News",
+        "no_news": "No recent news",
+        "rights": "All rights reserved."
+    },
+    "common": {
+        "loading": "Loading...",
+        "more": "More",
+        "back": "Back",
+        "submit": "Submit",
+        "cancel": "Cancel",
+        "close": "Close",
+        "timer": {
+            "days": "Days",
+            "hours": "Hrs",
+            "minutes": "Mins",
+            "seconds": "Secs"
+        }
+    },
+    "search": {
+        "placeholder": "Search for pages, events, people...",
+        "empty_title": "Type to search the entire school...",
+        "try": "Try:",
+        "fees": "Fees",
+        "exams": "Exams",
+        "football": "Football",
+        "headteacher": "Headteacher",
+        "no_results": "No results found for",
+        "types": {
+            "page": "Page",
+            "article": "Article",
+            "event": "Event",
+            "staff": "Staff",
+            "teacher": "Teacher",
+            "resource": "Resource",
+            "media": "Media",
+            "feature": "Feature",
+            "portal": "Portal",
+            "action": "Action",
+            "info": "Info"
+        }
+    },
+    "shortcuts": {
+        "intake": "Intake Dates",
+        "requirements": "Requirements",
+        "calendar": "Calendar",
+        "fees": "School Fees",
+        "updates": "Updates",
+        "alerts": "Alerts"
+    },
+    "mobile": {
+        "share": "Share",
+        "refresh": "Pull to Refresh",
+        "utilities": "Quick Utilities",
+        "parent_student": "Essential links for parents and students.",
+        "digital_id": "Digital ID",
+        "recent_updates": "Recent Updates",
+        "no_updates": "No recent updates at the moment.",
+        "done": "Done"
+    }
+}

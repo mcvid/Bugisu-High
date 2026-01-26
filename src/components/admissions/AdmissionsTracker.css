@@ -1,0 +1,51 @@
+.tracker-card {
+    background: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.tracker-form {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.tracker-result {
+    margin-top: 2.5rem;
+    text-align: center;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+}
+
+@media (max-width: 640px) {
+    .tracker-card {
+        padding: 1.5rem;
+        width: 92%;
+        /* Make it wider as requested */
+        margin: 0 auto;
+    }
+
+    .tracker-form {
+        flex-direction: column;
+    }
+
+    .tracker-form button {
+        width: 100%;
+        padding: 1rem !important;
+        height: 50px;
+        /* Consistent height */
+    }
+
+    .tracker-form input {
+        padding-right: 1rem !important;
+        /* Reset icon padding if needed or keep it */
+    }
+
+    .tracker-result {
+        padding: 1.5rem;
+    }
+}

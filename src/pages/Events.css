@@ -1,0 +1,21 @@
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-black);
+}
+
+.empty-text {
+    text-align: center;
+    color: var(--color-grey-medium);
+    font-style: italic;
+    padding: 2rem;
+}

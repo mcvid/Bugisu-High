@@ -1,0 +1,242 @@
+.resources-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    align-items: center;
+    margin-bottom: 3rem;
+    background: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    border-radius: 12px;
+}
+
+.search-box {
+    flex: 2;
+    min-width: 300px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.8rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.search-box input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    outline: none;
+}
+
+.search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+}
+
+.filters-group {
+    display: flex;
+    gap: 1rem;
+    flex: 1;
+}
+
+.filter-select {
+    position: relative;
+    flex: 1;
+}
+
+.filter-select select {
+    width: 100%;
+    appearance: none;
+    padding: 0.75rem 2.5rem 0.75rem 2.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #1e293b;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filter-select select:hover {
+    border-color: #cbd5e1;
+}
+
+.filter-select svg:first-child {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #64748b;
+    pointer-events: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+/* Grid Layout */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.resource-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    gap: 1.25rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #f1f5f9;
+}
+
+.resource-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resource-icon {
+    flex-shrink: 0;
+}
+
+.file-initial {
+    width: 50px;
+    height: 60px;
+    background: #f1f5f9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #64748b;
+    position: relative;
+}
+
+.file-initial::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 15px 15px 0;
+    border-color: #e2e8f0 white transparent transparent;
+}
+
+.file-initial.pdf {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.file-initial.pdf::after {
+    border-color: #fca5a5 white transparent transparent;
+}
+
+.resource-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.resource-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.subject-tag {
+    color: #64748b;
+    font-weight: 500;
+}
+
+.resource-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    line-height: 1.4;
+    color: #1e293b;
+}
+
+.resource-details {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.download-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 0.6rem;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #334155;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+}
+
+.download-btn:hover {
+    background: #1e293b;
+    color: white;
+    border-color: #1e293b;
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 1rem;
+    color: #64748b;
+}
+
+.empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #cbd5e1;
+}
+
+@media (max-width: 768px) {
+    .resources-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filters-group {
+        flex-direction: column;
+    }
+
+    .search-box {
+        min-width: 0;
+    }
+}

@@ -1,0 +1,423 @@
+[
+  {
+    "id": "TC001",
+    "title": "Landing Home Page Load",
+    "description": "Verify that the Home page loads correctly displaying the school overview and introduction content.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Home page URL"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the school overview and introduction text are visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that all visuals and layout elements of the Home page render properly"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Access Online Admission Application Form",
+    "description": "Ensure the admission application form can be accessed and all required fields are present.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the Admissions page"
+      },
+      {
+        "type": "action",
+        "description": "Open the application form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all mandatory fields (e.g., applicant name, date of birth, contact details) are displayed and editable"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Successful Online Admission Form Submission",
+    "description": "Test that a prospective student can submit the admission application form with valid data and receive confirmation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Complete all required fields in the admission application form with valid data"
+      },
+      {
+        "type": "action",
+        "description": "Submit the admission application form"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that the form submission succeeds and a confirmation message is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the submitted application appears in Admissions Manager for review"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Admission Form Validation - Mandatory Fields",
+    "description": "Verify that the admission form validates mandatory fields and prevents submission if they are empty or invalid.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open the admission application form"
+      },
+      {
+        "type": "action",
+        "description": "Leave required fields empty or enter invalid data formats"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to submit the form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the system prevents submission and displays appropriate error messages next to each invalid or empty field"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Review and Manage Applications in Admissions Manager",
+    "description": "Test that admission administrators can view, approve, and reject applications via the Admissions Manager interface.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as an admission administrator"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Admissions Manager"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the list of submitted applications is displayed with relevant details"
+      },
+      {
+        "type": "action",
+        "description": "Select an application and approve it"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the application status updates to approved"
+      },
+      {
+        "type": "action",
+        "description": "Select another application and reject it"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the application status updates to rejected"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Fee Payment Tracking - Record New Payment",
+    "description": "Verify that bursar can record a fee payment correctly and the payment status updates accordingly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as bursar"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the Finance Manager"
+      },
+      {
+        "type": "action",
+        "description": "Select a student and add a new fee payment with valid details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the payment is recorded and payment status for the student updates accordingly"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Manage Fee Structure - Add and Update Fee Types",
+    "description": "Ensure bursar can add new fee types and update existing fee structures properly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as bursar"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Fee Structure management"
+      },
+      {
+        "type": "action",
+        "description": "Add a new fee type with all required attributes"
+      },
+      {
+        "type": "assertion",
+        "description": "New fee type appears in the fee structure list"
+      },
+      {
+        "type": "action",
+        "description": "Edit an existing fee type’s amount"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the fee structure is updated and saved"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Student Record Management - Create, Read, Update, Delete",
+    "description": "Test CRUD operations on student records including data accuracy and UI reflection.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as administrator"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Student Manager"
+      },
+      {
+        "type": "action",
+        "description": "Create a new student record with valid data"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm new student appears correctly in listing"
+      },
+      {
+        "type": "action",
+        "description": "Update student's details"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the update is reflected in the student record"
+      },
+      {
+        "type": "action",
+        "description": "Delete a student record"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm the student record is removed from the system"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Digital ID Generation for Students",
+    "description": "Verify that digital student IDs are generated correctly and accessible within the Student Manager.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open a student’s record in Student Manager"
+      },
+      {
+        "type": "action",
+        "description": "Trigger digital ID generation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that a digital ID is generated and displayed accurately"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Student Data Import - Valid File",
+    "description": "Test that importing student data with a properly formatted file loads student records correctly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to Student Manager"
+      },
+      {
+        "type": "action",
+        "description": "Import student data from a valid formatted file"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the student records from file are present and correct in the system"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Student Data Import - Invalid File Format",
+    "description": "Verify the system handles import failure gracefully when uploading an invalid or corrupted student data file.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Attempt to import student data from an invalid or corrupted file"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an error message is shown and no corrupt data is imported"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Parent Portal Login and Notification Access",
+    "description": "Ensure that parents can login and view notifications and announcements properly on the portal.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in to Parent Portal with valid credentials"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the notifications and announcements are displayed and readable"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Submit Leave Request via Parent Portal",
+    "description": "Test that a parent can submit a leave request and is given a confirmation.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in to Parent Portal"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to the leave request submission form"
+      },
+      {
+        "type": "action",
+        "description": "Fill in leave request details with valid input"
+      },
+      {
+        "type": "action",
+        "description": "Submit the leave request"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that submission confirmation is shown"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Leave Request Processing in Leave Requests Manager",
+    "description": "Verify that administrators can access, approve, and reject leave requests properly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as an administrator"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to Leave Requests Manager"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the list of leave requests is displayed with details"
+      },
+      {
+        "type": "action",
+        "description": "Approve a leave request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the leave request status updates to approved"
+      },
+      {
+        "type": "action",
+        "description": "Reject another leave request"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the leave request status updates to rejected"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Automated Email Notification on Admission Submission",
+    "description": "Confirm that the system automatically sends an email notification upon successful admission form submission.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Submit a valid admission application form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that an automated email notification is sent to the applicant’s email address"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Automated Email Notification on Leave Request Submission",
+    "description": "Verify the system sends an email notification to administrators when a new leave request is submitted.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Submit a leave request from the Parent Portal"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm an email notification is automatically sent to the relevant administrator(s)"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Email Delivery Failure Handling",
+    "description": "Test how the system handles failures in sending automated emails and whether retry or alert mechanisms work.",
+    "category": "error handling",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Simulate email sending failure (e.g., invalid email address or service outage)"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify that the system retries or logs the failure and provides alerts to administrators"
+      }
+    ]
+  }
+]

@@ -1,0 +1,49 @@
+.language-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #ffffff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 30px;
+    border: 2px solid var(--color-orange);
+    /* Highlight with brand color */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.language-switcher:hover {
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.2);
+    transform: translateY(-1px);
+}
+
+.globe-icon {
+    color: var(--color-orange);
+}
+
+.lang-select {
+    background: transparent;
+    border: none;
+    color: var(--color-black);
+    font-size: 0.95rem;
+    cursor: pointer;
+    outline: none;
+    font-weight: 600;
+    padding-right: 0.25rem;
+}
+
+.lang-select option {
+    background: white;
+    color: var(--color-black);
+    padding: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .language-switcher {
+        padding: 0.3rem 0.6rem;
+        border: 1px solid var(--color-orange);
+    }
+
+    .lang-select {
+        font-size: 0.85rem;
+    }
+}

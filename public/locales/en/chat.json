@@ -1,0 +1,12 @@
+{
+    "launcher": "Chat with us",
+    "header": "Admissions Support",
+    "intro_title": "Welcome! 👋",
+    "intro_desc": "Please enter your details to start chatting with our admissions team.",
+    "input_name": "Your Name",
+    "input_email": "Email Address (optional)",
+    "btn_start": "Start Chat",
+    "placeholder": "Type a message...",
+    "response_notice_email": "We shall send a reply to {{email}}. Please also come back tomorrow.",
+    "response_notice_no_email": "Please come back tomorrow for a reply."
+}

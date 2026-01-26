@@ -1,0 +1,16 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173/Home.jsx",
+  "executionArgs": {
+    "projectName": "Bugisu High School",
+    "projectPath": "/Users/hello/Bugisu High School",
+    "testIds": [],
+    "additionalInstruction": "Test the admin login and the main dashboard navigation. Use credentials macherinaveed@gmail.com / 0751371252. Verify that Finance, Students, and Admissions pages load without crashing.",
+    "envs": {
+      "API_KEY": "sk-user-3XL4K9rjIlekws3XIs1Gx_rN_kOBa-7OJnIiZW-4E8ScgiMJUZ9V8acUPqv2JbrDKZDAcdV5viQTmv6CM_P1ficdjD-F1Xd0vtngrtDiQ_A1_7R1rGdaXmT1QAtyNdBEaSI"
+    }
+  },
+  "proxy": "http://acc36055-2b5e-45af-903e-403856a92dc1:3bVig3ae1BcHoJ9yofHxDEMqG5Wn79vJ@tun.testsprite.com:8080"
+}

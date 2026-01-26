@@ -1,0 +1,97 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 1000;
+    display: none;
+    /* Hidden by default, shown on mobile */
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.bottom-nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 18px;
+}
+
+.bottom-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    color: var(--color-grey-medium);
+    text-decoration: none;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+    min-width: 0;
+    /* Allow shrinking if needed */
+    height: 100%;
+    position: relative;
+}
+
+.bottom-nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 3px;
+    background-color: var(--color-orange);
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.bottom-nav-item.active {
+    color: var(--color-orange);
+}
+
+.bottom-nav-item.active::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.bottom-nav-item.active .bottom-nav-icon {
+    transform: translateY(-2px);
+}
+
+.bottom-nav-icon {
+    transition: transform 0.2s ease;
+}
+
+.bottom-nav-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+
+/* Show on mobile */
+@media (max-width: 900px) {
+    .bottom-nav {
+        display: block;
+    }
+}
+
+/* Safe area inset for modern iPhones */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+    .bottom-nav {
+        height: calc(70px + env(safe-area-inset-bottom));
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+}

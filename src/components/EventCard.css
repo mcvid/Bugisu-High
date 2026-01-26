@@ -1,0 +1,111 @@
+.event-card {
+    display: flex;
+    gap: 1.5rem;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+    animation: eventFadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+}
+
+@keyframes eventFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+.event-date-box {
+    background-color: var(--color-grey-light);
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border-right: 1px solid #e5e7eb;
+}
+
+.event-day {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-orange);
+    line-height: 1;
+}
+
+.event-month {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-black);
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+}
+
+.event-details {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.event-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--color-grey-medium);
+    margin-bottom: 0.5rem;
+}
+
+.event-category {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--color-orange);
+    font-weight: 500;
+}
+
+.event-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-black);
+}
+
+.event-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-grey-dark);
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.event-description {
+    color: var(--color-grey-dark);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .event-card {
+        flex-direction: column;
+    }
+
+    .event-date-box {
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        justify-content: flex-start;
+    }
+
+    .event-day {
+        font-size: 1.25rem;
+    }
+}

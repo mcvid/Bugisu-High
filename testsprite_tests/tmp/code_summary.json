@@ -1,0 +1,65 @@
+{
+    "tech_stack": [
+        "JavaScript",
+        "React",
+        "Vite",
+        "Supabase",
+        "CSS",
+        "Deno (Edge Functions)",
+        "Lucide-React"
+    ],
+    "features": [
+        {
+            "name": "Home",
+            "description": "Landing page with school overview",
+            "files": [
+                "src/pages/Home.jsx",
+                "src/pages/Home.css"
+            ]
+        },
+        {
+            "name": "Admissions",
+            "description": "Online application form and administration",
+            "files": [
+                "src/pages/Admissions.jsx",
+                "src/pages/Apply.jsx",
+                "src/pages/ApplicationForm.jsx",
+                "src/pages/admin/AdmissionsManager.jsx"
+            ]
+        },
+        {
+            "name": "Finance Management",
+            "description": "Bursar station for fees payment and structure",
+            "files": [
+                "src/pages/admin/FinanceManager.jsx",
+                "database/finance_schema.sql"
+            ]
+        },
+        {
+            "name": "Student Management",
+            "description": "Student records, digital IDs, and import/export",
+            "files": [
+                "src/pages/admin/StudentsManager.jsx",
+                "database/students_schema.sql"
+            ]
+        },
+        {
+            "name": "Parent Portal",
+            "description": "Access to notifications, announcements, and leave requests",
+            "files": [
+                "src/pages/parent/ParentPortal.jsx",
+                "src/pages/parent/SubmitLeaveRequest.jsx",
+                "src/pages/admin/ParentEmailManager.jsx",
+                "src/pages/admin/LeaveRequestsManager.jsx"
+            ]
+        },
+        {
+            "name": "Email System",
+            "description": "Automated email notifications via Resend",
+            "files": [
+                "src/utils/emailService.js",
+                "supabase/functions/send-email/index.ts"
+            ]
+        }
+    ]
+}

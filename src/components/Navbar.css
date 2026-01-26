@@ -1,0 +1,355 @@
+/* Main Navbar Layout */
+.navbar {
+    background-color: var(--color-white);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-grey-light);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    /* Override global container constraint */
+    padding: 0 20px;
+    /* Reduced padding to give more space */
+    margin: 0;
+}
+
+/* Logo Styling */
+.logo a {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
+    color: var(--color-black);
+    flex-wrap: nowrap;
+    /* Ensure one line */
+    margin-left: 0;
+    /* Requested: margin-left 0 */
+}
+
+.logo-img {
+    height: 50px;
+    /* Slightly larger logo */
+    width: auto;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-black);
+    letter-spacing: -0.5px;
+    white-space: nowrap;
+    margin-left: 0;
+    /* Prevent stacking */
+}
+
+.search-trigger-btn {
+    background: none;
+    border: none;
+    color: var(--color-black);
+    cursor: pointer;
+    padding: 0.6rem;
+    margin-right: 0.5rem;
+    margin-left: 1rem;
+    /* Push away from logo if tight */
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    /* Light background to stand out */
+}
+
+.search-trigger-btn:hover {
+    background-color: var(--color-orange);
+    color: white;
+}
+
+/* Nav Actions (Right side group) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    /* Increased gap */
+}
+
+/* Push language selector away from school name */
+.language-switcher {
+    margin-left: 1.5rem;
+    /* Reduced margin */
+}
+
+/* Desktop Menu Layout */
+.desktop-actions {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    /* Increased gap between nav and CTA */
+}
+
+.desktop-links {
+    display: flex;
+    gap: 2.5rem;
+    /* Increased spacing between links */
+    align-items: center;
+}
+
+/* Base Nav Item styling */
+.nav-item-desktop {
+    position: relative;
+    /* For positioning dropdown absolute */
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    color: var(--color-grey-dark);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    text-decoration: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    /* Space between text and chevron */
+}
+
+/* Hover effects */
+.nav-link:hover,
+.nav-link.active,
+.dropdown-link:hover,
+.dropdown-link.active {
+    color: var(--color-orange);
+}
+
+/* Dropdown Trigger (Text + Icon) */
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* DESKTOP DROPDOWN MENU */
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    /* Below the header */
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background-color: var(--color-white);
+    min-width: 200px;
+    border: 1px solid var(--color-grey-light);
+    border: 1px solid var(--color-grey-light);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+/* Show dropdown on hover of parent item */
+.nav-item-desktop:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Dropdown Links */
+.dropdown-link {
+    display: block;
+    padding: 0.75rem 1.5rem;
+    color: var(--color-grey-dark);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 0.15s ease, color 0.15s ease;
+    white-space: nowrap;
+}
+
+.dropdown-link:hover {
+    background-color: var(--color-grey-light);
+}
+
+
+/* Mobile Toggle */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-grey-dark);
+    padding: 0.25rem;
+}
+
+/* Mobile Utilities */
+.mobile-only {
+    display: none !important;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+.ml-2 {
+    margin-left: 0.5rem;
+}
+
+.margin-top {
+    margin-top: 1rem;
+}
+
+/* Mobile Menu OVERLAY */
+.mobile-menu {
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-grey-light);
+    padding: 1rem 0;
+    transform: translateY(-150%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+}
+
+.mobile-menu.active {
+    transform: translateY(0);
+}
+
+.nav-menu-mobile {
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-menu-mobile .nav-item {
+    width: 100%;
+}
+
+/* Mobile Nav Link Styles */
+.nav-menu-mobile .nav-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 20px;
+    width: 100%;
+    border-left: 3px solid transparent;
+}
+
+.nav-menu-mobile .nav-link.active {
+    border-left-color: var(--color-orange);
+    background-color: rgba(249, 115, 22, 0.05);
+}
+
+.nav-menu-mobile .nav-link:hover {
+    background-color: var(--color-grey-light);
+}
+
+/* Mobile Dropdown Styling */
+.mobile-dropdown-trigger {
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dropdown-arrow {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-arrow.rotate {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    background-color: #fafafa;
+    /* Slightly darker background for submenu */
+    transition: max-height 0.3s ease;
+}
+
+.mobile-dropdown-content.open {
+    max-height: 500px;
+    /* Arbitrary large height */
+}
+
+.mobile-sublink {
+    padding-left: 40px !important;
+    /* Indent submenu items */
+    font-size: 0.9rem;
+    color: var(--color-grey-dark);
+}
+
+.full-width {
+    width: calc(100% - 40px);
+    margin: 0 20px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 900px) {
+    .desktop-actions {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .mobile-only {
+        display: inline-flex !important;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 10px;
+        /* Tighter padding for 320px */
+    }
+
+    .logo-text {
+        display: block;
+        /* Show logo */
+        font-size: 0.9rem;
+        /* Smaller font */
+        max-width: 140px;
+        /* Prevent overflow */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .logo-img {
+        height: 35px;
+        /* Smaller logo image */
+    }
+
+    .nav-actions {
+        gap: 0.25rem;
+    }
+
+    .search-trigger-btn {
+        margin-left: 0.25rem;
+        margin-right: 0;
+        padding: 0.4rem;
+    }
+}

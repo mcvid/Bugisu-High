@@ -1,0 +1,421 @@
+/* Modern Report Card V2 Styles */
+
+.modern-report-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #1f2937;
+    background-color: #f9fafb;
+    /* Light grey structure */
+}
+
+/* Card Base */
+.card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Header / Student Summary */
+.report-v2-header {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.header-accent {
+    width: 6px;
+    flex-shrink: 0;
+}
+
+.header-main {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.student-name {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+    color: #111827;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem 2rem;
+    font-size: 0.95rem;
+    color: #6b7280;
+}
+
+.achievement-badge-container {
+    text-align: right;
+}
+
+.badge-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #94a3b8;
+    margin-bottom: 0.5rem;
+}
+
+.achievement-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+/* Section Common */
+.report-section {
+    margin-bottom: 2.5rem;
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.section-header p {
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin: 0;
+}
+
+/* 3. Academic Performance - Subject Cards */
+.subject-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.subject-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.subject-card:hover {
+    border-color: #cbd5e1;
+}
+
+.subject-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+}
+
+.subject-header h3 {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.teacher-name {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-right: 0.5rem;
+}
+
+.score-grade {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4b5563;
+}
+
+.teacher-comment {
+    font-size: 0.85rem;
+    color: #6b7280;
+    line-height: 1.4;
+    padding-top: 0.75rem;
+    border-top: 1px dashed #e5e7eb;
+}
+
+/* 4. Skills & Competencies */
+.competencies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.skill-card {
+    background: #fdfdfd;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 1px solid #f1f5f9;
+}
+
+.skill-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.competency-bar-container {
+    width: 100%;
+}
+
+.competency-steps {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.comp-step {
+    height: 6px;
+    flex: 1;
+    background: #e5e7eb;
+    border-radius: 100px;
+}
+
+.comp-step.active {
+    background: #f97316;
+    /* Orange highlight */
+}
+
+
+
+.current-level-text {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* 5. Attendance & Conduct */
+.report-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.card-icon-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.card-icon-header h3 {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.attendance-stats,
+.conduct-grid {
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+
+.conduct-item {
+    text-align: center;
+}
+
+.conduct-item .label {
+    display: block;
+    font-size: 0.7rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.conduct-item .value {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* 6. Remarks */
+.remarks-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.remark-card {
+    padding: 1.5rem;
+}
+
+.remark-card h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.remark-card p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* 8. Footer Acknowledgement */
+.report-v2-footer {
+    border-top: 1px solid #e5e7eb;
+    margin-top: 3rem;
+    padding-top: 2rem;
+}
+
+.acknowledgement {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.5rem;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .modern-report-container {
+        padding: 0.5rem;
+        background-color: white;
+    }
+
+    .report-v2-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: white;
+        margin-bottom: 1.5rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        /* Very subtle bottom shadow for scroll context */
+        flex-direction: column;
+    }
+
+    .header-accent {
+        width: 100%;
+        height: 6px;
+    }
+
+    .header-main {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .student-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .meta-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.25rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .report-two-col {
+        grid-template-columns: 1fr;
+    }
+
+    /* Swipable subjects */
+    .swipable-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding: 0.5rem 1rem 1.5rem;
+        margin: 0 -1rem;
+        /* Full bleed swipe */
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .subject-card {
+        min-width: 280px;
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+    }
+}
+
+/* Print Overrides */
+@media print {
+    body {
+        background: white !important;
+    }
+
+    .modern-report-container {
+        padding: 0;
+        max-width: none;
+        background: transparent;
+    }
+
+    .card {
+        box-shadow: none !important;
+        border: 1px solid #e5e7eb !important;
+    }
+
+    .swipable-container {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+        overflow: visible !important;
+    }
+
+    .subject-card {
+        page-break-inside: avoid;
+    }
+
+    .desktop-only {
+        display: block !important;
+    }
+}

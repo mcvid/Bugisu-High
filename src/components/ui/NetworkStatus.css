@@ -1,0 +1,75 @@
+.network-status-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    padding: 8px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    animation: slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.network-status-banner.offline {
+    background: #ef4444;
+    color: white;
+}
+
+.network-status-banner.online {
+    background: #22c55e;
+    color: white;
+}
+
+.status-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Push navigation down if banner is visible */
+body.has-network-banner {
+    padding-top: 36px;
+}
+
+@media (max-width: 900px) {
+
+    /* Adjust for mobile if needed, e.g. floating pill instead of top banner */
+    .network-status-banner {
+        top: 10px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+        border-radius: 100px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        min-width: 200px;
+        animation: slideDownMobile 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    @keyframes slideDownMobile {
+        from {
+            transform: translate(-50%, -20px);
+            opacity: 0;
+        }
+
+        to {
+            transform: translate(-50%, 0);
+            opacity: 1;
+        }
+    }
+}
