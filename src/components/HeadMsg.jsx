@@ -19,11 +19,7 @@ const HeadMsg = () => {
                     </h2>
 
                     <p className="head-msg-excerpt">
-                        Praise the Lord! Welcome to Bugisu High School. We are dedicated to providing quality
-                        education rooted in academic excellence, discipline, and strong Christian values. Our goal
-                        is to nurture well-rounded students who are confident, responsible, and prepared to
-                        succeed in both education and life. We value partnership with parents and the community
-                        as we guide our learners toward a bright and purposeful future.
+                        I am deeply honoured to serve as the Headteacher of Bugisu High School, an institution with a strong heritage and clear mission. We are dedicated to nurturing academically competent, morally upright, and socially responsible citizens. At Bugisu High School, we believe true education goes beyond examination success—valuing character formation, discipline, and spiritual growth alongside academic excellence.
                     </p>
 
                     <div className="head-msg-footer">
@@ -42,13 +38,13 @@ const HeadMsg = () => {
                     <div className="image-wrapper group">
                         <div className="image-backdrop" />
                         <img
-                            src="/hm.png"
-                            alt="Headteacher - Mabonga Samuel"
+                            src="/images/students/hm.jpeg?v=2"
+                            alt="Headteacher - Mabonga Sam Mukholi"
                             className="headteacher-img"
                         />
                         {/* Hover overlay */}
                         <div className="image-overlay">
-                            <span className="overlay-name">Mr. Mabonga Samuel</span>
+                            <span className="overlay-name">Mabonga Sam Mukholi</span>
                         </div>
                     </div>
                 </div>

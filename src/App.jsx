@@ -27,6 +27,7 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const StudentPortal = lazy(() => import('./pages/StudentPortal'));
 const VerifyStudent = lazy(() => import('./pages/VerifyStudent'));
 const Apply = lazy(() => import('./pages/Apply'));
+const SchoolRules = lazy(() => import('./pages/SchoolRules'));
 const HeadteacherMessage = lazy(() => import('./pages/HeadteacherMessagePage'));
 const Scholarships = lazy(() => import('./pages/Scholarships'));
 const Departments = lazy(() => import('./pages/Departments'));
@@ -137,6 +138,7 @@ const App = () => {
                         <Route path="parents/portal" element={<ParentPortal />} />
                         <Route path="parent/fees" element={<ParentFees />} />
                         <Route path="apply-online" element={<Apply />} />
+                        <Route path="school-rules" element={<SchoolRules />} />
                         <Route path="about/headteacher-message" element={<HeadteacherMessage />} />
                     </Route>
 

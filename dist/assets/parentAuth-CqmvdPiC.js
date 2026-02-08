@@ -1,1 +1,0 @@
-import"./index-DqW8wV2_.js";const t="parentPortalAuth",r="BugisuLions2026",n={isAuthenticated:()=>sessionStorage.getItem(t)==="true",authenticate:e=>e&&e.trim()===r?(sessionStorage.setItem(t,"true"),!0):!1,logout:()=>{sessionStorage.removeItem(t)},getCurrentPassword:()=>r};export{n as p};

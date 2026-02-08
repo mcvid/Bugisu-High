@@ -37,6 +37,7 @@ const ApplicationForm = () => {
     });
 
     const [referenceNo, setReferenceNo] = useState(''); // New state for reference number
+    const [agreedToRules, setAgreedToRules] = useState(false);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -337,9 +338,24 @@ const ApplicationForm = () => {
                                 </div>
                             </div>
 
+                            <div className="agreement-section" style={{ marginTop: '2rem', padding: '1rem', background: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                                <label style={{ display: 'flex', gap: '12px', alignItems: 'flex-start', cursor: 'pointer' }}>
+                                    <input
+                                        type="checkbox"
+                                        required
+                                        checked={agreedToRules}
+                                        onChange={(e) => setAgreedToRules(e.target.checked)}
+                                        style={{ marginTop: '4px', width: '20px', height: '20px' }}
+                                    />
+                                    <span style={{ fontSize: '0.95rem', color: '#334155', lineHeight: '1.5' }}>
+                                        I agree to adhere to the <a href="/school-rules" target="_blank" rel="noopener noreferrer" style={{ color: '#ea580c', fontWeight: '600', textDecoration: 'underline' }}>School Rules and Regulations</a>. I understand that failure to comply will result in disciplinary actions.
+                                    </span>
+                                </label>
+                            </div>
+
                             <div className="step-actions sticky-mobile">
                                 <button type="button" className="btn btn-outline" onClick={() => setStep(3)}><ChevronLeft size={18} /> {t('admissions:form.prev_step')}</button>
-                                <button type="submit" className="btn btn-primary btn-lg" disabled={loading || !files.photo || !files.result_slip}>
+                                <button type="submit" className="btn btn-primary btn-lg" disabled={loading || !files.photo || !files.result_slip || !agreedToRules}>
                                     {loading ? t('admissions:form.submitting') : t('admissions:form.submit')}
                                 </button>
                             </div>
