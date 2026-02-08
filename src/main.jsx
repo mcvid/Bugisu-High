@@ -17,11 +17,15 @@ const queryClient = new QueryClient({
     },
 })
 
+import { SchoolProvider } from './contexts/SchoolContext'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <HelmetProvider>
             <QueryClientProvider client={queryClient}>
-                <App />
+                <SchoolProvider>
+                    <App />
+                </SchoolProvider>
             </QueryClientProvider>
         </HelmetProvider>
     </React.StrictMode>,

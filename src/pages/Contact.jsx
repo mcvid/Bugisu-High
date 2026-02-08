@@ -3,6 +3,7 @@ import SEO from '../components/SEO';
 import ContactInfo from '../components/contact/ContactInfo';
 import ContactForm from '../components/contact/ContactForm';
 import MapEmbed from '../components/contact/MapEmbed';
+import UniversalHero from '../components/ui/UniversalHero';
 import './Academics.css'; // Reusing the same premium styles
 
 const Contact = () => {
@@ -73,14 +74,14 @@ const Contact = () => {
                 <div className="shape shape-3"></div>
             </div>
 
-            <section className="academics-hero" style={{ padding: '8rem 0 4rem' }}>
-                <div className="container" style={{ textAlign: 'center' }}>
-                    <h1 className="reveal-on-scroll">Contact Us</h1>
-                    <p className="reveal-on-scroll" style={{ maxWidth: '600px', margin: '1rem auto', color: '#64748b' }}>
+            <UniversalHero pagePath="/contact" height="40vh">
+                <div style={{ textAlign: 'center' }}>
+                    <h1 className="reveal-on-scroll" style={{ color: 'white' }}>Contact Us</h1>
+                    <p className="reveal-on-scroll" style={{ maxWidth: '600px', margin: '1rem auto', color: 'rgba(255,255,255,0.9)' }}>
                         We are here to help. Reach out to Bugisu High School through any of the channels below.
                     </p>
                 </div>
-            </section>
+            </UniversalHero>
 
             <div className="container" style={{ display: 'grid', gap: '4rem', paddingBottom: '6rem' }}>
                 <ContactInfo />

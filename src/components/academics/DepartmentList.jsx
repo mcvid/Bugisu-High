@@ -46,6 +46,20 @@ const DepartmentList = () => {
                     </div>
                 ))}
             </div>
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+                <a
+                    href="/departments"
+                    className="cta-button"
+                    style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        textDecoration: 'none'
+                    }}
+                >
+                    View Full Faculty & Departments
+                </a>
+            </div>
         </section>
     );
 };

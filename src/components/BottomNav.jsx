@@ -13,7 +13,6 @@ const BottomNav = () => {
         { icon: Home, label: t('nav.home'), path: '/' },
         { icon: GraduationCap, label: t('nav.academics'), path: '/academics' },
         { icon: ClipboardCheck, label: t('nav.admissions'), path: '/admissions' },
-        { icon: Newspaper, label: t('nav.news'), path: '/news' },
         { icon: MessageSquare, label: t('nav.contact'), path: '/contact' }
     ];
 

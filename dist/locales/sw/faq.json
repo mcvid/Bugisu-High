@@ -1,0 +1,41 @@
+{
+    "hero_title": "Maswali Yanayoulizwa Mara kwa Mara",
+    "hero_subtitle": "Je, una maswali? Tunayo majibu.",
+    "categories": {
+        "general": "Jumla",
+        "admissions": "Udahili",
+        "academics": "Kitaaluma",
+        "student_life": "Maisha ya Wanafunzi"
+    },
+    "general": {
+        "q1": "Shule ya Upili ya Bugisu iko wapi?",
+        "a1": "Shule ya Upili ya Bugisu iko Mbale, Uganda, inayofikika kwa urahisi kutoka katikati ya mji.",
+        "q2": "Je, shule ni ya kulala au kutwa?",
+        "a2": "Tunatoa chaguo zote mbili za kulala na kutwa ili kukidhi mahitaji mbalimbali ya wanafunzi na wazazi wetu.",
+        "q3": "Saa za ofisi ya shule ni zipi?",
+        "a3": "Ofisi ya utawala hufunguliwa kuanzia Jumatatu hadi Ijumaa saa 2.00 asubuhi hadi saa 11.00 jioni, na Jumamosi kuanzia saa 3.00 asubuhi hadi saa 7.00 mchana."
+    },
+    "admissions": {
+        "q1": "Udahili wa mwaka mpya wa masomo hufunguliwa lini?",
+        "a1": "Udahili hufunguliwa mnamo Novemba kwa mwaka unaofuata wa masomo. Hata hivyo, tunapokea maswali mwaka mzima.",
+        "q2": "Je, ni mahitaji gani ya kujiunga na S1?",
+        "a2": "Waombaji wa S1 wanahitaji slip ya matokeo ya PLE, barua ya upendekezo kutoka shule ya awali, na picha 2 za pasipoti.",
+        "q3": "Je, mnasambaza ufadhili wa masomo?",
+        "a3": "Ndiyo, tunatoa ufadhili kulingana na ufaulu bora wa kitaaluma katika PLE na UCE."
+    },
+    "academics": {
+        "q1": "Shule inafuata mtaala gani?",
+        "a1": "Tunafuata Mtaala wa Kitaifa wa Uganda unaojumuisha masomo maalum kwa O-Level na A-Level.",
+        "q2": "Je, mnafundisha masomo ya kompyuta?",
+        "a2": "Ndiyo, Masomo ya Kompyuta ni somo la lazima kwa wanafunzi wa O-Level na somo la hiari kwa A-Level, likisaidiwa na maabara ya kompyuta iliyojaa vifaa vizuri."
+    },
+    "student_life": {
+        "q1": "Ni shughuli gani za ziada zinazopatikana?",
+        "a1": "Tunayo shughuli mbalimbali zikiwemo Mpira wa Miguu, Netiboli, Muziki, Ngoma na Dramu, Klabu ya Mdahalo, na Klabu ya Sayansi.",
+        "q2": "Je, kuna nesi shuleni?",
+        "a2": "Ndiyo, tuna sehemu ya matibabu iliyojaa vifaa na nesi aliyefuzu anayepatikana saa 24 kwa dharura za matibabu."
+    },
+    "cta_title": "Bado una maswali?",
+    "cta_desc": "Tuko hapa kusaidia. Wasiliana na timu yetu ya udahili moja kwa moja.",
+    "cta_btn": "Wasiliana Nasi"
+}

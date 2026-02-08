@@ -1,11 +1,12 @@
 .network-status-banner {
+    display: none;
+    /* Hidden on desktop by user request */
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 9999;
     padding: 8px 16px;
-    display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.85rem;
@@ -51,6 +52,8 @@ body.has-network-banner {
 
     /* Adjust for mobile if needed, e.g. floating pill instead of top banner */
     .network-status-banner {
+        display: flex;
+        /* Visible on mobile */
         top: 10px;
         left: 50%;
         right: auto;

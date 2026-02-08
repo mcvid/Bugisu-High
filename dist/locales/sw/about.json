@@ -1,0 +1,29 @@
+{
+    "hero_title": "Kuhusu Shule ya Upili ya Bugisu",
+    "hero_title_mobile": "Kuhusu Sisi",
+    "hero_desc": "Taasisi ya sekondari iliyojitolea kwa ubora wa kitaaluma, maendeleo ya tabia, na uongozi wa jamii kupitia elimu kamili na ukuaji wa nidhamu.",
+    "foundation_title": "Msingi na Kusudi",
+    "foundation_desc": "Ilianzishwa ili kutumikia mahitaji ya elimu ya kanda kwa uadilifu na maono.",
+    "history_text": "Shule ya Upili ya Bugisu inasimama kama nguzo ya elimu katika jamii yetu. Tunatoa mazingira yaliyopangwa ambapo wanafunzi wanachangamoto kitaaluma na kusaidiwa kibinafsi. Mtindo wetu unasawazisha taaluma kali na mpango tajiri wa ziada wa mtaala ili kuhakikisha kila mwanafunzi anahitimu na maarifa na tabia.",
+    "mission_title": "Dhamira Yetu",
+    "mission_desc": "Kulea wanafunzi kupitia mtaala kamili ambao unakuza ukuaji wa kiakili, uadilifu wa maadili, na uwajibikaji wa kijamii.",
+    "vision_title": "Maono Yetu",
+    "vision_desc": "Kuwa taasisi kuu ya elimu ambapo kila mwanafunzi anagundua uwezo wake na kujitahidi kwa ubora.",
+    "values_title": "Maadili ya Msingi",
+    "values": {
+        "excellence_title": "Ubora",
+        "excellence_desc": "Kujitahidi kwa viwango vya juu zaidi katika masuala yote ya kitaaluma na ya kibinafsi.",
+        "integrity_title": "Uadilifu",
+        "integrity_desc": "Kutenda kwa uaminifu na kanuni kali za maadili katika kila hali.",
+        "discipline_title": "Nidhamu",
+        "discipline_desc": "Kudumisha udhibiti wa nafsi na umakini ili kufikia malengo ya muda mrefu.",
+        "community_title": "Jamii",
+        "community_desc": "Kukuza hisia ya kuhusika na uwajibikaji kwa wengine."
+    },
+    "leadership_title": "Uongozi wa Shule",
+    "leadership_desc": "Inayoongozwa na waelimishaji wenye uzoefu waliojitolea kwa mafanikio ya wanafunzi.",
+    "leadership_fallback_bio": "Sehemu ya uongozi uliojitolea katika Shule ya Upili ya Bugisu.",
+    "team_title": "Timu Yetu",
+    "team_desc": "Walimu waliojitolea wanaochochea wanafunzi wetu kufikia ubora wao.",
+    "teachers_coming_soon": "Maelezo ya walimu yanakuja hivi karibuni."
+}

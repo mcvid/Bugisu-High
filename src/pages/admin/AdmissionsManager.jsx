@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Plus, Pencil, Trash2, Save, X, FileText, ListOrdered, Settings, MessageSquare, Download, CheckCircle, Clock, Users, Eye, Mail, Phone, Calendar } from 'lucide-react';
+import {
+    Plus, Pencil, Trash2, Save, X, FileText, ListOrdered, Settings, MessageSquare, Download, CheckCircle, Clock, Users, Eye, Mail, Phone, Calendar, Award
+} from 'lucide-react';
 import { sendParentPortalWelcomeEmail, sendApplicationRejectionEmail } from '../../utils/emailService';
 
 const AdmissionsManager = () => {
@@ -11,12 +13,15 @@ const AdmissionsManager = () => {
     const [inquiries, setInquiries] = useState([]);
     const [downloads, setDownloads] = useState([]);
     const [applications, setApplications] = useState([]);
+    const [scholarships, setScholarships] = useState([]);
     const [subscriptions, setSubscriptions] = useState([]);
     const [loading, setLoading] = useState(true);
     const [editingId, setEditingId] = useState(null);
     const [editForm, setEditForm] = useState({});
     const [isAdding, setIsAdding] = useState(false);
     const [viewApp, setViewApp] = useState(null);
+    const [scholarshipApps, setScholarshipApps] = useState([]);
+    const [viewScholApp, setViewScholApp] = useState(null);
     const [selectedHouse, setSelectedHouse] = useState('Elgon House');
 
     const houses = ['Elgon House', 'Nile House', 'Victoria House', 'Rwenzori House'];
@@ -28,14 +33,16 @@ const AdmissionsManager = () => {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const [s, st, req, inq, dls, apps, sub] = await Promise.all([
+            const [s, st, req, inq, dls, apps, sub, schol, scholApps] = await Promise.all([
                 supabase.from('admissions_settings').select('*').single(),
                 supabase.from('admissions_steps').select('*').order('sort_order', { ascending: true }),
                 supabase.from('admissions_requirements').select('*').order('created_at', { ascending: true }),
                 supabase.from('admissions_inquiries').select('*').order('created_at', { ascending: false }),
                 supabase.from('admissions_downloads').select('*').order('sort_order', { ascending: true }),
                 supabase.from('admission_applications').select('*').order('created_at', { ascending: false }),
-                supabase.from('newsletter_subscriptions').select('*').order('created_at', { ascending: false })
+                supabase.from('newsletter_subscriptions').select('*').order('created_at', { ascending: false }),
+                supabase.from('scholarships').select('*').order('academic_year', { ascending: false }).order('sort_order', { ascending: true }),
+                supabase.from('scholarship_applications').select('*, scholarships(title)').order('created_at', { ascending: false })
             ]);
 
             if (s.data) setSettings(s.data);
@@ -45,6 +52,8 @@ const AdmissionsManager = () => {
             setDownloads(dls.data || []);
             setApplications(apps.data || []);
             setSubscriptions(sub.data || []);
+            setScholarships(schol.data || []);
+            setScholarshipApps(scholApps.data || []);
         } catch (error) {
             console.error('Error fetching data:', error);
         } finally {
@@ -140,6 +149,22 @@ const AdmissionsManager = () => {
             fetchData();
         } catch (error) {
             alert('Error updating application: ' + error.message);
+        }
+    };
+
+    const updateScholarshipAppStatus = async (id, status) => {
+        try {
+            const { error } = await supabase
+                .from('scholarship_applications')
+                .update({ status })
+                .eq('id', id);
+
+            if (error) throw error;
+            alert(`Application ${status}`);
+            setViewScholApp(null);
+            fetchData();
+        } catch (error) {
+            alert('Error updating: ' + error.message);
         }
     };
 
@@ -498,31 +523,102 @@ const AdmissionsManager = () => {
         <div className="admin-list">
             <h3 style={{ marginBottom: '1.5rem' }}>Admissions Inquiries ({inquiries.filter(i => i.status === 'pending').length} New)</h3>
             {inquiries.length === 0 ? <p>No inquiries yet.</p> : inquiries.map(inq => (
-                <div key={inq.id} style={{ background: 'white', padding: '1.5rem', borderRadius: '12px', border: '1px solid #eee', marginBottom: '1.5rem', position: 'relative' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
-                        <div>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
-                                <h4 style={{ margin: 0 }}>{inq.name}</h4>
-                                <span className={`status-badge ${inq.status}`}>{inq.status}</span>
+                <div key={inq.id} style={{
+                    background: 'white',
+                    padding: '2rem',
+                    borderRadius: '1.5rem',
+                    border: '1px solid rgba(0,0,0,0.06)',
+                    marginBottom: '1.5rem',
+                    position: 'relative',
+                    transition: 'all 0.3s ease'
+                }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1.5rem', alignItems: 'flex-start' }}>
+                        <div style={{ flex: 1 }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.75rem' }}>
+                                <h4 style={{ margin: 0, fontSize: '1.2rem', fontWeight: '700', color: '#1e293b' }}>{inq.name}</h4>
+                                <span style={{
+                                    background: inq.status === 'pending' ? '#fef3c7' : '#e0f2fe',
+                                    color: inq.status === 'pending' ? '#92400e' : '#075985',
+                                    padding: '0.35rem 0.75rem',
+                                    borderRadius: '8px',
+                                    fontSize: '0.7rem',
+                                    fontWeight: '700',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.5px'
+                                }}>{inq.status}</span>
                             </div>
-                            <div style={{ display: 'flex', gap: '1.5rem', color: '#64748b', fontSize: '0.9rem' }}>
-                                <span><Mail size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> {inq.email}</span>
-                                <span><Phone size={14} style={{ verticalAlign: 'middle', marginRight: '4px' }} /> {inq.phone || 'N/A'}</span>
+                            <div style={{ display: 'flex', gap: '2rem', color: '#64748b', fontSize: '0.9rem', flexWrap: 'wrap' }}>
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <Mail size={16} /> {inq.email}
+                                </span>
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <Phone size={16} /> {inq.phone || 'N/A'}
+                                </span>
+                                <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                    <Calendar size={14} /> {new Date(inq.created_at).toLocaleDateString()}
+                                </span>
                             </div>
                         </div>
-                        <span style={{ fontSize: '0.8rem', color: '#94a3b8' }}>{new Date(inq.created_at).toLocaleString()}</span>
                     </div>
-                    <div style={{ background: '#f8fafc', padding: '1rem', borderRadius: '8px', marginBottom: '1rem' }}>
-                        <p style={{ margin: 0 }}>{inq.message}</p>
+                    <div style={{
+                        background: '#f8fafc',
+                        padding: '1.5rem',
+                        borderRadius: '12px',
+                        marginBottom: '1.5rem',
+                        border: '1px solid #e2e8f0'
+                    }}>
+                        <p style={{ margin: 0, lineHeight: '1.6', color: '#475569' }}>{inq.message}</p>
                     </div>
                     <div style={{ display: 'flex', gap: '1rem' }}>
                         {inq.status === 'pending' && (
-                            <button className="btn btn-outline btn-sm" onClick={() => updateInquiryStatus(inq.id, 'reviewed')}>
+                            <button
+                                style={{
+                                    background: '#f97316',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '0.6rem 1.25rem',
+                                    borderRadius: '10px',
+                                    fontSize: '0.9rem',
+                                    fontWeight: '600',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    transition: 'all 0.2s ease'
+                                }}
+                                onClick={() => updateInquiryStatus(inq.id, 'reviewed')}
+                                onMouseEnter={e => e.target.style.background = '#ea580c'}
+                                onMouseLeave={e => e.target.style.background = '#f97316'}
+                            >
                                 <CheckCircle size={16} /> Mark Reviewed
                             </button>
                         )}
-                        <button className="btn btn-icon delete" onClick={() => handleDelete('admissions_inquiries', inq.id)}>
-                            <Trash2 size={16} />
+                        <button
+                            style={{
+                                background: 'transparent',
+                                border: '1px solid #fee2e2',
+                                color: '#ef4444',
+                                padding: '0.6rem 1.25rem',
+                                borderRadius: '10px',
+                                fontSize: '0.9rem',
+                                fontWeight: '600',
+                                cursor: 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.5rem',
+                                transition: 'all 0.2s ease'
+                            }}
+                            onClick={() => handleDelete('admissions_inquiries', inq.id)}
+                            onMouseEnter={e => {
+                                e.target.style.background = '#ef4444';
+                                e.target.style.color = 'white';
+                            }}
+                            onMouseLeave={e => {
+                                e.target.style.background = 'transparent';
+                                e.target.style.color = '#ef4444';
+                            }}
+                        >
+                            <Trash2 size={16} /> Delete
                         </button>
                     </div>
                 </div>
@@ -530,9 +626,216 @@ const AdmissionsManager = () => {
         </div>
     );
 
+    const renderScholAppModal = () => {
+        if (!viewScholApp) return null;
+
+        return (
+            <div className="admin-modal-overlay">
+                <div className="admin-modal-card" style={{ maxWidth: '600px' }}>
+                    <div className="modal-header">
+                        <h2>Scholarship Application Details</h2>
+                        <button className="btn btn-icon" onClick={() => setViewScholApp(null)}><X size={20} /></button>
+                    </div>
+                    <div className="modal-body" style={{ padding: '2rem' }}>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Student Name</label>
+                                <div style={{ fontSize: '1.1rem', fontWeight: '600' }}>{viewScholApp.student_name}</div>
+                            </div>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Applied For</label>
+                                <div style={{ fontSize: '1.1rem', fontWeight: '600' }}>{viewScholApp.scholarships?.title || viewScholApp.category}</div>
+                            </div>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Phone</label>
+                                <div>{viewScholApp.phone}</div>
+                            </div>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Email</label>
+                                <div>{viewScholApp.email || 'N/A'}</div>
+                            </div>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Previous School</label>
+                                <div>{viewScholApp.previous_school}</div>
+                            </div>
+                            <div>
+                                <label style={{ color: '#64748b', fontSize: '0.8rem', textTransform: 'uppercase' }}>Date Submitted</label>
+                                <div>{new Date(viewScholApp.created_at).toLocaleDateString()}</div>
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '2rem', padding: '1.5rem', background: '#f8fafc', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
+                            <h4 style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <FileText size={18} /> Category Specific Data
+                            </h4>
+                            <div style={{ display: 'grid', gap: '1rem' }}>
+                                {viewScholApp.data && Object.entries(viewScholApp.data).map(([key, value]) => (
+                                    <div key={key}>
+                                        <label style={{ color: '#64748b', fontSize: '0.75rem', textTransform: 'uppercase' }}>{key.replace('_', ' ')}</label>
+                                        <div style={{ fontWeight: '500' }}>{value}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+                            <button className="btn btn-primary" onClick={() => updateScholarshipAppStatus(viewScholApp.id, 'approved')}>
+                                <CheckCircle size={18} /> Approve
+                            </button>
+                            <button className="btn btn-outline" style={{ color: '#ef4444', borderColor: '#ef4444' }} onClick={() => updateScholarshipAppStatus(viewScholApp.id, 'rejected')}>
+                                <Trash2 size={18} /> Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    };
+
+    const renderScholarshipsTab = () => (
+        <div className="admin-list-section">
+            <div className="admin-header">
+                <h3>Scholarships Management</h3>
+                <button className="btn btn-primary" onClick={() => {
+                    setIsAdding(true);
+                    setEditingId(null);
+                    setEditForm({
+                        academic_year: '2026/2027',
+                        coverage_type: 'partial',
+                        is_active: true,
+                        sort_order: scholarships.length + 1
+                    });
+                }}>
+                    <Plus size={18} /> Add Scholarship
+                </button>
+            </div>
+
+            {/* Application List Section */}
+            <div style={{ marginBottom: '3rem' }}>
+                <h4 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <Users size={18} /> Recent Applications
+                </h4>
+                {scholarshipApps.length === 0 ? <p className="text-gray-500">No applications received yet.</p> : (
+                    <div className="admin-table-wrapper">
+                        <table className="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Category/Scholarship</th>
+                                    <th>Status</th>
+                                    <th style={{ textAlign: 'right' }}>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {scholarshipApps.map(app => (
+                                    <tr key={app.id}>
+                                        <td style={{ fontWeight: 'bold' }}>{app.student_name}</td>
+                                        <td>{app.scholarships?.title || app.category}</td>
+                                        <td><span className={`status-badge ${app.status}`}>{app.status}</span></td>
+                                        <td style={{ textAlign: 'right' }}>
+                                            <button className="btn btn-outline btn-sm" onClick={() => setViewScholApp(app)}>
+                                                <Eye size={16} /> Details
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                )}
+            </div>
+
+            <div style={{ borderTop: '1px solid #eee', paddingTop: '2rem' }}>
+                <h4 style={{ marginBottom: '1.5rem' }}>Active Programs</h4>
+                {(isAdding || editingId) && activeTab === 'scholarships' && (
+                    <div className="admin-form-card" style={{ background: '#f8fafc', padding: '2rem', borderRadius: '12px', marginBottom: '2rem', border: '1px solid #e2e8f0' }}>
+                        <h4>{editingId ? 'Edit Scholarship' : 'New Scholarship'}</h4>
+                        <div className="form-grid" style={{ marginTop: '1rem' }}>
+                            <div style={{ gridColumn: '1 / -1' }}>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Title</label>
+                                <input type="text" placeholder="e.g., Performance Excellence Scholarship" value={editForm.title || ''} onChange={e => setEditForm({ ...editForm, title: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }} />
+                            </div>
+                            <div style={{ gridColumn: '1 / -1' }}>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Description</label>
+                                <textarea placeholder="Scholarship details..." value={editForm.description || ''} onChange={e => setEditForm({ ...editForm, description: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd', minHeight: '80px' }} />
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Academic Year</label>
+                                <input type="text" value={editForm.academic_year || ''} onChange={e => setEditForm({ ...editForm, academic_year: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }} />
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Coverage Type</label>
+                                <select value={editForm.coverage_type || 'partial'} onChange={e => setEditForm({ ...editForm, coverage_type: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }}>
+                                    <option value="full">Full Scholarship</option>
+                                    <option value="partial">Partial Scholarship</option>
+                                    <option value="specific">Specific Coverage</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Amount (UGX)</label>
+                                <input type="number" value={editForm.amount || ''} onChange={e => setEditForm({ ...editForm, amount: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }} />
+                            </div>
+                            <div>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Deadline</label>
+                                <input type="date" value={editForm.deadline || ''} onChange={e => setEditForm({ ...editForm, deadline: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }} />
+                            </div>
+                            <div style={{ gridColumn: '1 / -1' }}>
+                                <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.85rem' }}>Application Link (Internal/External)</label>
+                                <input type="text" placeholder="https://..." value={editForm.application_link || ''} onChange={e => setEditForm({ ...editForm, application_link: e.target.value })} style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #ddd' }} />
+                            </div>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                                <input type="checkbox" checked={editForm.is_active || false} onChange={e => setEditForm({ ...editForm, is_active: e.target.checked })} />
+                                <span>Active / Visible on Site</span>
+                            </div>
+                            <div style={{ display: 'flex', gap: '1rem', gridColumn: '1 / -1', marginTop: '1rem' }}>
+                                <button className="btn btn-primary" onClick={() => handleSave('scholarships')}>Save Program</button>
+                                <button className="btn btn-outline" onClick={() => { setIsAdding(false); setEditingId(null); setEditForm({}); }}>Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                <div className="admin-list">
+                    {scholarships.length === 0 ? <p className="text-gray-500">No scholarships found.</p> : scholarships.map(s => (
+                        <div key={s.id} className="admin-list-item">
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                                <div style={{
+                                    width: '40px',
+                                    height: '40px',
+                                    borderRadius: '10px',
+                                    background: s.is_active ? '#f0fdf4' : '#f8fafc',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    flexShrink: 0
+                                }}>
+                                    <Award size={24} color={s.is_active ? '#22c55e' : '#64748b'} />
+                                </div>
+                                <div>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+                                        <strong>{s.title}</strong>
+                                        <span style={{ fontSize: '0.75rem', padding: '2px 8px', borderRadius: '100px', background: '#f1f5f9', color: '#64748b' }}>{s.academic_year}</span>
+                                    </div>
+                                    <p style={{ margin: '0.25rem 0 0', color: '#64748b', fontSize: '0.85rem' }}>
+                                        {s.coverage_type.toUpperCase()} • {s.amount ? `${Number(s.amount).toLocaleString()} UGX` : 'Contact for details'}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="admin-list-item-actions">
+                                <button className="btn btn-icon" onClick={() => handleEdit(s.id, s)}><Pencil size={16} /></button>
+                                <button className="btn btn-icon delete" onClick={() => handleDelete('scholarships', s.id)}><Trash2 size={16} /></button>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
+    );
+
     return (
         <div className="admin-manager admissions-manager admin-fade-in">
             {renderApplicationModal()}
+            {renderScholAppModal()}
             <div className="admin-header">
                 <h1>Admissions Management</h1>
             </div>
@@ -547,6 +850,7 @@ const AdmissionsManager = () => {
                     <MessageSquare size={18} /> Inquiries
                     {inquiries.filter(i => i.status === 'pending').length > 0 && <span style={{ marginLeft: '6px', background: '#ef4444', color: 'white', padding: '2px 6px', borderRadius: '100px', fontSize: '0.7rem' }}>{inquiries.filter(i => i.status === 'pending').length}</span>}
                 </button>
+                <button className={`btn ${activeTab === 'scholarships' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('scholarships')}><Award size={18} /> Scholarships</button>
                 <button className={`btn ${activeTab === 'newsletter' ? 'btn-primary' : 'btn-outline'}`} onClick={() => setActiveTab('newsletter')}><Mail size={18} /> Newsletter</button>
             </div>
 
@@ -596,6 +900,7 @@ const AdmissionsManager = () => {
                     {activeTab === 'reqs' && renderRequirementsTab()}
                     {activeTab === 'downloads' && renderDownloadsTab()}
                     {activeTab === 'inquiries' && renderInquiriesTab()}
+                    {activeTab === 'scholarships' && renderScholarshipsTab()}
                     {activeTab === 'newsletter' && (
                         <div className="admin-list admin-fade-in">
                             <div className="admin-header">

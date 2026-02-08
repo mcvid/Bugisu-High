@@ -43,17 +43,57 @@ const Dashboard = () => {
     }, []);
 
     const ActionCard = ({ title, count, icon, path, color }) => (
-        <Link to={path} className="dashboard-action-card">
-            <div className="card-content" style={{ borderLeft: `6px solid ${color}` }}>
-                <div className="card-text">
-                    <h3 className="card-title">{title}</h3>
-                    <div className="card-value-wrapper">
-                        <p className="card-count">{count}</p>
-                        {count > 0 && <span className="card-badge">NEW</span>}
+        <Link to={path} style={{ textDecoration: 'none' }}>
+            <div style={{
+                background: 'white',
+                padding: '2rem',
+                borderRadius: '1.5rem',
+                border: '1px solid rgba(0,0,0,0.06)',
+                transition: 'all 0.3s ease',
+                cursor: 'pointer',
+                position: 'relative',
+                overflow: 'hidden'
+            }}
+                className="dashboard-action-card"
+                onMouseEnter={e => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.borderColor = color;
+                    e.currentTarget.style.boxShadow = `0 8px 24px ${color}15`;
+                }}
+                onMouseLeave={e => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(0,0,0,0.06)';
+                    e.currentTarget.style.boxShadow = 'none';
+                }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                    <div style={{ flex: 1 }}>
+                        <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '14px',
+                            background: `${color}10`,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '1.25rem',
+                            color: color
+                        }}>
+                            {icon}
+                        </div>
+                        <h3 style={{ fontSize: '0.95rem', fontWeight: '600', color: '#64748b', marginBottom: '0.5rem' }}>{title}</h3>
+                        <p style={{ fontSize: '2.25rem', fontWeight: '800', color: '#1e293b', margin: 0, lineHeight: 1 }}>{count}</p>
                     </div>
-                </div>
-                <div className="card-icon-wrapper" style={{ background: `${color}15`, color: color }}>
-                    {icon}
+                    {count > 0 && (
+                        <span style={{
+                            background: color,
+                            color: 'white',
+                            padding: '0.35rem 0.75rem',
+                            borderRadius: '8px',
+                            fontSize: '0.7rem',
+                            fontWeight: '700',
+                            letterSpacing: '0.5px'
+                        }}>NEW</span>
+                    )}
                 </div>
             </div>
         </Link>

@@ -33,7 +33,7 @@ const QuickAccessHub = () => {
         {
             title: t('common:shortcuts.fees'),
             icon: <CreditCard size={24} />,
-            path: '/admissions',
+            path: '/parent/fees',
             color: '#ef4444'
         },
         {

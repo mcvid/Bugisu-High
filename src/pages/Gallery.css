@@ -8,10 +8,11 @@
 }
 
 .filter-btn {
-    padding: 0.5rem 1.5rem;
-    border: 2px solid #e2e8f0;
+    padding: 0.6rem 1.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
     background: white;
-    border-radius: 50px;
+    border-radius: 2rem;
+    /* Bento pill */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -39,9 +40,11 @@
 
 .album-card {
     background: white;
-    border-radius: 16px;
+    border-radius: 2.5rem;
+    /* Large Bento radius */
     overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.04);
     transition: all 0.3s ease;
     cursor: pointer;
 }
@@ -109,8 +112,8 @@
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
     background: white;
-    border: 2px solid #e2e8f0;
-    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.5rem;
     font-weight: 600;
     color: #64748b;
     cursor: pointer;
@@ -143,7 +146,8 @@
 
 .gallery-item {
     position: relative;
-    border-radius: 12px;
+    border-radius: 2rem;
+    /* Pronounced Bento radius */
     overflow: hidden;
     aspect-ratio: 4/3;
     cursor: pointer;

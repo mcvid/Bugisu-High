@@ -1,5 +1,5 @@
-import React from 'react';
 import { ShieldCheck, Award } from 'lucide-react';
+import OptimizedImage from '../ui/OptimizedImage';
 
 const AcademicScope = () => {
     return (
@@ -10,19 +10,43 @@ const AcademicScope = () => {
             </div>
 
             <div className="policy-grid">
-                <div className="policy-card">
-                    <div className="policy-icon"><ShieldCheck size={24} /></div>
-                    <div className="policy-content">
-                        <h4>Educational Levels</h4>
-                        <p>We provide full-time secondary education across two levels: Lower Secondary (O-Level) and Upper Secondary (A-Level). We do not offer primary or vocational-only certificate tracks at this campus.</p>
+                {/* Row 1 */}
+                <div className="academic-alternating-row">
+                    <div className="academic-image-container">
+                        <OptimizedImage
+                            src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop"
+                            alt="Secondary Education"
+                            aspectRatio="16/10"
+                        />
+                    </div>
+                    <div className="academic-text-container">
+                        <div className="policy-card">
+                            <div className="policy-icon"><ShieldCheck size={28} /></div>
+                            <div className="policy-content">
+                                <h4>Educational Levels</h4>
+                                <p>We provide a comprehensive secondary education framework across two primary levels: Lower Secondary (O-Level) and Upper Secondary (A-Level). Each phase is designed to build critical foundational knowledge while progressively introducing advanced concepts, ensuring our students are prepared for the rigors of university education and beyond.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="policy-card">
-                    <div className="policy-icon"><Award size={24} /></div>
-                    <div className="policy-content">
-                        <h4>National Certification</h4>
-                        <p>All academic programs are aligned with the Uganda National Examinations Board (UNEB). Students are prepared for the Uganda Certificate of Education (UCE) and Uganda Advanced Certificate of Education (UACE).</p>
+                {/* Row 2 */}
+                <div className="academic-alternating-row">
+                    <div className="academic-image-container">
+                        <OptimizedImage
+                            src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1000&auto=format&fit=crop"
+                            alt="National Certification"
+                            aspectRatio="16/10"
+                        />
+                    </div>
+                    <div className="academic-text-container">
+                        <div className="policy-card">
+                            <div className="policy-icon"><Award size={28} /></div>
+                            <div className="policy-content">
+                                <h4>National Certification</h4>
+                                <p>Our academic programs are fully accredited and strictly aligned with the Uganda National Examinations Board (UNEB). We maintain a gold standard in preparing students for the Uganda Certificate of Education (UCE) and the Uganda Advanced Certificate of Education (UACE), with a consistent track record of excellence in national rankings.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

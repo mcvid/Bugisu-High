@@ -1,0 +1,210 @@
+.journey-section {
+    background-color: #ffffff;
+    padding-bottom: 6rem;
+    padding-top: 2rem;
+}
+
+.journey-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+@media (min-width: 992px) {
+    .journey-container {
+        grid-template-columns: auto 1fr auto;
+        gap: 5rem;
+    }
+}
+
+/* Color Pillars */
+.color-pillars {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+@media (min-width: 992px) {
+    .color-pillars {
+        justify-content: flex-start;
+    }
+}
+
+.pillar {
+    width: 1rem;
+    height: 10rem;
+    border-bottom-left-radius: 9999px;
+    border-bottom-right-radius: 9999px;
+}
+
+@media (min-width: 992px) {
+    .pillar {
+        width: 2rem;
+        height: 28rem;
+    }
+}
+
+.pillar-blue {
+    background-color: #3b82f6;
+}
+
+.pillar-green {
+    background-color: #4ade80;
+}
+
+.pillar-amber {
+    background-color: #fbbf24;
+}
+
+.pillar-red {
+    background-color: #ef4444;
+}
+
+/* Main Content */
+.journey-content {
+    max-width: 42rem;
+    text-align: center;
+}
+
+@media (min-width: 992px) {
+    .journey-content {
+        text-align: left;
+    }
+}
+
+.journey-label-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 992px) {
+    .journey-label-group {
+        justify-content: flex-start;
+    }
+}
+
+.journey-label {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.875rem;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.journey-line {
+    width: 2.5rem;
+    height: 2px;
+    background-color: #60a5fa;
+}
+
+.journey-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #000;
+}
+
+@media (min-width: 992px) {
+    .journey-title {
+        font-size: 3rem;
+    }
+}
+
+.journey-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: #334155;
+    font-weight: 300;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (min-width: 992px) {
+    .journey-text {
+        font-size: 1.25rem;
+    }
+}
+
+.journey-footer {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .journey-footer {
+        justify-content: flex-start;
+    }
+}
+
+.read-more-link {
+    color: #2563eb;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.read-more-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.footer-line {
+    width: 6rem;
+    height: 2px;
+    background-color: #60a5fa;
+}
+
+/* Aside Quick Access */
+.journey-aside {
+    display: none;
+}
+
+@media (min-width: 992px) {
+    .journey-aside {
+        display: flex;
+    }
+}
+
+.quick-access-box {
+    background-color: white;
+    border-radius: 2rem;
+    /* Larger Bento radius */
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    min-width: 240px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.aside-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #94a3b8;
+}
+
+.aside-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #334155;
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 400;
+}
+
+.aside-link:hover {
+    color: #16a34a;
+}

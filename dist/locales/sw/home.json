@@ -1,0 +1,44 @@
+{
+    "hero_title": "Karibu katika Shule ya Upili ya Bugisu",
+    "hero_subtitle": "Kulea viongozi wa kesho kupitia elimu kamili na maadili.",
+    "cta_apply": "Omba Sasa",
+    "cta_tour": "Ziara ya Mtandaoni",
+    "quick_info": {
+        "term_progress": "Muhula wa 1 Unaendelea",
+        "term_ends": "Unaisha Aprili 15",
+        "admissions_open": "Udahili Umefunguliwa",
+        "admissions_desc": "Kwa S.1 na S.5",
+        "join_community": "Jiunge na Jumuiya Yetu",
+        "portal_desc": "Lango la Mwanafunzi na Mzazi",
+        "next_event": "Tukio Lijalo"
+    },
+    "intro": {
+        "header": "Utangulizi",
+        "text1": "Karibu katika Shule ya Upili ya Bugisu – Ilioanzishwa mwaka wa 1950, sisi ni miongoni mwa shule za upili zinazoheshimika zaidi katika kanda hii.",
+        "text2": "Ikiwa kwenye miteremko tulivu ya Mt. Elgon, shule yetu inachanganya mila tajiri na ubora wa kisasa wa kitaaluma na michezo.",
+        "text3": "Jumuiya yetu changamfu inastawi katika masomo, mafunzo ya uongozi, utamaduni, na michezo."
+    },
+    "news": {
+        "label": "Habari za Hivi Punde",
+        "subtitle": "HABARI MPYA",
+        "title": "Habari za Karibuni",
+        "view_all": "Tazama Habari Zote",
+        "empty": "Hakuna habari mpya kwa sasa.",
+        "loading": "Inapakia habari..."
+    },
+    "leadership": {
+        "subtitle": "UONGOZI",
+        "title": "Uongozi wa Shule"
+    },
+    "about": {
+        "title": "Kuhusu Bugisu High",
+        "text": "Shule ya Upili ya Bugisu ni kituo kikuu cha masomo kilichojitolea kwa ubora wa kitaaluma na maendeleo kamili ya mwanafunzi.",
+        "link": "Soma Historia Yetu",
+        "students": "Wanafunzi",
+        "years": "Miaka ya Ubora"
+    },
+    "visit": {
+        "subtitle": "TEMBELEA SISI",
+        "title": "Tupate Mbale"
+    }
+}

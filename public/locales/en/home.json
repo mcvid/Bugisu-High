@@ -12,11 +12,24 @@
         "portal_desc": "Student & Parent Portal",
         "next_event": "Next Event"
     },
-    "intro": {
-        "header": "Intro",
-        "text1": "Welcome to Bugisu High School – Established in 1950, we are one of the region's most respected secondary schools.",
-        "text2": "Perched on the serene slopes of Mt. Elgon, our school blends rich tradition with modern academic and co-curricular excellence.",
-        "text3": "Our vibrant community excels in academics, leadership training, culture, and sports."
+    "journey": {
+        "title": "The Journey Ahead",
+        "subtitle": "OUR GROWTH PILLARS",
+        "desc": "Experience our rapid development through these strategic pillars of excellence."
+    },
+    "mission": {
+        "title": "Our Mission",
+        "text": "To Produce Versatile Individuals through Quality Education and Integrity to address Global Challenges."
+    },
+    "vision": {
+        "title": "Our Vision",
+        "text": "A fountain of enlightened and skilled young men and women rooted in excellence and integrity."
+    },
+    "values": {
+        "title": "Core Values",
+        "god": "Fear God",
+        "excellence": "Academic Excellence",
+        "integrity": "Ethics, Integrity, and Teamwork"
     },
     "news": {
         "label": "Latest Updates",

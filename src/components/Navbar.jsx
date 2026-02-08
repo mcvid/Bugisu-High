@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronDown, Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import NotificationCenter from './ui/NotificationCenter';
 import LanguageSwitcher from './LanguageSwitcher';
 import SearchOverlay from './SearchOverlay';
+import FloatingMenuButton from './ui/FloatingMenuButton';
 import { supabase } from '../lib/supabase';
 import './Navbar.css';
 
@@ -11,6 +13,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [activeDropdown, setActiveDropdown] = useState(null);
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 900);
     const location = useLocation();
     const { t } = useTranslation(['common', 'home']);
     const navigate = useNavigate();
@@ -24,10 +28,33 @@ const Navbar = () => {
     const longPressTimerRef = React.useRef(null);
 
     // Close mobile menu on route change
+    // Close mobile menu on route change
     useEffect(() => {
         setIsOpen(false);
         setActiveDropdown(null);
     }, [location.pathname]);
+
+    // Scroll Listener for Floating Menu
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(false);
+            }
+        };
+
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 900);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     // Secret Trigger: Shift + A
     useEffect(() => {
@@ -119,6 +146,7 @@ const Navbar = () => {
             path: null,
             children: [
                 { name: t('nav.overview'), path: '/academics' },
+                { name: 'Faculty & Staff', path: '/departments' },
                 { name: t('nav.resources'), path: '/resources' },
                 { name: t('nav.calendar'), path: '/calendar' }
             ]
@@ -135,7 +163,15 @@ const Navbar = () => {
                 { name: 'Digital ID Portal', path: '/student-portal' }
             ]
         },
-        { name: t('nav.admissions'), path: '/admissions' },
+        {
+            name: t('nav.admissions'),
+            path: null,
+            children: [
+                { name: 'Overview', path: '/admissions' },
+                { name: 'Scholarships', path: '/scholarships' },
+                { name: 'Apply Online', path: '/apply' }
+            ]
+        },
     ];
 
     const toggleDropdown = (index) => {
@@ -147,122 +183,155 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar">
-            <div className="navbar-container">
-                <div
-                    className="logo"
-                    onMouseDown={handleMouseDown}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                    onTouchStart={handleMouseDown}
-                    onTouchEnd={handleMouseUp}
-                >
-                    <Link to="/" onClick={handleLogoClick}>
-                        <img src="/logo.png" alt="BHS Logo" className="logo-img" />
-                        <span className="logo-text">{t('app.title')}</span>
-                    </Link>
-                </div>
-
-                <div className="nav-actions">
-                    <button className="search-trigger-btn" onClick={() => setIsSearchOpen(true)} aria-label="Search">
-                        <Search size={22} />
-                    </button>
-                    <LanguageSwitcher />
-
-                    {/* Desktop Menu */}
-                    <div className="desktop-actions">
-                        <div className="nav-links desktop-links">
-                            {links.map((link, index) => (
-                                <div key={index} className={`nav-item-desktop ${link.children ? 'has-dropdown' : ''}`}>
-                                    {link.path ? (
-                                        <Link
-                                            to={link.path}
-                                            className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ) : (
-                                        <span className="nav-link dropdown-trigger">
-                                            {link.name} <ChevronDown size={14} />
-                                        </span>
-                                    )}
-
-                                    {link.children && (
-                                        <div className="dropdown-menu">
-                                            {link.children.map((child, cIndex) => (
-                                                <Link
-                                                    key={cIndex}
-                                                    to={child.path}
-                                                    className={`dropdown-link ${location.pathname === child.path ? 'active' : ''}`}
-                                                >
-                                                    {child.name}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                        <Link to="/apply" className="btn btn-primary ml-2">{t('home:cta_apply')}</Link>
+        <>
+            <nav className={`navbar ${isScrolled ? 'scrolled-hidden' : ''}`}>
+                <div className="navbar-container">
+                    <div
+                        className="logo"
+                        onMouseDown={handleMouseDown}
+                        onMouseUp={handleMouseUp}
+                        onMouseLeave={handleMouseUp}
+                        onTouchStart={handleMouseDown}
+                        onTouchEnd={handleMouseUp}
+                    >
+                        <Link to="/" onClick={handleLogoClick}>
+                            <img src="/logo.png" alt="BHS Logo" className="logo-img" />
+                            <span className="logo-text">{t('app.title')}</span>
+                        </Link>
                     </div>
 
-                    <button className="menu-toggle" onClick={() => setIsOpen(!isOpen)}>
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    <div className="nav-actions">
+                        <button className="search-trigger-btn desktop-only" onClick={() => setIsSearchOpen(true)} aria-label="Search">
+                            <Search size={22} />
+                        </button>
+                        <div className="desktop-only">
+                            <NotificationCenter />
+                        </div>
+                        <LanguageSwitcher />
+
+                        {/* Desktop Menu */}
+                        <div className="desktop-actions">
+                            <div className="nav-links desktop-links">
+                                {links.map((link, index) => (
+                                    <div key={index} className={`nav-item-desktop ${link.children ? 'has-dropdown' : ''}`}>
+                                        {link.path ? (
+                                            <Link
+                                                to={link.path}
+                                                className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ) : (
+                                            <span className="nav-link dropdown-trigger">
+                                                {link.name} <ChevronDown size={14} />
+                                            </span>
+                                        )}
+
+                                        {link.children && (
+                                            <div className="dropdown-menu">
+                                                {link.children.map((child, cIndex) => (
+                                                    <Link
+                                                        key={cIndex}
+                                                        to={child.path}
+                                                        className={`dropdown-link ${location.pathname === child.path ? 'active' : ''}`}
+                                                    >
+                                                        {child.name}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            <Link to="/apply" className="btn btn-primary ml-2">{t('home:cta_apply')}</Link>
+                        </div>
+
+                    </div>
+                </div>
+            </nav>
+
+            {/* Mobile Menu Overlay */}
+            <div className={`mobile-menu-overlay ${isOpen ? 'active' : ''}`}>
+                <div className="mobile-menu-header">
+                    <div className="logo-mobile">
+                        <img src="/logo.png" alt="BHS Logo" className="logo-img-sm" />
+                    </div>
+                    <button className="close-menu-btn" onClick={() => setIsOpen(false)}>
+                        <X size={28} />
                     </button>
                 </div>
 
-                {/* Mobile Menu */}
-                <div className={`mobile-menu ${isOpen ? 'active' : ''}`}>
-                    <ul className="nav-menu-mobile">
-                        {links.map((link, index) => (
-                            <li key={index} className="nav-item">
-                                {link.children ? (
-                                    <>
-                                        <div
-                                            className="nav-link mobile-dropdown-trigger"
-                                            onClick={() => toggleDropdown(index)}
-                                        >
-                                            {link.name}
-                                            <ChevronDown
-                                                size={16}
-                                                className={`dropdown-arrow ${activeDropdown === index ? 'rotate' : ''}`}
-                                            />
-                                        </div>
-                                        <div className={`mobile-dropdown-content ${activeDropdown === index ? 'open' : ''}`}>
-                                            {link.children.map((child, cIndex) => (
-                                                <Link
-                                                    key={cIndex}
-                                                    to={child.path}
-                                                    className={`nav-link mobile-sublink ${location.pathname === child.path ? 'active' : ''}`}
-                                                    onClick={() => setIsOpen(false)}
-                                                >
-                                                    {child.name}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : (
-                                    <Link
-                                        to={link.path}
-                                        className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-                                        onClick={() => setIsOpen(false)}
+                <ul className="nav-menu-mobile">
+                    {/* Mobile Search Item */}
+                    <li className="nav-item">
+                        <div className="mobile-search-row" onClick={() => { setIsSearchOpen(true); setIsOpen(false); }}>
+                            <div className="mobile-search-bar-mock">
+                                <Search size={18} />
+                                <span>{t('search.placeholder')}</span>
+                            </div>
+                        </div>
+                    </li>
+                    {links.map((link, index) => (
+                        <li key={index} className="nav-item">
+                            {link.children ? (
+                                <>
+                                    <div
+                                        className="nav-link mobile-dropdown-trigger"
+                                        onClick={() => toggleDropdown(index)}
                                     >
                                         {link.name}
-                                    </Link>
-                                )}
-                            </li>
-                        ))}
-                        <li className="nav-item margin-top">
-                            <Link to="/apply" className="btn btn-primary full-width" onClick={() => setIsOpen(false)}>
-                                {t('home:cta_apply')}
-                            </Link>
+                                        <ChevronDown
+                                            size={16}
+                                            className={`dropdown-arrow ${activeDropdown === index ? 'rotate' : ''}`}
+                                        />
+                                    </div>
+                                    <div className={`mobile-dropdown-content ${activeDropdown === index ? 'open' : ''}`}>
+                                        {link.children.map((child, cIndex) => (
+                                            <Link
+                                                key={cIndex}
+                                                to={child.path}
+                                                className={`dropdown-link mobile-sublink ${location.pathname === child.path ? 'active' : ''}`}
+                                                onClick={() => setIsOpen(false)}
+                                            >
+                                                {child.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : (
+                                <Link
+                                    to={link.path}
+                                    className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
+                                    onClick={() => setIsOpen(false)}
+                                >
+                                    {link.name}
+                                </Link>
+                            )}
                         </li>
-                    </ul>
-                </div>
+                    ))}
+                    <li className="nav-item margin-top">
+                        <div className="mobile-notif-row">
+                            <NotificationCenter />
+                            <span className="mobile-notif-label">Notifications</span>
+                        </div>
+                    </li>
+                    <li className="nav-item margin-top">
+                        <Link to="/apply" className="btn btn-primary full-width" onClick={() => setIsOpen(false)}>
+                            {t('home:cta_apply')}
+                        </Link>
+                    </li>
+                </ul>
             </div>
+
+            {/* Floating Menu Button */}
+            <FloatingMenuButton
+                visible={isScrolled && !isOpen}
+                onClick={() => setIsOpen(true)}
+            />
+
             {/* Search Overlay */}
             <SearchOverlay isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} />
-        </nav>
+        </>
     );
 };
 

@@ -1,0 +1,15 @@
+{
+    "title": "Virtual Tour Manager",
+    "subtitle": "Manage campus tour locations, panoramic images, and interactive hotspots.",
+    "tab_stops": "Tour Stops",
+    "tab_hotspots": "Hotspots Editor",
+    "add_stop": "Add Stop",
+    "edit_stop": "Edit Stop",
+    "delete_confirm": "Delete this item?",
+    "select_scene": "Select Scene",
+    "manage_hotspots": "Manage Hotspots",
+    "add_hotspot": "Add Hotspot",
+    "cancel": "Cancel",
+    "save": "Save",
+    "click_instruction": "Click anywhere on the image to place the hotspot."
+}

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, Send, Calendar, FileText, LogOut, User, MessageSquare, BookOpen, TrendingUp } from 'lucide-react';
+import { Bell, Send, Calendar, FileText, LogOut, User, MessageSquare, BookOpen, TrendingUp, CreditCard } from 'lucide-react';
 import { parentAuth } from '../../utils/parentAuth.jsx';
 import { supabase } from '../../lib/supabase';
 import ReportCard from '../../components/ReportCard';
 import { X, Download } from 'lucide-react';
+import PortalFAB from '../../components/ui/PortalFAB';
 
 const ParentPortal = () => {
     const navigate = useNavigate();
@@ -139,6 +140,13 @@ const ParentPortal = () => {
             color: '#3b82f6'
         },
         {
+            icon: CreditCard,
+            title: 'Fee Payment',
+            description: 'Check balance and pay fees online',
+            link: '/parent/fees',
+            color: '#f97316'
+        },
+        {
             icon: MessageSquare,
             title: 'Contact School',
             description: 'Get in touch with us',
@@ -148,11 +156,22 @@ const ParentPortal = () => {
     ];
 
     return (
-        <div style={{ minHeight: '85vh', background: 'linear-gradient(to bottom, #fff7ed, #ffffff)' }}>
+        <div style={{
+            minHeight: '100vh',
+            backgroundImage: 'url("/images/parent-portal-bg.png")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundAttachment: 'fixed',
+            paddingBottom: '4rem'
+        }}>
             <div style={{
+                minHeight: '100vh',
+                background: 'rgba(241, 245, 249, 0.85)',
+                backdropFilter: 'blur(12px)',
                 maxWidth: '1200px',
                 margin: '0 auto',
-                padding: 'clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem)'
+                padding: 'clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 4vw, 2rem)',
+                boxShadow: '0 0 40px rgba(0,0,0,0.05)'
             }}>
                 {/* Header */}
                 <div style={{
@@ -165,18 +184,21 @@ const ParentPortal = () => {
                 }}>
                     <div>
                         <h1 style={{
-                            fontSize: 'clamp(1.8rem, 5vw, 2.5rem)',
-                            fontWeight: 800,
-                            background: 'linear-gradient(135deg, #f97316, #ea580c)',
+                            fontFamily: "'Barlow Condensed', sans-serif",
+                            fontSize: 'clamp(2.5rem, 6vw, 3.5rem)',
+                            fontWeight: 900,
+                            textTransform: 'uppercase',
+                            background: 'linear-gradient(135deg, #dc2626, #991b1b)',
                             WebkitBackgroundClip: 'text',
                             WebkitTextFillColor: 'transparent',
-                            marginBottom: '0.5rem'
+                            marginBottom: '0.25rem'
                         }}>
                             Parent Portal
                         </h1>
                         <p style={{
-                            color: '#6b7280',
-                            fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)'
+                            color: '#64748b',
+                            fontSize: 'clamp(0.95rem, 2.5vw, 1.05rem)',
+                            fontWeight: 500
                         }}>
                             Welcome back! Manage your child's school journey.
                         </p>
@@ -185,26 +207,27 @@ const ParentPortal = () => {
                     <button
                         onClick={handleLogout}
                         style={{
-                            padding: '0.75rem 1.25rem',
+                            padding: '0.75rem 1.5rem',
                             background: 'white',
-                            border: '2px solid #e5e7eb',
-                            borderRadius: '10px',
-                            color: '#6b7280',
-                            fontSize: '0.95rem',
+                            border: '1px solid #e2e8f0',
+                            borderRadius: '12px',
+                            color: '#64748b',
+                            fontSize: '0.9rem',
                             fontWeight: 600,
                             cursor: 'pointer',
                             display: 'flex',
                             alignItems: 'center',
                             gap: '0.5rem',
-                            transition: 'all 0.2s'
+                            transition: 'all 0.2s',
+                            boxShadow: '0 1px 2px rgba(0,0,0,0.05)'
                         }}
                         onMouseEnter={e => {
-                            e.target.style.borderColor = '#ef4444';
-                            e.target.style.color = '#ef4444';
+                            e.target.style.borderColor = '#dc2626';
+                            e.target.style.color = '#dc2626';
                         }}
                         onMouseLeave={e => {
-                            e.target.style.borderColor = '#e5e7eb';
-                            e.target.style.color = '#6b7280';
+                            e.target.style.borderColor = '#e2e8f0';
+                            e.target.style.color = '#64748b';
                         }}
                     >
                         <LogOut size={18} />
@@ -214,60 +237,65 @@ const ParentPortal = () => {
 
                 {/* Students Cards */}
                 {students.length > 0 && (
-                    <div style={{ marginBottom: 'clamp(2rem, 5vw, 3rem)' }}>
+                    <div style={{ marginBottom: 'clamp(3rem, 6vw, 4rem)' }}>
                         <h2 style={{
-                            fontSize: 'clamp(1.2rem, 3vw, 1.4rem)',
+                            fontFamily: "'Barlow Condensed', sans-serif",
+                            fontSize: '1.8rem',
+                            fontWeight: 800,
+                            textTransform: 'uppercase',
                             marginBottom: '1.5rem',
-                            color: '#1f2937'
+                            color: '#1e293b'
                         }}>
                             Your Children
                         </h2>
                         <div style={{
                             display: 'grid',
-                            gridTemplateColumns: 'repeat(auto-fill, minmax(min(280px, 100%), 1fr))',
-                            gap: '1.5rem'
+                            gridTemplateColumns: 'repeat(auto-fill, minmax(min(320px, 100%), 1fr))',
+                            gap: '2rem'
                         }}>
                             {students.map(student => (
                                 <div
                                     key={student.id}
                                     style={{
                                         background: 'white',
-                                        padding: 'clamp(1.25rem, 4vw, 1.75rem)',
-                                        borderRadius: '16px',
-                                        border: '2px solid #e5e7eb',
-                                        transition: 'all 0.3s'
+                                        padding: '2rem',
+                                        borderRadius: '24px',
+                                        border: '1px solid #e2e8f0',
+                                        transition: 'all 0.3s',
+                                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)'
                                     }}
                                     onMouseEnter={e => {
-                                        e.currentTarget.style.borderColor = '#f97316';
-                                        e.currentTarget.style.boxShadow = '0 10px 30px rgba(249, 115, 22, 0.1)';
+                                        e.currentTarget.style.borderColor = '#dc2626';
+                                        e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.05)';
                                     }}
                                     onMouseLeave={e => {
-                                        e.currentTarget.style.borderColor = '#e5e7eb';
-                                        e.currentTarget.style.boxShadow = 'none';
+                                        e.currentTarget.style.borderColor = '#e2e8f0';
+                                        e.currentTarget.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.05)';
                                     }}
                                 >
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1rem' }}>
+                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.5rem' }}>
                                         <div style={{
-                                            width: '50px',
-                                            height: '50px',
-                                            borderRadius: '50%',
-                                            background: 'linear-gradient(135deg, #fff7ed, #ffedd5)',
+                                            width: '56px',
+                                            height: '56px',
+                                            borderRadius: '16px',
+                                            background: '#f8fafc',
                                             display: 'flex',
                                             alignItems: 'center',
-                                            justifyContent: 'center'
+                                            justifyContent: 'center',
+                                            border: '1px solid #f1f5f9'
                                         }}>
-                                            <User size={24} color="#f97316" />
+                                            <User size={28} color="#dc2626" />
                                         </div>
                                         <div>
                                             <h3 style={{
                                                 margin: 0,
-                                                fontSize: 'clamp(1.05rem, 3vw, 1.15rem)',
-                                                color: '#1f2937',
+                                                fontSize: '1.2rem',
+                                                color: '#0f172a',
                                                 fontWeight: 700
                                             }}>
                                                 {student.student_name}
                                             </h3>
-                                            <p style={{ margin: '2px 0 0', color: '#6b7280', fontSize: '0.9rem' }}>
+                                            <p style={{ margin: '2px 0 0', color: '#64748b', fontSize: '0.9rem', fontWeight: 500 }}>
                                                 {student.student_reg_number}
                                             </p>
                                         </div>
@@ -275,31 +303,36 @@ const ParentPortal = () => {
                                     <div style={{
                                         display: 'grid',
                                         gridTemplateColumns: '1fr 1fr',
-                                        gap: '0.75rem',
-                                        fontSize: '0.9rem'
+                                        gap: '1rem',
+                                        fontSize: '0.9rem',
+                                        padding: '1.25rem',
+                                        background: '#f8fafc',
+                                        borderRadius: '16px',
+                                        marginBottom: '1.5rem'
                                     }}>
                                         <div>
-                                            <span style={{ color: '#94a3b8', display: 'block', fontSize: '0.8rem', marginBottom: '2px' }}>Class</span>
-                                            <strong style={{ color: '#1f2937' }}>{student.class_grade}</strong>
+                                            <span style={{ color: '#94a3b8', display: 'block', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '2px' }}>Class</span>
+                                            <strong style={{ color: '#0f172a' }}>{student.class_grade}</strong>
                                         </div>
                                         <div>
-                                            <span style={{ color: '#94a3b8', display: 'block', fontSize: '0.8rem', marginBottom: '2px' }}>House</span>
-                                            <strong style={{ color: '#1f2937' }}>{student.house}</strong>
+                                            <span style={{ color: '#94a3b8', display: 'block', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '2px' }}>House</span>
+                                            <strong style={{ color: '#0f172a' }}>{student.house}</strong>
                                         </div>
                                     </div>
 
                                     <button
                                         onClick={() => handleViewReport(student)}
                                         style={{
-                                            marginTop: '1.5rem',
                                             width: '100%',
-                                            padding: '0.75rem',
-                                            borderRadius: '10px',
+                                            padding: '1rem',
+                                            borderRadius: '12px',
                                             border: 'none',
-                                            background: '#f8fafc',
-                                            color: '#6366f1',
-                                            fontWeight: 600,
+                                            background: '#0f172a',
+                                            color: 'white',
+                                            fontWeight: 700,
                                             fontSize: '0.9rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em',
                                             cursor: 'pointer',
                                             display: 'flex',
                                             alignItems: 'center',
@@ -308,16 +341,14 @@ const ParentPortal = () => {
                                             transition: 'all 0.2s'
                                         }}
                                         onMouseEnter={e => {
-                                            e.target.style.background = '#6366f1';
-                                            e.target.style.color = 'white';
+                                            e.target.style.background = '#dc2626';
                                         }}
                                         onMouseLeave={e => {
-                                            e.target.style.background = '#f8fafc';
-                                            e.target.style.color = '#6366f1';
+                                            e.target.style.background = '#0f172a';
                                         }}
                                     >
                                         <FileText size={18} />
-                                        View Report Card
+                                        View Report
                                     </button>
                                 </div>
                             ))}
@@ -328,9 +359,12 @@ const ParentPortal = () => {
                 {/* Quick Links */}
                 <div>
                     <h2 style={{
-                        fontSize: 'clamp(1.2rem, 3vw, 1.4rem)',
+                        fontFamily: "'Barlow Condensed', sans-serif",
+                        fontSize: '1.8rem',
+                        fontWeight: 800,
+                        textTransform: 'uppercase',
                         marginBottom: '1.5rem',
-                        color: '#1f2937'
+                        color: '#1e293b'
                     }}>
                         Quick Actions
                     </h2>
@@ -341,28 +375,30 @@ const ParentPortal = () => {
                     }}>
                         {quickLinks.map((item, index) => {
                             const Icon = item.icon;
+                            // Ensure color is red or matching the theme
+                            const themeColor = item.color === '#f59e0b' || item.color === '#f97316' ? '#dc2626' : item.color;
                             return (
                                 <Link
                                     key={index}
                                     to={item.link}
                                     style={{
                                         background: 'white',
-                                        padding: 'clamp(1.25rem, 4vw, 1.75rem)',
-                                        borderRadius: '16px',
-                                        border: '2px solid #e5e7eb',
+                                        padding: '1.5rem',
+                                        borderRadius: '20px',
+                                        border: '1px solid #e2e8f0',
                                         textDecoration: 'none',
-                                        transition: 'all 0.3s',
+                                        transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                                         position: 'relative',
                                         display: 'block'
                                     }}
                                     onMouseEnter={e => {
-                                        e.currentTarget.style.transform = 'translateY(-5px)';
-                                        e.currentTarget.style.borderColor = item.color;
-                                        e.currentTarget.style.boxShadow = `0 10px 30px ${item.color}20`;
+                                        e.currentTarget.style.transform = 'translateY(-6px)';
+                                        e.currentTarget.style.borderColor = themeColor;
+                                        e.currentTarget.style.boxShadow = `0 12px 24px ${themeColor}15`;
                                     }}
                                     onMouseLeave={e => {
                                         e.currentTarget.style.transform = 'translateY(0)';
-                                        e.currentTarget.style.borderColor = '#e5e7eb';
+                                        e.currentTarget.style.borderColor = '#e2e8f0';
                                         e.currentTarget.style.boxShadow = 'none';
                                     }}
                                 >
@@ -371,47 +407,51 @@ const ParentPortal = () => {
                                             position: 'absolute',
                                             top: '12px',
                                             right: '12px',
-                                            background: '#ef4444',
+                                            background: '#dc2626',
                                             color: 'white',
-                                            width: '24px',
-                                            height: '24px',
+                                            width: '22px',
+                                            height: '22px',
                                             borderRadius: '50%',
                                             display: 'flex',
                                             alignItems: 'center',
                                             justifyContent: 'center',
-                                            fontSize: '0.75rem',
-                                            fontWeight: 700
+                                            fontSize: '0.7rem',
+                                            fontWeight: 900
                                         }}>
                                             {item.badge}
                                         </div>
                                     )}
 
                                     <div style={{
-                                        width: '50px',
-                                        height: '50px',
-                                        background: `${item.color}15`,
+                                        width: '48px',
+                                        height: '48px',
+                                        background: '#f8fafc',
                                         borderRadius: '12px',
                                         display: 'flex',
                                         alignItems: 'center',
                                         justifyContent: 'center',
-                                        marginBottom: '1rem'
+                                        marginBottom: '1rem',
+                                        border: '1px solid #f1f5f9'
                                     }}>
-                                        <Icon size={24} color={item.color} />
+                                        <Icon size={22} color={themeColor} />
                                     </div>
 
                                     <h3 style={{
+                                        fontFamily: "'Barlow Condensed', sans-serif",
                                         margin: '0 0 0.5rem',
-                                        fontSize: 'clamp(1.05rem, 3vw, 1.15rem)',
-                                        color: '#1f2937',
-                                        fontWeight: 700
+                                        fontSize: '1.3rem',
+                                        color: '#0f172a',
+                                        fontWeight: 700,
+                                        textTransform: 'uppercase'
                                     }}>
                                         {item.title}
                                     </h3>
                                     <p style={{
                                         margin: 0,
-                                        color: '#6b7280',
-                                        fontSize: 'clamp(0.85rem, 2.5vw, 0.9rem)',
-                                        lineHeight: 1.5
+                                        color: '#64748b',
+                                        fontSize: '0.9rem',
+                                        lineHeight: 1.5,
+                                        fontWeight: 500
                                     }}>
                                         {item.description}
                                     </p>
@@ -455,43 +495,69 @@ const ParentPortal = () => {
                             onClick={e => e.stopPropagation()}
                         >
                             <div style={{
-                                padding: '1rem 1.5rem',
-                                borderBottom: '1px solid #e5e7eb',
+                                padding: '1.25rem 2rem',
+                                borderBottom: '1px solid #e2e8f0',
                                 display: 'flex',
                                 justifyContent: 'space-between',
                                 alignItems: 'center',
                                 background: '#f8fafc'
                             }}>
-                                <h3 style={{ margin: 0, fontSize: '1.2rem', color: '#1f2937' }}>Report Card Preview</h3>
+                                <div>
+                                    <h2 style={{
+                                        fontFamily: "'Barlow Condensed', sans-serif",
+                                        margin: 0,
+                                        fontSize: '1.5rem',
+                                        fontWeight: 800,
+                                        color: '#0f172a',
+                                        textTransform: 'uppercase'
+                                    }}>
+                                        Academic Report Card
+                                    </h2>
+                                    <p style={{ margin: 0, color: '#64748b', fontSize: '0.9rem', fontWeight: 500 }}>
+                                        Previewing student results
+                                    </p>
+                                </div>
                                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                                     <button
                                         onClick={() => window.print()}
                                         style={{
-                                            padding: '0.5rem 1rem',
+                                            padding: '0.6rem 1.25rem',
                                             borderRadius: '8px',
-                                            border: 'none',
-                                            background: '#f97316',
-                                            color: 'white',
-                                            fontWeight: 600,
-                                            fontSize: '0.9rem',
+                                            border: '1px solid #e2e8f0',
+                                            background: 'white',
+                                            color: '#0f172a',
+                                            fontSize: '0.85rem',
+                                            fontWeight: 700,
                                             cursor: 'pointer',
                                             display: 'flex',
                                             alignItems: 'center',
-                                            gap: '0.5rem'
+                                            gap: '0.5rem',
+                                            transition: 'all 0.2s',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.05em'
                                         }}
+                                        onMouseEnter={e => { e.target.style.background = '#f1f5f9'; }}
+                                        onMouseLeave={e => { e.target.style.background = 'white'; }}
                                     >
-                                        <Download size={16} /> Print
+                                        <FileText size={16} />
+                                        Print
                                     </button>
                                     <button
                                         onClick={() => setSelectedStudent(null)}
                                         style={{
-                                            padding: '0.5rem',
+                                            padding: '0.6rem',
                                             borderRadius: '8px',
-                                            border: '1px solid #e5e7eb',
-                                            background: 'white',
+                                            border: '1px solid #fee2e2',
+                                            background: '#fef2f2',
+                                            color: '#dc2626',
                                             cursor: 'pointer',
-                                            color: '#6b7280'
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            transition: 'all 0.2s'
                                         }}
+                                        onMouseEnter={e => { e.target.style.background = '#fee2e2'; }}
+                                        onMouseLeave={e => { e.target.style.background = '#fef2f2'; }}
                                     >
                                         <X size={20} />
                                     </button>
@@ -534,7 +600,15 @@ const ParentPortal = () => {
                     }
                 }
             `}</style>
-        </div>
+            <PortalFAB
+                role="parent"
+                onAction={(id) => {
+                    if (id === 'report' && students.length > 0) handleViewReport(students[0]);
+                    if (id === 'fees') navigate('/parent/fees');
+                    if (id === 'idcard' && students.length > 0) navigate('/student-portal');
+                }}
+            />
+        </div >
     );
 };
 

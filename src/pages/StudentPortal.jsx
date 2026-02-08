@@ -4,6 +4,7 @@ import { Search, Printer, AlertCircle, FileText, User as UserIcon } from 'lucide
 import DigitalIDCard from '../components/DigitalIDCard';
 import ReportCard from '../components/ReportCard';
 import SEO from '../components/SEO';
+import PortalFAB from '../components/ui/PortalFAB';
 import './StudentPortal.css';
 
 const StudentPortal = () => {
@@ -189,6 +190,14 @@ const StudentPortal = () => {
                     </div>
                 )}
             </div>
+            <PortalFAB
+                role="student"
+                onAction={(id) => {
+                    if (id === 'timetable') navigate('/calendar');
+                    if (id === 'materials') navigate('/resources');
+                    if (id === 'results' && student) fetchResults();
+                }}
+            />
         </div>
     );
 };

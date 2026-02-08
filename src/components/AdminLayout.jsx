@@ -45,31 +45,55 @@ const AdminLayout = () => {
         navigate('/admin/login');
     };
 
-    const navItems = [
-        { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin/dashboard' },
-        { icon: <FileText size={20} />, label: 'News', path: '/admin/news' },
-        { icon: <Megaphone size={20} />, label: 'Announcements', path: '/admin/announcements' },
-        { icon: <Send size={20} />, label: 'Leave Requests', path: '/admin/leave-requests' },
-        { icon: <Mail size={20} />, label: 'Parent Emails', path: '/admin/parent-emails' },
-        { icon: <Users size={20} />, label: 'Events', path: '/admin/events' },
-        { icon: <HomeIcon size={20} />, label: 'Hero Section', path: '/admin/hero' },
-        { icon: <School size={20} />, label: 'Administration', path: '/admin/administration' },
-        { icon: <BookOpen size={20} />, label: 'Academics', path: '/admin/academics' },
-        { icon: <Video size={20} />, label: 'Video Manager', path: '/admin/video' },
-        { icon: <Image size={20} />, label: 'Galleries', path: '/admin/gallery' },
-        { icon: <ThumbsUp size={20} />, label: 'Feedback', path: '/admin/feedback' },
-        { icon: <MessageSquare size={20} />, label: 'Live Chat', path: '/admin/chat' },
-        { icon: <DollarSign size={20} />, label: 'Finance & Fees', path: '/admin/finance' },
-        { icon: <Users size={20} />, label: 'Students', path: '/admin/students' },
-        { icon: <Users size={20} />, label: 'Admissions', path: '/admin/admissions', badge: counts.admissions },
-        { icon: <Award size={20} />, label: 'Achievements', path: '/admin/achievements' },
-        { icon: <BookOpen size={20} />, label: 'Resources', path: '/admin/resources' },
-        { icon: <Shield size={20} />, label: 'Sports', path: '/admin/sports' },
-        { icon: <Menu size={20} />, label: 'Contact', path: '/admin/contact', badge: counts.contact },
-        { icon: <Map size={20} />, label: 'Virtual Tour', path: '/admin/tour' },
-        { icon: <Users size={20} />, label: 'Teachers', path: '/admin/teachers' },
-        { icon: <Activity size={20} />, label: 'Activity', path: '/admin/activity' },
-        { icon: <Bell size={20} />, label: 'Site Alerts', path: '/admin/alerts' },
+    const navGroups = [
+        {
+            title: 'General',
+            items: [
+                { icon: <LayoutDashboard size={20} />, label: 'Dashboard', path: '/admin/dashboard' },
+            ]
+        },
+        {
+            title: 'Media & Communications',
+            items: [
+                { icon: <FileText size={20} />, label: 'News', path: '/admin/news' },
+                { icon: <Megaphone size={20} />, label: 'Announcements', path: '/admin/announcements' },
+                { icon: <Image size={20} />, label: 'Galleries', path: '/admin/gallery' },
+                { icon: <HomeIcon size={20} />, label: 'Hero Section', path: '/admin/hero' },
+                { icon: <Users size={20} />, label: 'Events', path: '/admin/events' },
+                { icon: <Shield size={20} />, label: 'Sports', path: '/admin/sports' },
+            ]
+        },
+        {
+            title: 'Administration',
+            items: [
+                { icon: <School size={20} />, label: 'Administration', path: '/admin/administration' },
+                { icon: <Users size={20} />, label: 'Admissions', path: '/admin/admissions', badge: counts.admissions },
+                { icon: <DollarSign size={20} />, label: 'Finance & Fees', path: '/admin/finance' },
+                { icon: <Menu size={20} />, label: 'Contact', path: '/admin/contact', badge: counts.contact },
+                { icon: <ThumbsUp size={20} />, label: 'Feedback', path: '/admin/feedback' },
+                { icon: <MessageSquare size={20} />, label: 'Live Chat', path: '/admin/chat' },
+                { icon: <Bell size={20} />, label: 'Site Alerts', path: '/admin/alerts' },
+                { icon: <Activity size={20} />, label: 'Activity', path: '/admin/activity' },
+            ]
+        },
+        {
+            title: 'Faculty & Teachers',
+            items: [
+                { icon: <Users size={20} />, label: 'Teachers', path: '/admin/teachers' },
+                { icon: <Send size={20} />, label: 'Leave Requests', path: '/admin/leave-requests' },
+                { icon: <Mail size={20} />, label: 'Parent Emails', path: '/admin/parent-emails' },
+            ]
+        },
+        {
+            title: 'Academic Resources',
+            items: [
+                { icon: <BookOpen size={20} />, label: 'Academics', path: '/admin/academics' },
+                { icon: <BookOpen size={20} />, label: 'Resources', path: '/admin/resources' },
+                { icon: <Users size={20} />, label: 'Students', path: '/admin/students' },
+                { icon: <Award size={20} />, label: 'Achievements', path: '/admin/achievements' },
+                { icon: <Map size={20} />, label: 'Virtual Tour', path: '/admin/tour' },
+            ]
+        }
     ];
 
     return (
@@ -97,15 +121,20 @@ const AdminLayout = () => {
                 </div>
 
                 <nav className="admin-nav">
-                    {navItems.map((item) => (
-                        <Link
-                            key={item.path}
-                            to={item.path}
-                            className={`admin-nav-link ${location.pathname.startsWith(item.path) ? 'active' : ''}`}
-                        >
-                            {item.icon} {item.label}
-                            {item.badge > 0 && <span className="nav-badge">{item.badge}</span>}
-                        </Link>
+                    {navGroups.map((group) => (
+                        <div key={group.title} className="nav-group">
+                            <h3 className="nav-group-title">{group.title}</h3>
+                            {group.items.map((item) => (
+                                <Link
+                                    key={item.path}
+                                    to={item.path}
+                                    className={`admin-nav-link ${location.pathname.startsWith(item.path) ? 'active' : ''}`}
+                                >
+                                    {item.icon} {item.label}
+                                    {item.badge > 0 && <span className="nav-badge">{item.badge}</span>}
+                                </Link>
+                            ))}
+                        </div>
                     ))}
                 </nav>
 

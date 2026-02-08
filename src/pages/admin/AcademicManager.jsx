@@ -182,7 +182,7 @@ const AcademicManager = () => {
                         <BookOpen size={18} /> Enter Marks
                     </Link>
                     {!isAdding && !editingId && (
-                        <button className="btn btn-primary" onClick={() => setIsAdding(true)}>
+                        <button className="btn btn-primary" onClick={() => { setIsAdding(true); setEditForm({}); }}>
                             <Plus size={18} /> Add New {activeTab.slice(0, -1)}
                         </button>
                     )}
@@ -192,25 +192,25 @@ const AcademicManager = () => {
             <div className="admin-tabs" style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
                 <button
                     className={`btn ${activeTab === 'levels' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => { setActiveTab('levels'); setIsAdding(false); setEditingId(null); }}
+                    onClick={() => { setActiveTab('levels'); setIsAdding(false); setEditingId(null); setEditForm({}); }}
                 >
                     <GraduationCap size={18} /> Levels
                 </button>
                 <button
                     className={`btn ${activeTab === 'depts' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => { setActiveTab('depts'); setIsAdding(false); setEditingId(null); }}
+                    onClick={() => { setActiveTab('depts'); setIsAdding(false); setEditingId(null); setEditForm({}); }}
                 >
                     <Users size={18} /> Departments
                 </button>
                 <button
                     className={`btn ${activeTab === 'subjects' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => { setActiveTab('subjects'); setIsAdding(false); setEditingId(null); }}
+                    onClick={() => { setActiveTab('subjects'); setIsAdding(false); setEditingId(null); setEditForm({}); }}
                 >
                     <BookOpen size={18} /> Subjects
                 </button>
                 <button
                     className={`btn ${activeTab === 'classSubjects' ? 'btn-primary' : 'btn-outline'}`}
-                    onClick={() => { setActiveTab('classSubjects'); setIsAdding(false); setEditingId(null); }}
+                    onClick={() => { setActiveTab('classSubjects'); setIsAdding(false); setEditingId(null); setEditForm({}); }}
                 >
                     <Grid size={18} /> Class Subjects
                 </button>

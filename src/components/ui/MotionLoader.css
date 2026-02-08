@@ -1,0 +1,53 @@
+.motion-loader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.motion-loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    max-width: 300px;
+    width: 100%;
+}
+
+.motion-loader-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.motion-loader-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #1e293b;
+    display: flex;
+    justify-content: center;
+}
+
+.motion-loader-progress {
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--academics-primary, #1e90ff), transparent);
+    border-radius: 10px;
+    opacity: 0.6;
+}
+
+@media (prefers-color-scheme: dark) {
+    .motion-loader-container {
+        background: #0f172a;
+    }
+
+    .motion-loader-text {
+        color: #f8fafc;
+    }
+}

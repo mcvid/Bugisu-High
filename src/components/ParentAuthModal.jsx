@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Lock, Mail, ArrowRight } from 'lucide-react';
+import { X, Lock, Mail, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { parentAuth } from '../utils/parentAuth.jsx';
 
 const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
@@ -9,6 +9,7 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
     const [showForgot, setShowForgot] = useState(false);
     const [error, setError] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
 
     if (!isOpen) return null;
 
@@ -24,7 +25,6 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
             onSuccess();
         } else {
             setError('Incorrect community key. Please check your school newsletter or email.');
-            setPassword('');
         }
     };
 
@@ -92,35 +92,46 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
 
                 {!showForgot ? (
                     <>
-                        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
                             <div style={{
-                                width: '60px',
-                                height: '60px',
-                                background: 'linear-gradient(135deg, #f97316, #ea580c)',
-                                borderRadius: '50%',
+                                width: '64px',
+                                height: '64px',
+                                background: 'linear-gradient(135deg, #dc2626, #991b1b)',
+                                borderRadius: '18px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                margin: '0 auto 1rem'
+                                margin: '0 auto 1.25rem',
+                                boxShadow: '0 10px 20px rgba(220, 38, 38, 0.2)',
+                                transform: 'rotate(-3deg)'
                             }}>
-                                <Lock size={28} color="white" />
+                                <Lock size={30} color="white" />
                             </div>
-                            <h2 style={{ margin: 0, fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', color: '#1f2937' }}>
-                                Parent Portal Access
+                            <h2 style={{
+                                fontFamily: "'Barlow Condensed', sans-serif",
+                                margin: 0,
+                                fontSize: '2rem',
+                                fontWeight: 800,
+                                textTransform: 'uppercase',
+                                color: '#0f172a'
+                            }}>
+                                Parent Access
                             </h2>
-                            <p style={{ color: '#6b7280', marginTop: '0.5rem', fontSize: 'clamp(0.9rem, 2.5vw, 0.95rem)' }}>
+                            <p style={{ color: '#64748b', marginTop: '0.5rem', fontSize: '0.95rem', fontWeight: 500 }}>
                                 Enter your school community key
                             </p>
                         </div>
 
                         <form onSubmit={handleSubmit}>
-                            <div style={{ marginBottom: '1rem' }}>
+                            <div style={{ marginBottom: '1.25rem' }}>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.4rem',
-                                    fontWeight: 600,
-                                    color: '#374151',
-                                    fontSize: '0.9rem'
+                                    marginBottom: '0.5rem',
+                                    fontWeight: 700,
+                                    color: '#1e293b',
+                                    fontSize: '0.8rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
                                 }}>
                                     Registered Phone Number
                                 </label>
@@ -132,61 +143,111 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
                                     required
                                     style={{
                                         width: '100%',
-                                        padding: '0.75rem',
-                                        fontSize: '0.95rem',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '8px',
+                                        padding: '0.85rem',
+                                        fontSize: '1rem',
+                                        border: '1px solid #e2e8f0',
+                                        borderRadius: '12px',
                                         transition: 'all 0.2s',
-                                        fontFamily: 'inherit'
+                                        fontFamily: 'inherit',
+                                        background: '#f8fafc'
                                     }}
-                                    onFocus={e => e.target.style.borderColor = '#f97316'}
-                                    onBlur={e => e.target.style.borderColor = '#e5e7eb'}
+                                    onFocus={e => {
+                                        e.target.style.borderColor = '#dc2626';
+                                        e.target.style.background = 'white';
+                                        e.target.style.boxShadow = '0 0 0 4px rgba(220, 38, 38, 0.1)';
+                                    }}
+                                    onBlur={e => {
+                                        e.target.style.borderColor = '#e2e8f0';
+                                        e.target.style.background = '#f8fafc';
+                                        e.target.style.boxShadow = 'none';
+                                    }}
                                 />
-                                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '4px', display: 'block' }}>
-                                    Used to find your children in our system
+                                <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '6px', display: 'block', fontWeight: 500 }}>
+                                    Used to verify your identity in our records
                                 </span>
                             </div>
 
-                            <div style={{ marginBottom: '1.5rem' }}>
+                            <div style={{ marginBottom: '2rem' }}>
                                 <label style={{
                                     display: 'block',
-                                    marginBottom: '0.4rem',
-                                    fontWeight: 600,
-                                    color: '#374151',
-                                    fontSize: '0.9rem'
+                                    marginBottom: '0.5rem',
+                                    fontWeight: 700,
+                                    color: '#1e293b',
+                                    fontSize: '0.8rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
                                 }}>
                                     Community Key
                                 </label>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={e => setPassword(e.target.value)}
-                                    placeholder="Enter school key..."
-                                    required
-                                    style={{
-                                        width: '100%',
-                                        padding: '0.75rem',
-                                        fontSize: '0.95rem',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '8px',
-                                        transition: 'all 0.2s',
-                                        fontFamily: 'inherit'
-                                    }}
-                                    onFocus={e => e.target.style.borderColor = '#f97316'}
-                                    onBlur={e => e.target.style.borderColor = '#e5e7eb'}
-                                />
+                                <div style={{ position: 'relative' }}>
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        value={password}
+                                        onChange={e => setPassword(e.target.value)}
+                                        placeholder="Enter school key..."
+                                        required
+                                        style={{
+                                            width: '100%',
+                                            padding: '0.85rem',
+                                            paddingRight: '3rem',
+                                            fontSize: '1rem',
+                                            border: '1px solid #e2e8f0',
+                                            borderRadius: '12px',
+                                            transition: 'all 0.2s',
+                                            fontFamily: 'inherit',
+                                            background: '#f8fafc'
+                                        }}
+                                        onFocus={e => {
+                                            e.target.style.borderColor = '#dc2626';
+                                            e.target.style.background = 'white';
+                                            e.target.style.boxShadow = '0 0 0 4px rgba(220, 38, 38, 0.1)';
+                                        }}
+                                        onBlur={e => {
+                                            e.target.style.borderColor = '#e2e8f0';
+                                            e.target.style.background = '#f8fafc';
+                                            e.target.style.boxShadow = 'none';
+                                        }}
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '12px',
+                                            top: '50%',
+                                            transform: 'translateY(-50%)',
+                                            background: 'none',
+                                            border: 'none',
+                                            cursor: 'pointer',
+                                            color: '#94a3b8',
+                                            padding: '4px',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            transition: 'color 0.2s'
+                                        }}
+                                        onMouseEnter={e => e.currentTarget.style.color = '#dc2626'}
+                                        onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
+                                    >
+                                        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                                    </button>
+                                </div>
                             </div>
 
                             {error && (
                                 <div style={{
-                                    background: '#fee2e2',
-                                    border: '1px solid #fca5a5',
-                                    borderRadius: '8px',
-                                    padding: '0.75rem',
-                                    marginBottom: '1rem',
-                                    color: '#991b1b',
-                                    fontSize: '0.9rem'
+                                    background: '#fef2f2',
+                                    border: '1px solid #fee2e2',
+                                    borderRadius: '12px',
+                                    padding: '0.85rem',
+                                    marginBottom: '1.5rem',
+                                    color: '#b91c1c',
+                                    fontSize: '0.9rem',
+                                    fontWeight: 500,
+                                    display: 'flex',
+                                    gap: '0.5rem',
+                                    alignItems: 'center'
                                 }}>
+                                    <X size={16} />
                                     {error}
                                 </div>
                             )}
@@ -195,75 +256,100 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
                                 type="submit"
                                 style={{
                                     width: '100%',
-                                    padding: '0.95rem',
-                                    background: 'linear-gradient(135deg, #f97316, #ea580c)',
+                                    padding: '1.1rem',
+                                    background: '#0f172a',
                                     color: 'white',
                                     border: 'none',
-                                    borderRadius: '8px',
+                                    borderRadius: '12px',
                                     fontSize: '1rem',
-                                    fontWeight: 600,
+                                    fontWeight: 700,
                                     cursor: 'pointer',
-                                    transition: 'transform 0.2s',
+                                    transition: 'all 0.3s',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    gap: '0.5rem'
+                                    gap: '0.75rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em',
+                                    boxShadow: '0 10px 25px rgba(15, 23, 42, 0.2)'
                                 }}
-                                onMouseEnter={e => e.target.style.transform = 'translateY(-2px)'}
-                                onMouseLeave={e => e.target.style.transform = 'translateY(0)'}
+                                onMouseEnter={e => {
+                                    e.target.style.background = '#dc2626';
+                                    e.target.style.transform = 'translateY(-2px)';
+                                    e.target.style.boxShadow = '0 15px 30px rgba(220, 38, 38, 0.3)';
+                                }}
+                                onMouseLeave={e => {
+                                    e.target.style.background = '#0f172a';
+                                    e.target.style.transform = 'translateY(0)';
+                                    e.target.style.boxShadow = '0 10px 25px rgba(15, 23, 42, 0.2)';
+                                }}
                             >
                                 Enter Portal
                                 <ArrowRight size={20} />
                             </button>
                         </form>
 
-                        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+                        <div style={{ textAlign: 'center', marginTop: '1.75rem' }}>
                             <button
                                 onClick={() => setShowForgot(true)}
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    color: '#f97316',
+                                    color: '#64748b',
                                     fontSize: '0.9rem',
                                     cursor: 'pointer',
-                                    textDecoration: 'underline'
+                                    fontWeight: 600,
+                                    transition: 'color 0.2s'
                                 }}
+                                onMouseEnter={e => e.target.style.color = '#dc2626'}
+                                onMouseLeave={e => e.target.style.color = '#64748b'}
                             >
-                                Forgot your key?
+                                Forgot your community key?
                             </button>
                         </div>
                     </>
                 ) : (
                     <>
-                        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
                             <div style={{
-                                width: '60px',
-                                height: '60px',
-                                background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
-                                borderRadius: '50%',
+                                width: '64px',
+                                height: '64px',
+                                background: 'linear-gradient(135deg, #1e293b, #0f172a)',
+                                borderRadius: '18px',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                margin: '0 auto 1rem'
+                                margin: '0 auto 1.25rem',
+                                boxShadow: '0 10px 20px rgba(15, 23, 42, 0.2)',
+                                transform: 'rotate(3deg)'
                             }}>
-                                <Mail size={28} color="white" />
+                                <Mail size={30} color="white" />
                             </div>
-                            <h2 style={{ margin: 0, fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', color: '#1f2937' }}>
-                                Remind Me
+                            <h2 style={{
+                                fontFamily: "'Barlow Condensed', sans-serif",
+                                margin: 0,
+                                fontSize: '2rem',
+                                fontWeight: 800,
+                                textTransform: 'uppercase',
+                                color: '#0f172a'
+                            }}>
+                                Get Reminder
                             </h2>
-                            <p style={{ color: '#6b7280', marginTop: '0.5rem', fontSize: 'clamp(0.9rem, 2.5vw, 0.95rem)' }}>
+                            <p style={{ color: '#64748b', marginTop: '0.5rem', fontSize: '0.95rem', fontWeight: 500 }}>
                                 Enter your registered email address
                             </p>
                         </div>
 
                         <form onSubmit={handleForgotPassword}>
-                            <div style={{ marginBottom: '1.5rem' }}>
+                            <div style={{ marginBottom: '2rem' }}>
                                 <label style={{
                                     display: 'block',
                                     marginBottom: '0.5rem',
-                                    fontWeight: 600,
-                                    color: '#374151',
-                                    fontSize: '0.95rem'
+                                    fontWeight: 700,
+                                    color: '#1e293b',
+                                    fontSize: '0.8rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
                                 }}>
                                     Email Address
                                 </label>
@@ -278,25 +364,35 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
                                         width: '100%',
                                         padding: '0.85rem',
                                         fontSize: '1rem',
-                                        border: '2px solid #e5e7eb',
-                                        borderRadius: '8px',
+                                        border: '1px solid #e2e8f0',
+                                        borderRadius: '12px',
                                         transition: 'all 0.2s',
-                                        fontFamily: 'inherit'
+                                        fontFamily: 'inherit',
+                                        background: '#f8fafc'
                                     }}
-                                    onFocus={e => e.target.style.borderColor = '#3b82f6'}
-                                    onBlur={e => e.target.style.borderColor = '#e5e7eb'}
+                                    onFocus={e => {
+                                        e.target.style.borderColor = '#0f172a';
+                                        e.target.style.background = 'white';
+                                        e.target.style.boxShadow = '0 0 0 4px rgba(15, 23, 42, 0.1)';
+                                    }}
+                                    onBlur={e => {
+                                        e.target.style.borderColor = '#e2e8f0';
+                                        e.target.style.background = '#f8fafc';
+                                        e.target.style.boxShadow = 'none';
+                                    }}
                                 />
                             </div>
 
                             {successMsg && (
                                 <div style={{
-                                    background: '#dcfce7',
-                                    border: '1px solid #22c55e',
-                                    borderRadius: '8px',
-                                    padding: '0.75rem',
-                                    marginBottom: '1rem',
+                                    background: '#f0fdf4',
+                                    border: '1px solid #dcfce7',
+                                    borderRadius: '12px',
+                                    padding: '0.85rem',
+                                    marginBottom: '1.5rem',
                                     color: '#166534',
-                                    fontSize: '0.9rem'
+                                    fontSize: '0.9rem',
+                                    fontWeight: 500
                                 }}>
                                     {successMsg}
                                 </div>
@@ -306,35 +402,46 @@ const ParentAuthModal = ({ isOpen, onClose, onSuccess }) => {
                                 type="submit"
                                 style={{
                                     width: '100%',
-                                    padding: '0.95rem',
-                                    background: 'linear-gradient(135deg, #3b82f6, #2563eb)',
+                                    padding: '1.1rem',
+                                    background: '#0f172a',
                                     color: 'white',
                                     border: 'none',
-                                    borderRadius: '8px',
+                                    borderRadius: '12px',
                                     fontSize: '1rem',
-                                    fontWeight: 600,
+                                    fontWeight: 700,
                                     cursor: 'pointer',
-                                    transition: 'transform 0.2s',
+                                    transition: 'all 0.3s',
                                     display: 'flex',
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    gap: '0.5rem'
+                                    gap: '0.75rem',
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.05em'
+                                }}
+                                onMouseEnter={e => {
+                                    e.target.style.background = '#dc2626';
+                                    e.target.style.transform = 'translateY(-2px)';
+                                }}
+                                onMouseLeave={e => {
+                                    e.target.style.background = '#0f172a';
+                                    e.target.style.transform = 'translateY(0)';
                                 }}
                             >
                                 <Mail size={20} />
-                                Send Reminder
+                                Send Key Reminder
                             </button>
                         </form>
 
-                        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+                        <div style={{ textAlign: 'center', marginTop: '1.75rem' }}>
                             <button
                                 onClick={() => setShowForgot(false)}
                                 style={{
                                     background: 'transparent',
                                     border: 'none',
-                                    color: '#6b7280',
+                                    color: '#64748b',
                                     fontSize: '0.9rem',
-                                    cursor: 'pointer'
+                                    cursor: 'pointer',
+                                    fontWeight: 600
                                 }}
                             >
                                 ← Back to login

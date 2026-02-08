@@ -1,0 +1,41 @@
+{
+    "hero_title": "Frequently Asked Questions",
+    "hero_subtitle": "Got questions? We've got answers.",
+    "categories": {
+        "general": "General",
+        "admissions": "Admissions",
+        "academics": "Academics",
+        "student_life": "Student Life"
+    },
+    "general": {
+        "q1": "Where is Bugisu High School located?",
+        "a1": "Bugisu High School is conveniently located in Mbale, Uganda, easily accessible from the main town center.",
+        "q2": "Is the school a boarding or day school?",
+        "a2": "We offer both boarding and day scholar options to cater to the diverse needs of our students and parents.",
+        "q3": "What are the school office hours?",
+        "a3": "The administrative office is open Monday to Friday from 8:00 AM to 5:00 PM, and on Saturdays from 9:00 AM to 1:00 PM."
+    },
+    "admissions": {
+        "q1": "When do admissions open for the new academic year?",
+        "a1": "Admissions typically open in November for the following academic year. However, we accept inquiries year-round.",
+        "q2": "What are the requirements for S1 admission?",
+        "a2": "Applicants for S1 need their PLE results slip, a recommendation from their former school, and 2 passport-sized photos.",
+        "q3": "Do you offer scholarships?",
+        "a3": "Yes, we offer merit-based scholarships for students with outstanding academic performance in PLE and UCE."
+    },
+    "academics": {
+        "q1": "What curriculum does the school follow?",
+        "a1": "We follow the Ugandan National Curriculum comprising specific subject combinations for both O-Level and A-Level.",
+        "q2": "Do you offer computer studies?",
+        "a2": "Yes, Computer Studies is a compulsory subject for O-Level students and optional for A-Level, supported by a fully equipped computer lab."
+    },
+    "student_life": {
+        "q1": "What co-curricular activities are available?",
+        "a1": "We have a vibrant range of activities including Football, Netball, Music, Dance & Drama, Debating Club, and Science Club.",
+        "q2": "Is there a school nurse on campus?",
+        "a2": "Yes, we have a fully stocked sickbay with a qualified school nurse available 24/7 for medical emergencies."
+    },
+    "cta_title": "Still have questions?",
+    "cta_desc": "We're here to help. Reach out to our admissions team directly.",
+    "cta_btn": "Contact Us"
+}

@@ -254,13 +254,25 @@
 }
 
 @media (max-width: 768px) {
+    .hero-carousel {
+        height: 70vh;
+        /* Slightly shorter on tablet for better flow */
+    }
+
     .hero-big-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        /* Slightly larger than before for impact */
+        padding: 0 1rem;
+    }
+
+    .hero-small-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
     }
 
     .carousel-arrow {
-        width: 40px;
-        height: 40px;
+        width: 45px;
+        height: 45px;
     }
 
     .carousel-arrow.left {
@@ -445,7 +457,7 @@
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -ms-overflow-style: none;
-    padding: 1rem 0 3rem;
+    padding: 0.5rem 0 2rem;
 }
 
 .admin-slider::-webkit-scrollbar {
@@ -459,16 +471,19 @@
 
 .admin-card-v2 {
     background: var(--color-white);
-    border-radius: 16px;
+    border-radius: 2.5rem;
+    /* Large Bento radius */
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid var(--color-grey-light);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     height: 100%;
 }
 
 .admin-card-v2:hover {
-    transform: translateY(-10px);
-    border-color: var(--color-orange);
+    transform: translateY(-8px);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
 }
 
 .admin-image-wrapper {
@@ -547,22 +562,28 @@
 }
 
 .slider-indicator-line {
-    width: 60px;
-    height: 4px;
+    width: 40px;
+    height: 3px;
     background-color: #1e90ff;
     /* DodgerBlue */
-    margin: 1.5rem auto 0;
+    margin: 1rem auto 0;
     border-radius: 4px;
     opacity: 0.8;
 }
 
 @media (max-width: 768px) {
     .admin-slide-item {
-        flex: 0 0 260px;
+        flex: 0 0 280px;
     }
 
     .admin-image-wrapper {
-        height: 300px;
+        height: 280px;
+        /* Better fit for bento cards on mobile */
+    }
+
+    .news-slide-item {
+        max-height: 450px;
+        /* Prevent over-stretching */
     }
 }
 
@@ -573,13 +594,21 @@
         padding-right: 1rem;
     }
 
+    .hero-carousel {
+        height: 60vh;
+        /* Good balance for mobile screens */
+    }
+
     .hero-big-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        /* Tighten up for small phones */
+        line-height: 1.2;
     }
 
     .hero-small-title {
-        font-size: 1rem;
-        letter-spacing: 1px;
+        font-size: 0.85rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.2rem;
     }
 
     .quick-info-strip {

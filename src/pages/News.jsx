@@ -4,12 +4,15 @@ import NewsCard from '../components/NewsCard';
 import SEO from '../components/SEO';
 import { CardSkeleton } from '../components/ui/Skeleton';
 import { usePullToRefresh } from '../hooks/usePullToRefresh';
+import UniversalHero from '../components/ui/UniversalHero';
 import { RefreshCw } from 'lucide-react';
 import './News.css';
 import '../components/ui/Skeleton.css';
+import { useSchool } from '../contexts/SchoolContext';
 
 const News = () => {
-    const { data: newsItems, isLoading, error, refetch } = useNews();
+    const { school } = useSchool();
+    const { data: newsItems, isLoading, error, refetch } = useNews(school?.id);
     const {
         pullDistance,
         isRefreshing,
@@ -42,10 +45,12 @@ const News = () => {
                 <RefreshCw size={24} className={isRefreshing ? 'spin' : ''} />
             </div>
 
-            <div className="page-header">
-                <h1>News & Announcements</h1>
-                <p className="page-subtitle">Stay updated with the latest happenings at Bugisu High School.</p>
-            </div>
+            <UniversalHero pagePath="/news" height="40vh">
+                <div style={{ textAlign: 'center' }}>
+                    <h1 style={{ color: 'white' }}>News & Announcements</h1>
+                    <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>Stay updated with the latest happenings at Bugisu High School.</p>
+                </div>
+            </UniversalHero>
 
             {isLoading && !isRefreshing ? (
                 <div className="news-grid">

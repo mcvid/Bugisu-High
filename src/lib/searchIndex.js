@@ -10,7 +10,28 @@ export const getStaticSearchIndex = (t) => [
         path: "/",
         type: "Page",
         description: t('home:hero_subtitle') || "Main landing page for Bugisu High School.",
-        keywords: ["home", "welcome", "index", "landing", "overview", "mbale"]
+        keywords: ["home", "welcome", "index", "landing", "overview", "mbale", "journey", "identity", "official", "bugisu high school"]
+    },
+    {
+        title: "The Journey Ahead",
+        path: "/#journey",
+        type: "Section",
+        description: "Our school growth pillars and rapid development overview.",
+        keywords: ["journey", "pillars", "growth", "quick access", "development"]
+    },
+    {
+        title: "Mission, Vision & Values",
+        path: "/#mission",
+        type: "Identity",
+        description: "The core values, mission, and vision driving Bugisu High School.",
+        keywords: ["mission", "vision", "values", "motto", "core values", "curriculum", "excellence"]
+    },
+    {
+        title: "Headteacher's Message",
+        path: "/about/headteacher-message",
+        type: "Message",
+        description: "A welcoming note from our Headteacher about our academic excellence.",
+        keywords: ["headteacher", "message", "welcome", "principal", "leadership"]
     },
     {
         title: t('nav.about'),
@@ -24,7 +45,7 @@ export const getStaticSearchIndex = (t) => [
         path: "/admissions",
         type: "Page",
         description: t('admissions:hero_desc') || "Information about enrollment, requirements, and application process.",
-        keywords: ["apply", "enroll", "fees", "money", "cost", "tuition", "S1", "S5", "intake", "application", "form", "tracker"]
+        keywords: ["apply", "enroll", "fees", "money", "cost", "tuition", "S1", "S5", "intake", "application", "form", "tracker", "admission process", "requirements"]
     },
     {
         title: t('nav.academics'),

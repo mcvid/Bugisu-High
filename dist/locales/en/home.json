@@ -1,0 +1,57 @@
+{
+    "hero_title": "Welcome to Bugisu High School",
+    "hero_subtitle": "Nurturing the leaders of tomorrow through holistic education and moral values.",
+    "cta_apply": "Apply Now",
+    "cta_tour": "Virtual Tour",
+    "quick_info": {
+        "term_progress": "Term 1 In Progress",
+        "term_ends": "Ends April 15th",
+        "admissions_open": "Admissions Open",
+        "admissions_desc": "For S.1 and S.5",
+        "join_community": "Join Our Community",
+        "portal_desc": "Student & Parent Portal",
+        "next_event": "Next Event"
+    },
+    "journey": {
+        "title": "The Journey Ahead",
+        "subtitle": "OUR GROWTH PILLARS",
+        "desc": "Experience our rapid development through these strategic pillars of excellence."
+    },
+    "mission": {
+        "title": "Our Mission",
+        "text": "To Produce Versatile Individuals through Quality Education and Integrity to address Global Challenges."
+    },
+    "vision": {
+        "title": "Our Vision",
+        "text": "A fountain of enlightened and skilled young men and women rooted in excellence and integrity."
+    },
+    "values": {
+        "title": "Core Values",
+        "god": "Fear God",
+        "excellence": "Academic Excellence",
+        "integrity": "Ethics, Integrity, and Teamwork"
+    },
+    "news": {
+        "label": "Latest Updates",
+        "subtitle": "NEWS UPDATE",
+        "title": "Latest News",
+        "view_all": "View All News",
+        "empty": "No news updates at the moment.",
+        "loading": "Loading news..."
+    },
+    "leadership": {
+        "subtitle": "LEADERSHIP",
+        "title": "School Administration"
+    },
+    "about": {
+        "title": "About Bugisu High",
+        "text": "Bugisu High School is a premier center of learning dedicated to academic excellence and holistic student development.",
+        "link": "Read our History",
+        "students": "Students",
+        "years": "Years of Excellence"
+    },
+    "visit": {
+        "subtitle": "VISIT US",
+        "title": "Find Us in Mbale"
+    }
+}

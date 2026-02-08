@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
 import { cacheManager } from '../lib/cache';
 import SEO from '../components/SEO';
+import UniversalHero from '../components/ui/UniversalHero';
+import OptimizedImage from '../components/ui/OptimizedImage';
 import './About.css';
 
 const About = () => {
@@ -78,8 +80,8 @@ const About = () => {
                 url="/about"
             />
             {/* Opening Section */}
-            <header className="about-hero">
-                <div className="container center-hero">
+            <UniversalHero pagePath="/about" height="50vh">
+                <div className="center-hero">
                     <h1>
                         <span className="desktop-title">{t('hero_title')}</span>
                         <span className="mobile-title">{t('hero_title_mobile')}</span>
@@ -88,19 +90,30 @@ const About = () => {
                         {t('hero_desc')}
                     </p>
                 </div>
-            </header>
+            </UniversalHero>
 
             <div className="container">
                 {/* School Overview */}
                 <section className="about-section">
-                    <div className="about-section-header">
-                        <h2>{t('foundation_title')}</h2>
-                        <p>{t('foundation_desc')}</p>
-                    </div>
-                    <div className="history-content">
-                        <p>
-                            {t('history_text')}
-                        </p>
+                    <div className="history-split">
+                        <div className="history-text">
+                            <div className="about-section-header">
+                                <h2>{t('foundation_title')}</h2>
+                                <p>{t('foundation_desc')}</p>
+                            </div>
+                            <div className="history-content">
+                                <p>
+                                    {t('history_text')}
+                                </p>
+                            </div>
+                        </div>
+                        <div className="history-image-container">
+                            <OptimizedImage
+                                src="https://images.unsplash.com/photo-1523050853063-bd80e295ce7f?q=80&w=1000&auto=format&fit=crop"
+                                alt="Our Campus"
+                                aspectRatio="4/3"
+                            />
+                        </div>
                     </div>
                 </section>
 
@@ -111,6 +124,13 @@ const About = () => {
                             className={`about-card ${focusedId === 'mission' ? 'focused' : ''}`}
                             data-id="mission"
                         >
+                            <div className="card-image-mini">
+                                <OptimizedImage
+                                    src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Mission"
+                                    aspectRatio="16/9"
+                                />
+                            </div>
                             <h3>{t('mission_title')}</h3>
                             <p>{t('mission_desc')}</p>
                         </div>
@@ -118,6 +138,13 @@ const About = () => {
                             className={`about-card ${focusedId === 'vision' ? 'focused' : ''}`}
                             data-id="vision"
                         >
+                            <div className="card-image-mini">
+                                <OptimizedImage
+                                    src="https://images.unsplash.com/photo-1497633762265-9a177c80b0f2?q=80&w=1000&auto=format&fit=crop"
+                                    alt="Vision"
+                                    aspectRatio="16/9"
+                                />
+                            </div>
                             <h3>{t('vision_title')}</h3>
                             <p>{t('vision_desc')}</p>
                         </div>
@@ -189,7 +216,7 @@ const About = () => {
                                             {t('common.no_image') || 'No Image'}
                                         </div>
                                     )}
-                                    <p className="leader-bio">{t('leadership_fallback_bio')}</p>
+                                    <p className="leader-bio">Dedicated to academic excellence and nurturing the future leaders of Uganda through holistic education and strong moral values.</p>
                                 </div>
                             ))}
                         </div>

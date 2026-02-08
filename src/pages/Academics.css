@@ -2,8 +2,10 @@
     --academics-primary: #1e90ff;
     --academics-secondary: #00bfff;
     --academics-accent: #f97316;
-    --glass-bg: rgba(255, 255, 255, 0.7);
-    --glass-border: rgba(255, 255, 255, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    /* Slightly more opaque */
+    --glass-border: rgba(0, 0, 0, 0.05);
+    /* Softer border */
     --glass-shadow: none;
 }
 
@@ -171,10 +173,13 @@
     backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     padding: 3rem;
-    border-radius: 24px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2.5rem;
+    /* Bento radius */
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
     overflow: hidden;
+    box-shadow: none;
+    /* Explicitly no shadow */
 }
 
 .level-card::before {
@@ -261,11 +266,13 @@
 .dept-item {
     background: white;
     padding: 2.5rem;
-    border-radius: 20px;
-    border: 1px solid #f1f5f9;
+    border-radius: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    /* Softer border */
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    box-shadow: none;
 }
 
 .dept-item:hover {
@@ -287,21 +294,82 @@
 
 /* Policies */
 .policy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    /* Large gap between alternating rows */
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+}
+
+.academic-alternating-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    align-items: center;
+}
+
+.academic-alternating-row:nth-child(even) {
+    direction: rtl;
+    /* Flip layout for staggering */
+}
+
+.academic-alternating-row:nth-child(even)>* {
+    direction: ltr;
+    /* Reset text direction inside */
+}
+
+.academic-image-container {
+    width: 100%;
+    border-radius: 2.5rem;
+    overflow: hidden;
+    position: relative;
     background: #f1f5f9;
-    padding: 4rem;
-    border-radius: 32px;
+}
+
+.academic-text-container {
+    padding: 1rem;
 }
 
 .policy-card {
     display: flex;
+    flex-direction: column;
     gap: 1.5rem;
-    padding: 2rem;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    border: none;
+}
+
+/* Pathway Cards */
+.pathway-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.pathway-card {
     background: white;
-    border-radius: 20px;
-    border: 1px solid #e2e8f0;
+    padding: 2.5rem;
+    border-radius: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.pathway-card:hover {
+    border-color: var(--academics-primary);
+    background: #f8fafc;
+}
+
+.pathway-card .policy-icon {
+    background: #eff6ff;
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
 }
 
 .policy-icon {
@@ -399,8 +467,17 @@
     }
 
     .policy-grid {
-        padding: 1.5rem;
-        border-radius: 20px;
+        gap: 4rem;
+    }
+
+    .academic-alternating-row {
+        grid-template-columns: 1fr;
+        direction: ltr !important;
+        gap: 2.5rem;
+    }
+
+    .academic-alternating-row:nth-child(even) {
+        direction: ltr !important;
     }
 }
 

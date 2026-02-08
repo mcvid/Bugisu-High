@@ -3,6 +3,7 @@ import { supabase } from '../lib/supabase';
 import Lightbox from '../components/Lightbox';
 import { Calendar, Image as ImageIcon } from 'lucide-react';
 import OptimizedImage from '../components/ui/OptimizedImage';
+import UniversalHero from '../components/ui/UniversalHero';
 import './Gallery.css';
 
 const Gallery = () => {
@@ -71,12 +72,15 @@ const Gallery = () => {
 
     return (
         <div className="section container gallery-page">
-            <div className="page-header">
-                <h1>School Gallery</h1>
-                <p className="page-subtitle">
-                    {selectedGallery ? selectedGallery.title : 'A glimpse into life at Bugisu High School'}
-                </p>
-            </div>
+            {/* Hero Section */}
+            <UniversalHero pagePath="/gallery" height="40vh">
+                <div style={{ textAlign: 'center' }}>
+                    <h1 style={{ color: 'white' }}>School Gallery</h1>
+                    <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                        {selectedGallery ? selectedGallery.title : 'A glimpse into life at Bugisu High School'}
+                    </p>
+                </div>
+            </UniversalHero>
 
             {!selectedGallery ? (
                 <>
@@ -162,23 +166,24 @@ const Gallery = () => {
                         </div>
                     ) : (
                         <div className="gallery-grid">
-                            <div
-                                key={img.id}
-                                className="gallery-item"
-                                onClick={() => setLightboxIndex(index)}
-                            >
-                                <OptimizedImage
-                                    src={img.image_url}
-                                    alt={img.caption || `${selectedGallery.title} - Image ${index + 1}`}
-                                    aspectRatio="1/1"
-                                />
-                                {img.caption && (
-                                    <div className="gallery-overlay">
-                                        <span className="gallery-title">{img.caption}</span>
-                                    </div>
-                                )}
-                            </div>
-                        ))}
+                            {galleryImages.map((img, index) => (
+                                <div
+                                    key={img.id}
+                                    className="gallery-item"
+                                    onClick={() => setLightboxIndex(index)}
+                                >
+                                    <OptimizedImage
+                                        src={img.image_url}
+                                        alt={img.caption || `${selectedGallery.title} - Image ${index + 1}`}
+                                        aspectRatio="1/1"
+                                    />
+                                    {img.caption && (
+                                        <div className="gallery-overlay">
+                                            <span className="gallery-title">{img.caption}</span>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                     )}
                 </>

@@ -8,3 +8,7 @@ if (!supabaseUrl || !supabaseAnonKey) {
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+export const fromSchool = (table, schoolId) => {
+    return supabase.from(table).select('*').eq('school_id', schoolId);
+};

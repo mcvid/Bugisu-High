@@ -1,0 +1,29 @@
+{
+    "hero_title": "Ebikwata ku Bugisu High School",
+    "hero_title_mobile": "Ebikwata kuffe",
+    "hero_desc": "Essomero ery'omulembe erikubirunwa mu buyivu bw'emisomo, okukuza empisa, n'obukulembeze mu kitundu okuyitira mu kuyigiriza okutuukiridde n'okukuza abayizi mu ngeri ey'empisa.",
+    "foundation_title": "Entandikwa n'Ekigendererwa",
+    "foundation_desc": "Lyatandikibwawo okuweereza ekitundu mu by'enjigiriza n'obwesimbu n'okulaba ewala.",
+    "history_text": "Bugisu High School lussangi mu by'okusoma mu kitundu kyaffe. Tuwa embeera ey'omutindo abayizi mwe basoomoozebwa mu by'okusoma n'okuwagirwa okw'enjawulo. Enkola yaffe egatta omutindo ogw'okusoma n'enkola ey'emizannyo n'eby'emizannyo okulaba nti buli muyizi amaliriza n'okumanya n'empisa.",
+    "mission_title": "Ekirubirirwa Kyaffe",
+    "mission_desc": "Okukuza abayizi okuyitira mu kalenda y'emisomo ey'omulembe ekubiriza okukula mu by'okusoma, obwesimbu, n'ovunaanyizibwa mu kitundu.",
+    "vision_title": "Okulaba Kyaffe",
+    "vision_desc": "Okuba ekifo ky'okusomeramu ekisooka buli muyizi we azuulira obusobozi bwe era neafuba mu buwanguzi.",
+    "values_title": "Empisa Enkulu",
+    "values": {
+        "excellence_title": "Obuwanguzi",
+        "excellence_desc": "Okufuba ku mutindo ogwa waggulu mu by'okusoma n'ebikolebwa buli muntu.",
+        "integrity_title": "Obwesimbu",
+        "integrity_desc": "Okukola n'obwanamaddala n'empisa ez'enjawulo mu buli mbeera.",
+        "discipline_title": "Empisa",
+        "discipline_desc": "Okukuuma okwefuga n'okutuusa ku birubirirwa eby'ebiseera ebijja.",
+        "community_title": "Ekitundu",
+        "community_desc": "Okukuza omwoyo gw'okubeera awamu n'oluvunaanyizibwa eri abalala."
+    },
+    "leadership_title": "Abakulembeze b'Essomero",
+    "leadership_desc": "Abaddukanyizibwa abasomesa abamanyirivu abafuba mu buwanguzi bw'omuyizi.",
+    "leadership_fallback_bio": "Ekitundu ku bakulembeze abafuba mu Bugisu High School.",
+    "team_title": "Ttiimu Yaffe",
+    "team_desc": "Abaasomesa abafuba okukubiriza abayizi baffe okukola obulungi.",
+    "teachers_coming_soon": "Ebikwata ku basomesa binatera okuteekebwako."
+}

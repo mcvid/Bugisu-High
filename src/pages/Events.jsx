@@ -4,9 +4,11 @@ import EventCard from '../components/EventCard';
 import SEO from '../components/SEO';
 import { CardSkeleton } from '../components/ui/Skeleton';
 import './Events.css';
+import { useSchool } from '../contexts/SchoolContext';
 
 const Events = () => {
-    const { data: events, isLoading } = useEvents();
+    const { school } = useSchool();
+    const { data: events, isLoading } = useEvents(school?.id);
 
     const upcomingEvents = events?.filter(e => new Date(e.event_date) >= new Date()) || [];
     const pastEvents = events?.filter(e => new Date(e.event_date) < new Date()).reverse() || [];

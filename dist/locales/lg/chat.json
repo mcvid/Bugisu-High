@@ -1,0 +1,12 @@
+{
+    "launcher": "Twogereko",
+    "header": "Obuyambi ku Kuyingira",
+    "intro_title": "Kulika! 👋",
+    "intro_desc": "Wandiika ebikukwatako otandike okwogera n'abakola ku kuyingiza abayizi.",
+    "input_name": "Erinnya lyo",
+    "input_email": "Email (si ya mpaka)",
+    "btn_start": "Tandika Okwogera",
+    "placeholder": "Wandiika obubaka...",
+    "response_notice_email": "Tujja kukuweereza okuddamu ku {{email}}. Era okomeewo enkya.",
+    "response_notice_no_email": "Okomeewo enkya ofune okuddamu."
+}

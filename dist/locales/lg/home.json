@@ -1,0 +1,44 @@
+{
+    "hero_title": "Baaniriddwa mu Bugisu High School",
+    "hero_subtitle": "Okutendeka abakulembeze b'omu maaso okuyitira mu kuyigiriza okutuukiridde n'empisa ez'obulamu.",
+    "cta_apply": "Saba Kaakati",
+    "cta_tour": "Okulambula",
+    "quick_info": {
+        "term_progress": "Term 1 Ekyagenda mu Maaso",
+        "term_ends": "Eggwawo nga April 15",
+        "admissions_open": "Okuyingira Kuggule",
+        "admissions_desc": "Kwa S.1 ne S.5",
+        "join_community": "Yegatte ku mbeera yaffe",
+        "portal_desc": "Omuyizi n'Omuzadde Portal",
+        "next_event": "Ekiddako"
+    },
+    "intro": {
+        "header": "Enyanjula",
+        "text1": "Baaniriddwa mu Bugisu High School – Lyatandikibwawo mu 1950, era lye limu ku masomero agasooka amatutumufu mu kitundu.",
+        "text2": "Lisangibwa ku nsozi za Mt. Elgon, essomero lyaffe ligatta obulombolombo obugagga n'okusoma okw'omulembe n'emizannyo.",
+        "text3": "Abayizi baffe bafuba mu kusoma, obukulembeze, obuwangwa, n'emizannyo."
+    },
+    "news": {
+        "label": "Ebipya",
+        "subtitle": "AMAWULIRE GA KAKATI",
+        "title": "Amawulire Agasembyeyo",
+        "view_all": "Laba Amawulire Gonna",
+        "empty": "Tewali mawulire ga kakati.",
+        "loading": "Tukyalinda amawulire..."
+    },
+    "leadership": {
+        "subtitle": "OBUKULEMBEZE",
+        "title": "Abakulu b'Essomero"
+    },
+    "about": {
+        "title": "Ebikwata ku Bugisu High",
+        "text": "Bugisu High School kifo ky'okusomeramu ekikutufu ekifuba mu kuyigiriza okw'omulembe n'okukuza abayizi mu ngeri zonna.",
+        "link": "Soma ku Byafaayo",
+        "students": "Abayizi",
+        "years": "Emyaka gy'Obuwanguzi"
+    },
+    "visit": {
+        "subtitle": "TUKYALIRE",
+        "title": "Tusangibwa mu Mbale"
+    }
+}

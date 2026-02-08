@@ -78,6 +78,31 @@ const Admissions = () => {
                 <AdmissionsSteps />
                 <AdmissionsRequirements />
                 <AdmissionsDates />
+
+                {/* Scholarships CTA */}
+                <div className="reveal-on-scroll" style={{
+                    background: 'linear-gradient(135deg, #f97316, #ea580c)',
+                    padding: '3rem 2rem',
+                    borderRadius: '16px',
+                    color: 'white',
+                    textAlign: 'center',
+                    margin: '3rem 0'
+                }}>
+                    <h3 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Need Financial Assistance?</h3>
+                    <p style={{ fontSize: '1.1rem', marginBottom: '2rem', opacity: 0.95 }}>
+                        Explore our scholarship opportunities and financial aid programs to make quality education accessible.
+                    </p>
+                    <Link to="/scholarships" className="btn" style={{
+                        background: 'white',
+                        color: '#f97316',
+                        border: '2px solid white',
+                        padding: '1rem 2.5rem',
+                        fontSize: '1.1rem'
+                    }}>
+                        View Scholarships
+                    </Link>
+                </div>
+
                 <AdmissionsContact />
             </div>
         </div>

@@ -43,42 +43,52 @@ const AdmissionsRequirements = () => {
                 <p>{t('admissions:requirements_subtitle')}</p>
             </div>
 
-            <div className="policy-grid" style={{ gap: '2rem' }}>
-                <div className="eligibility-content" style={{ gridColumn: '1 / -1', marginBottom: '1rem' }}>
-                    <div className="level-card" style={{ padding: '2.5rem', background: 'rgba(255,255,255,0.5)', border: '1px solid #e2e8f0' }}>
-                        <h4 style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                            <CheckCircle2 size={24} color="var(--academics-primary)" />
-                            {t('admissions:eligibility_title')}
-                        </h4>
-                        <ul style={{ listStyle: 'none', padding: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
-                            <li style={{ display: 'flex', gap: '0.75rem', fontSize: '1rem', color: '#475569' }}>
-                                <span style={{ color: 'var(--academics-primary)', fontWeight: 'bold' }}>•</span>
-                                {t('admissions:eligibility_li1')}
-                            </li>
-                            <li style={{ display: 'flex', gap: '0.75rem', fontSize: '1rem', color: '#475569' }}>
-                                <span style={{ color: 'var(--academics-primary)', fontWeight: 'bold' }}>•</span>
-                                {t('admissions:eligibility_li2')}
-                            </li>
-                            <li style={{ display: 'flex', gap: '0.75rem', fontSize: '1rem', color: '#475569' }}>
-                                <span style={{ color: 'var(--academics-primary)', fontWeight: 'bold' }}>•</span>
-                                {t('admissions:eligibility_li3')}
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
                 {displayRequirements.map((req, index) => (
-                    <div key={index} className="policy-card reveal-on-scroll" style={{ padding: '2rem' }}>
-                        <div className="policy-icon" style={{ background: req.is_mandatory ? '#eff6ff' : '#f8fafc' }}>
-                            <FileText size={24} color={req.is_mandatory ? 'var(--academics-primary)' : '#64748b'} />
+                    <div key={index} className="reveal-on-scroll" style={{
+                        background: 'white',
+                        padding: '2rem',
+                        borderRadius: '1.5rem',
+                        border: req.is_mandatory ? '2px solid #f97316' : '1px solid rgba(0,0,0,0.06)',
+                        transition: 'all 0.3s ease',
+                        position: 'relative',
+                        overflow: 'hidden'
+                    }}>
+                        {req.is_mandatory && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '1rem',
+                                right: '1rem',
+                                background: '#f97316',
+                                color: 'white',
+                                padding: '0.4rem 0.8rem',
+                                borderRadius: '8px',
+                                fontSize: '0.7rem',
+                                fontWeight: '700',
+                                letterSpacing: '0.5px',
+                                textTransform: 'uppercase'
+                            }}>
+                                {t('admissions:mandatory') || 'Required'}
+                            </div>
+                        )}
+                        <div style={{
+                            width: '56px',
+                            height: '56px',
+                            borderRadius: '14px',
+                            background: req.is_mandatory ? '#fff7ed' : '#f8fafc',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            marginBottom: '1.5rem'
+                        }}>
+                            <FileText size={28} color={req.is_mandatory ? '#f97316' : '#64748b'} />
                         </div>
-                        <div className="policy-content">
-                            <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                                {req.document_name}
-                                {req.is_mandatory && <span style={{ fontSize: '0.65rem', padding: '2px 6px', background: '#fee2e2', color: '#ef4444', borderRadius: '4px', textTransform: 'uppercase' }}>{t('admissions:mandatory')}</span>}
-                            </h4>
-                            <p style={{ fontSize: '0.95rem', color: '#64748b' }}>{req.purpose}</p>
-                        </div>
+                        <h4 style={{ fontSize: '1.1rem', fontWeight: '700', color: '#1e293b', marginBottom: '0.75rem' }}>
+                            {req.title || req.document_name}
+                        </h4>
+                        <p style={{ fontSize: '0.95rem', color: '#64748b', lineHeight: '1.6', margin: 0 }}>
+                            {req.description || req.purpose}
+                        </p>
                     </div>
                 ))}
             </div>

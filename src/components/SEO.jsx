@@ -1,11 +1,13 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useSchool } from '../contexts/SchoolContext';
 
 const SEO = ({ title, description, image, article, url, schema }) => {
-    const siteTitle = 'Bugisu High School';
-    const siteDescription = 'Excellence, Integrity, and Service - Nurturing the leaders of tomorrow through holistic education and moral values in Mbale, Uganda.';
-    const siteUrl = 'https://bugisuunitedfc.com'; // Use production URL or window.location.origin
-    const defaultImage = `https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1600`; // High-quality Campus Shot
+    const { school } = useSchool();
+    const siteTitle = school?.name || 'Bugisu High School';
+    const siteDescription = school?.description || 'Excellence, Integrity, and Service - Nurturing the leaders of tomorrow through holistic education and moral values.';
+    const siteUrl = window.location.origin;
+    const defaultImage = school?.logo_url || `https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1600`;
 
     const seo = {
         title: title ? `${title} | ${siteTitle}` : siteTitle,
@@ -18,15 +20,14 @@ const SEO = ({ title, description, image, article, url, schema }) => {
     const defaultSchema = {
         "@context": "https://schema.org",
         "@type": "School",
-        "name": "Bugisu High School",
-        "url": "https://bugisuunitedfc.com",
-        "logo": `${siteUrl}/logo.png`,
+        "name": siteTitle,
+        "url": siteUrl,
+        "logo": school?.logo_url || `${siteUrl}/logo.png`,
         "image": defaultImage,
         "description": siteDescription,
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Mbale",
-            "addressRegion": "Eastern Region",
+            "addressLocality": school?.address || "Mbale",
             "addressCountry": "Uganda"
         }
     };

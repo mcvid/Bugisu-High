@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    useHeroSlides,
     useNews,
     useAdministration,
     useAnnouncements,
@@ -12,41 +11,36 @@ import { ArrowRight, Bell, Calendar, BookOpen, Clock, Users, ChevronLeft, Chevro
 import { useTranslation } from 'react-i18next';
 import MapEmbed from '../components/contact/MapEmbed';
 import NewsCard from '../components/NewsCard';
-import VideoPlayer from '../components/VideoPlayer';
 import StudentSpotlight from '../components/StudentSpotlight';
 import QuickAccessHub from '../components/QuickAccessHub';
 import OptimizedImage from '../components/ui/OptimizedImage';
 import SEO from '../components/SEO';
+import HeadMsg from '../components/HeadMsg';
+import JourneySection from '../components/JourneySection';
+import Mission from '../components/Mission';
+import Vision from '../components/Vision';
+import CoreValues from '../components/CoreValues';
 import Skeleton from '../components/ui/Skeleton';
+import UniversalHero from '../components/ui/UniversalHero';
 import './Home.css';
+import { useSchool } from '../contexts/SchoolContext';
 
 const Home = () => {
     const { t } = useTranslation(['home', 'common']);
-    const [currentSlide, setCurrentSlide] = useState(0);
+    const { school } = useSchool();
 
     // React Query Hooks
-    const { data: heroSlides = [] } = useHeroSlides();
-    const { data: latestNews = [], isLoading: newsLoading } = useNews({ limit: 6 });
-    const { data: administration = [], isLoading: adminLoading } = useAdministration();
-    const { data: announcements = [] } = useAnnouncements(3);
-    const { data: events = [] } = useEvents(1);
-    const { data: assets } = useHomepageAssets();
+    const { data: latestNews = [], isLoading: newsLoading } = useNews(school?.id, { limit: 6 });
+    const { data: administration = [], isLoading: adminLoading } = useAdministration(school?.id);
+    const { data: announcements = [] } = useAnnouncements(school?.id, 3);
+    const { data: events = [] } = useEvents(school?.id, 1);
+    const { data: assets } = useHomepageAssets(school?.id);
 
     const upcomingEvent = events?.[0];
-    const promoVideo = assets?.video;
     const tourPreviewImage = assets?.tour ? (assets.tour.thumbnail_url || assets.tour.image_url) : null;
 
     const newsSliderRef = useRef(null);
     const adminSliderRef = useRef(null);
-
-    // Carousel & Slider Logic
-    useEffect(() => {
-        if (heroSlides.length <= 1) return;
-        const timer = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-        }, 5000);
-        return () => clearInterval(timer);
-    }, [heroSlides]);
 
     useEffect(() => {
         if (latestNews.length <= 1) return;
@@ -78,9 +72,6 @@ const Home = () => {
         return () => clearInterval(interval);
     }, [administration]);
 
-    const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % heroSlides.length);
-    const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + heroSlides.length) % heroSlides.length);
-
     return (
         <div className="home-page">
             <SEO
@@ -89,38 +80,12 @@ const Home = () => {
                 url="/"
             />
             {/* Hero Section */}
-            <section className="hero-carousel">
-                {heroSlides.length > 0 ? (
-                    <>
-                        {heroSlides.map((slide, index) => (
-                            <div
-                                key={slide.id}
-                                className={`hero-slide ${index === currentSlide ? 'active' : ''}`}
-                                style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(${slide.image_url})` }}
-                            >
-                                <div className="hero-content">
-                                    <h2 className="hero-small-title">{slide.title}</h2>
-                                    <h1 className="hero-big-title">{slide.subtitle}</h1>
-                                </div>
-                            </div>
-                        ))}
-                        <button className="carousel-arrow left" onClick={prevSlide}><ChevronLeft size={32} /></button>
-                        <button className="carousel-arrow right" onClick={nextSlide}><ChevronRight size={32} /></button>
-                    </>
-                ) : (
-                    <div className="hero-slide active" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80')` }}>
-                        <div className="hero-content">
-                            <h2 className="hero-small-title">{t('app.title')}</h2>
-                            <h1 className="hero-big-title">{t('hero_subtitle').toUpperCase()}</h1>
-                        </div>
-                    </div>
-                )}
-            </section>
+            <UniversalHero pagePath="/" height="90vh" />
 
             {/* Quick Access Tools - Mobile only */}
             <QuickAccessHub />
 
-            {/* Live Updates & Quick Info */}
+            {/* Live Updates Strip */}
             <div className="section-live-updates bg-white shadow-sm border-bottom">
                 {announcements.length > 0 && (
                     <div className="container py-3 border-bottom">
@@ -137,55 +102,18 @@ const Home = () => {
                         </div>
                     </div>
                 )}
-
-                <div className="quick-info-strip container">
-                    <div className="info-item">
-                        <Clock size={24} className="info-icon" />
-                        <div>
-                            <strong>{t('quick_info.term_progress')}</strong>
-                            <span>{t('quick_info.term_ends')}</span>
-                        </div>
-                    </div>
-                    <div className="info-item">
-                        <BookOpen size={24} className="info-icon" />
-                        <div>
-                            <strong>{t('quick_info.admissions_open')}</strong>
-                            <span>{t('quick_info.admissions_desc')}</span>
-                        </div>
-                    </div>
-                    <div className="info-item highlight">
-                        <Calendar size={24} className="info-icon" />
-                        <div>
-                            <strong>{upcomingEvent ? upcomingEvent.title : t('quick_info.next_event')}</strong>
-                            <span>{upcomingEvent ? new Date(upcomingEvent.event_date).toLocaleDateString() : 'Join our community'}</span>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            {/* Intro Section */}
-            <section className="section container intro-section">
-                <div className="intro-grid">
-                    <div className="intro-card">
-                        <div className="intro-header">
-                            <Users size={20} color="white" />
-                            <span>{t('intro.header')}</span>
-                        </div>
-                        <div className="intro-content">
-                            <p>{t('intro.text1')}</p>
-                            <p>{t('intro.text2')}</p>
-                            <p>{t('intro.text3')}</p>
-                        </div>
-                    </div>
-                    <div className="intro-video">
-                        <VideoPlayer
-                            videoUrl={promoVideo?.promo_video_url || "https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
-                            thumbnailUrl={promoVideo?.promo_video_thumbnail || "https://images.unsplash.com/photo-1544531696-2822a09966ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"}
-                            title="Welcome to Bugisu High School"
-                        />
-                    </div>
-                </div>
-            </section>
+            {/* Our Story / Journey Section */}
+            <JourneySection />
+
+            {/* Headteacher Message Section */}
+            <HeadMsg />
+
+            {/* Goals & Values Sections */}
+            <Mission />
+            <Vision />
+            <CoreValues />
 
             {/* Virtual Tour Preview */}
             <section className="section bg-black text-white tour-section">

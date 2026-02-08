@@ -27,6 +27,10 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 const StudentPortal = lazy(() => import('./pages/StudentPortal'));
 const VerifyStudent = lazy(() => import('./pages/VerifyStudent'));
 const Apply = lazy(() => import('./pages/Apply'));
+const HeadteacherMessage = lazy(() => import('./pages/HeadteacherMessagePage'));
+const Scholarships = lazy(() => import('./pages/Scholarships'));
+const Departments = lazy(() => import('./pages/Departments'));
+
 
 // Admin Pages - Lazy Loaded
 const AdminLayout = lazy(() => import('./components/AdminLayout'));
@@ -41,7 +45,6 @@ const AdministrationManager = lazy(() => import('./pages/admin/AdministrationMan
 const AcademicManager = lazy(() => import('./pages/admin/AcademicManager'));
 const AdmissionsManager = lazy(() => import('./pages/admin/AdmissionsManager'));
 const ContactManager = lazy(() => import('./pages/admin/ContactManager'));
-const VideoManager = lazy(() => import('./pages/admin/VideoManager'));
 const GalleriesManager = lazy(() => import('./pages/admin/GalleriesManager'));
 const AchievementsManager = lazy(() => import('./pages/admin/AchievementsManager'));
 const ChatManager = lazy(() => import('./pages/admin/ChatManager'));
@@ -64,31 +67,14 @@ const SubmitLeaveRequest = lazy(() => import('./pages/parent/SubmitLeaveRequest'
 const ViewAnnouncements = lazy(() => import('./pages/parent/ViewAnnouncements'));
 const Parents = lazy(() => import('./pages/Parents'));
 const ParentPortal = lazy(() => import('./pages/parent/ParentPortal'));
+const ParentFees = lazy(() => import('./pages/parent/ParentFees'));
 
 import RequireAuth from './components/RequireAuth';
 import ScrollToTop from './components/ui/ScrollToTop';
+import MotionLoader from './components/ui/MotionLoader';
 
 // Simple Loading Spinner for Suspense
-const PageLoader = () => (
-    <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '60vh',
-        flexDirection: 'column',
-        gap: '1rem'
-    }}>
-        <div className="spinner" style={{
-            width: '40px',
-            height: '40px',
-            border: '4px solid #f3f3f3',
-            borderTop: '4px solid var(--color-primary)',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite'
-        }}></div>
-        <p style={{ color: '#6b7280' }}>Loading page...</p>
-    </div>
-);
+const PageLoader = () => <MotionLoader />;
 
 const App = () => {
     // Track visits
@@ -125,6 +111,8 @@ const App = () => {
                         <Route path="about" element={<About />} />
                         <Route path="academics" element={<Academics />} />
                         <Route path="admissions" element={<Admissions />} />
+                        <Route path="scholarships" element={<Scholarships />} />
+                        <Route path="departments" element={<Departments />} />
                         <Route path="news" element={<News />} />
                         <Route path="news/:slug" element={<NewsDetail />} />
                         <Route path="events" element={<Events />} />
@@ -147,7 +135,9 @@ const App = () => {
                         <Route path="parent/leave-request" element={<SubmitLeaveRequest />} />
                         <Route path="parents" element={<Parents />} />
                         <Route path="parents/portal" element={<ParentPortal />} />
+                        <Route path="parent/fees" element={<ParentFees />} />
                         <Route path="apply-online" element={<Apply />} />
+                        <Route path="about/headteacher-message" element={<HeadteacherMessage />} />
                     </Route>
 
                     {/* Admin Routes */}
@@ -182,7 +172,6 @@ const App = () => {
                         <Route path="parent-emails" element={<ParentEmailManager />} />
                         <Route path="admissions" element={<AdmissionsManager />} />
                         <Route path="contact" element={<ContactManager />} />
-                        <Route path="video" element={<VideoManager />} />
                         <Route path="students" element={<StudentsManager />} />
                         <Route path="teachers" element={<TeachersManager />} />
                         <Route path="alerts" element={<AlertsManager />} />

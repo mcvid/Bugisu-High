@@ -1,0 +1,12 @@
+{
+    "launcher": "Zungumza nasi",
+    "header": "Msaada wa Udahili",
+    "intro_title": "Karibu! 👋",
+    "intro_desc": "Tafadhali weka maelezo yako ili kuanza kuzungumza na timu yetu ya udahili.",
+    "input_name": "Jina Lako",
+    "input_email": "Barua Pepe (hiari)",
+    "btn_start": "Anza Mazungumzo",
+    "placeholder": "Andika ujumbe...",
+    "response_notice_email": "Tutakutumia jibu kwenye {{email}}. Pia rudi kesho.",
+    "response_notice_no_email": "Tafadhali rudi kesho kwa jibu."
+}

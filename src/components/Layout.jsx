@@ -9,6 +9,7 @@ import NotificationChain from './NotificationChain';
 import BottomNav from './BottomNav';
 import FAB from './ui/FAB';
 import NetworkStatus from './ui/NetworkStatus';
+import MotionLoader from './ui/MotionLoader';
 
 const Layout = () => {
     return (
@@ -17,7 +18,7 @@ const Layout = () => {
             <NotificationChain />
             <NetworkStatus />
             <main className="main-content">
-                <Suspense fallback={<div className="content-loader"></div>}>
+                <Suspense fallback={<MotionLoader />}>
                     <Outlet />
                 </Suspense>
             </main>

@@ -17,6 +17,7 @@ const FinanceManager = () => {
     const [successMsg, setSuccessMsg] = useState('');
     const [recentPayments, setRecentPayments] = useState([]);
     const [showGuide, setShowGuide] = useState(false);
+    const [selectedClass, setSelectedClass] = useState(''); // New state for filter
 
     useEffect(() => {
         fetchFeesStructure();
@@ -38,10 +39,17 @@ const FinanceManager = () => {
         setSelectedStudent(null);
         setBalance(null);
 
-        const { data, error } = await supabase
+        let query = supabase
             .from('students')
             .select('*')
             .ilike('student_name', `%${searchTerm}%`);
+
+        // Apply Class Filter if selected
+        if (selectedClass) {
+            query = query.eq('class_grade', selectedClass);
+        }
+
+        const { data, error } = await query;
 
         if (data) setStudentResults(data);
         setLoading(false);
@@ -203,8 +211,8 @@ const FinanceManager = () => {
                             student_id: studentMap[regNo],
                             amount_paid: amount,
                             payment_date: excelDateToJSDate(date),
-                            payment_method: 'bulk_import',
-                            remarks: ref || 'Imported'
+                            payment_method: 'cash',
+                            remarks: ref || 'Imported via Bulk Upload'
                         });
                     } else {
                         skipped++;
@@ -332,6 +340,19 @@ const FinanceManager = () => {
                                 onChange={e => setSearchTerm(e.target.value)}
                                 style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #ccc' }}
                             />
+                            <select
+                                value={selectedClass}
+                                onChange={(e) => setSelectedClass(e.target.value)}
+                                style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid #ccc', background: 'white' }}
+                            >
+                                <option value="">All Classes</option>
+                                <option value="Senior 1">Senior 1</option>
+                                <option value="Senior 2">Senior 2</option>
+                                <option value="Senior 3">Senior 3</option>
+                                <option value="Senior 4">Senior 4</option>
+                                <option value="Senior 5">Senior 5</option>
+                                <option value="Senior 6">Senior 6</option>
+                            </select>
                             <button className="btn btn-primary" onClick={handleSearch}><Search size={18} /></button>
                         </div>
 
@@ -397,7 +418,12 @@ const FinanceManager = () => {
                                     {recentPayments.map(p => (
                                         <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', padding: '0.75rem', borderBottom: '1px solid #eee', fontSize: '0.9rem' }}>
                                             <span>{new Date(p.created_at).toLocaleDateString()}</span>
-                                            <strong>{formatUGX(p.amount_paid)}</strong>
+                                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                                <strong>{formatUGX(p.amount_paid)}</strong>
+                                                <span style={{ fontSize: '0.75rem', color: '#666', textTransform: 'capitalize' }}>
+                                                    {p.payment_method === 'mobile_money' ? 'Mobile Money' : p.payment_method}
+                                                </span>
+                                            </div>
                                             <button className="btn-icon" onClick={() => printReceipt(p)} title="Print Receipt"><Printer size={14} /></button>
                                         </div>
                                     ))}

@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { BookOpen, Users, Newspaper, Calendar, Phone, FileText, Image, HelpCircle } from 'lucide-react';
 import './Footer.css';
+import { useSchool } from '../contexts/SchoolContext';
 
 const Footer = () => {
     const { t } = useTranslation(['common']);
+    const { school } = useSchool();
     const currentYear = new Date().getFullYear();
     const [latestNews, setLatestNews] = useState([]);
     const [newsletterEmail, setNewsletterEmail] = useState('');
@@ -15,16 +17,18 @@ const Footer = () => {
 
     useEffect(() => {
         const fetchFooterNews = async () => {
+            if (!school?.id) return;
             const { data } = await supabase
                 .from('news')
                 .select('id, title, slug, published_at, image_url')
+                .eq('school_id', school.id)
                 .eq('is_published', true)
                 .order('created_at', { ascending: false })
                 .limit(2);
             if (data) setLatestNews(data);
         };
         fetchFooterNews();
-    }, []);
+    }, [school?.id]);
 
     const handleSubscribe = async (e) => {
         e.preventDefault();
@@ -62,14 +66,14 @@ const Footer = () => {
 
                 {/* School Info */}
                 <div className="footer-column">
-                    <h3 className="footer-heading">Bugisu High School</h3>
+                    <h3 className="footer-heading">{school?.name || 'Bugisu High School'}</h3>
                     <p className="footer-text">
                         {t('footer.about')}
                     </p>
                     <div className="footer-contact">
-                        <p><strong>{t('footer.address')}:</strong> P.O. Box 123, Mbale, Uganda</p>
-                        <p><strong>{t('footer.phone')}:</strong> +256 700 123 456</p>
-                        <p><strong>{t('footer.email')}:</strong> info@bugisuhigh.ac.ug</p>
+                        <p><strong>{t('footer.address')}:</strong> {school?.address || 'P.O. Box 123, Mbale, Uganda'}</p>
+                        <p><strong>{t('footer.phone')}:</strong> {school?.contact_phone || '+256 700 123 456'}</p>
+                        <p><strong>{t('footer.email')}:</strong> {school?.contact_email || 'info@bugisuhigh.ac.ug'}</p>
                     </div>
                 </div>
 
@@ -78,6 +82,7 @@ const Footer = () => {
                     <h3 className="footer-heading">{t('footer.quick_links')}</h3>
                     <ul className="footer-links">
                         <li><Link to="/academics"><BookOpen size={16} /> {t('nav.academics')}</Link></li>
+                        <li><Link to="/departments"><Users size={16} /> Faculty & Staff</Link></li>
                         <li><Link to="/admissions"><Users size={16} /> {t('nav.admissions')}</Link></li>
                         <li><Link to="/news"><Newspaper size={16} /> {t('footer.latest_news')}</Link></li>
                         <li><Link to="/events"><Calendar size={16} /> {t('nav.events')}</Link></li>
@@ -154,7 +159,7 @@ const Footer = () => {
 
             <div className="footer-bottom">
                 <div className="container">
-                    <p>&copy; {currentYear} Bugisu High School. {t('footer.rights')}</p>
+                    <p>&copy; {currentYear} {school?.name || 'Bugisu High School'}. {t('footer.rights')}</p>
                 </div>
             </div>
         </footer>

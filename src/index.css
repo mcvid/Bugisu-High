@@ -14,9 +14,10 @@
 
   /* Accents */
   --color-red: #dc2626;
-  /* Urgency */
   --color-orange: #f97316;
-  /* Highlights */
+  /* Theming - Dynamically updated by SchoolContext */
+  --color-primary: #f97316;
+  --color-secondary: #006400;
 
   /* Spacing & Layout */
   --container-width: 1200px;
@@ -103,12 +104,12 @@ img {
 }
 
 .btn-primary {
-  background-color: var(--color-orange);
+  background-color: var(--color-primary);
   color: white;
 }
 
 .btn-primary:hover {
-  background-color: #ea580c;
+  filter: brightness(0.9);
   transform: translateY(-1px);
 }
 
@@ -124,8 +125,8 @@ img {
 }
 
 .btn-outline:hover {
-  border-color: var(--color-orange);
-  color: var(--color-orange);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .section {
@@ -178,6 +179,56 @@ img {
   .main-content {
     padding-bottom: 80px;
     /* Space for BottomNav */
+  }
+
+  /* Global Heading Scale for Mobile */
+  h1 {
+    font-size: 2.15rem;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: 1.45rem;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+
+  body {
+    font-size: 0.95rem;
+  }
+
+  .btn {
+    padding: 0.85rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .section {
+    padding: 3.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  .section {
+    padding: 2.5rem 0;
   }
 }
 

@@ -45,7 +45,7 @@ const FAB = () => {
                 onClick={toggleMenu}
                 aria-label="Contact options"
             >
-                {isOpen ? <X size={28} /> : <MessageCircle size={28} />}
+                {isOpen ? <X size={28} /> : <Plus size={28} />}
             </button>
         </div>
     );

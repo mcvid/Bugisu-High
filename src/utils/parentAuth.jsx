@@ -1,3 +1,4 @@
+import React from 'react';
 // Parent Portal Authentication Utilities
 
 const PARENT_AUTH_KEY = 'parentPortalAuth';
@@ -11,7 +12,7 @@ export const parentAuth = {
 
     // Authenticate with password
     authenticate: (password) => {
-        if (password === SCHOOL_PASSWORD) {
+        if (password && password.trim() === SCHOOL_PASSWORD) {
             sessionStorage.setItem(PARENT_AUTH_KEY, 'true');
             return true;
         }
