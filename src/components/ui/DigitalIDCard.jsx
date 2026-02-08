@@ -125,7 +125,7 @@ const DigitalIDCard = ({ isOpen, onClose }) => {
                     // ID Card View
                     <>
                         <div className="id-card-header">
-                            <div className="school-logo-id">BHS</div>
+                            <img src="/logo.png?v=2" alt="BHS" className="school-logo-id" />
                             <div className="id-header-text">
                                 <h3>Bugisu High School</h3>
                                 <p>Student Identity Card</p>

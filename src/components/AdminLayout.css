@@ -353,8 +353,8 @@
     }
 
     .mobile-logo {
-        width: 32px;
-        height: 32px;
+        width: 48px;
+        height: 48px;
         object-fit: contain;
     }
 
@@ -465,8 +465,8 @@
     }
 
     .sidebar-logo {
-        width: 32px;
-        height: 32px;
+        width: 50px;
+        height: 50px;
         margin-right: 0.75rem;
     }
 

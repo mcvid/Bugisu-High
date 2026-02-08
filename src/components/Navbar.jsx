@@ -195,7 +195,7 @@ const Navbar = () => {
                         onTouchEnd={handleMouseUp}
                     >
                         <Link to="/" onClick={handleLogoClick}>
-                            <img src="/logo.png" alt="BHS Logo" className="logo-img" />
+                            <img src="/logo.png?v=2" alt="BHS Logo" className="logo-img" />
                             <span className="logo-text">{t('app.title')}</span>
                         </Link>
                     </div>
@@ -254,7 +254,7 @@ const Navbar = () => {
             <div className={`mobile-menu-overlay ${isOpen ? 'active' : ''}`}>
                 <div className="mobile-menu-header">
                     <div className="logo-mobile">
-                        <img src="/logo.png" alt="BHS Logo" className="logo-img-sm" />
+                        <img src="/logo.png?v=2" alt="BHS Logo" className="logo-img-sm" />
                     </div>
                     <button className="close-menu-btn" onClick={() => setIsOpen(false)}>
                         <X size={28} />

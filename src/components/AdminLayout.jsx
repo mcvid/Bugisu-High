@@ -101,7 +101,7 @@ const AdminLayout = () => {
             {/* Mobile Header (Fixed) */}
             <header className="admin-mobile-header">
                 <div className="mobile-branding">
-                    <img src="/logo.png" alt="BHS Logo" className="mobile-logo" />
+                    <img src="/logo.png?v=2" alt="BHS Logo" className="mobile-logo" />
                     <div className="mobile-titles">
                         <h1>Bugisu High School</h1>
                         <span>Admin Portal</span>
@@ -115,7 +115,7 @@ const AdminLayout = () => {
             <aside className={`admin-sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
                 <div className="sidebar-header">
                     <div className="sidebar-branding">
-                        <img src="/logo.png" alt="Logo" className="sidebar-logo" />
+                        <img src="/logo.png?v=2" alt="Logo" className="sidebar-logo" />
                         <h2>Admin Portal</h2>
                     </div>
                 </div>

@@ -89,17 +89,11 @@
 }
 
 .school-logo-id {
-    width: 50px;
-    height: 50px;
-    background: rgba(255, 255, 255, 0.9);
-    color: var(--color-orange);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.2rem;
-    border: none;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    /* rounded corners if needed, or keep raw image */
+    display: block;
 }
 
 .id-header-text h3 {
@@ -346,7 +340,7 @@
     overflow: hidden;
     flex-shrink: 0;
     border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .student-select-photo img {
