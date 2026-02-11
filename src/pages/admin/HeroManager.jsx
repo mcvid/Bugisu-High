@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Trash2, Upload, GripVertical, Video, RefreshCw } from 'lucide-react';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { useHeroSlides } from '../../hooks/useQueries';
+import { supabase } from '../../lib/supabase';
+import './HeroManager.css';
 
 const HeroManager = () => {
     const PAGES = [
