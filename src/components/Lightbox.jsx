@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import './Lightbox.css';
 
 const Lightbox = ({ images, currentIndex, onClose, onNext, onPrev, galleryTitle }) => {
-    if (currentIndex === null) return null;
+    if (currentIndex === null || !images || images.length === 0 || !images[currentIndex]) return null;
 
     const currentImage = images[currentIndex];
 

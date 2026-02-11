@@ -47,8 +47,8 @@ const News = () => {
 
             <UniversalHero pagePath="/news" height="35vh" showImage={false}>
                 <div style={{ textAlign: 'center' }}>
-                    <h1 style={{ color: 'white' }}>News & Announcements</h1>
-                    <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>Stay updated with the latest happenings at Bugisu High School.</p>
+                    <h1>News & Announcements</h1>
+                    <p className="page-subtitle">Stay updated with the latest happenings at Bugisu High School.</p>
                 </div>
             </UniversalHero>
 

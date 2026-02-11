@@ -130,7 +130,7 @@ const AdminLayout = () => {
                                     to={item.path}
                                     className={`admin-nav-link ${location.pathname.startsWith(item.path) ? 'active' : ''}`}
                                 >
-                                    {item.icon} {item.label}
+                                    {item.icon} <span>{item.label}</span>
                                     {item.badge > 0 && <span className="nav-badge">{item.badge}</span>}
                                 </Link>
                             ))}
@@ -140,7 +140,7 @@ const AdminLayout = () => {
 
                 <div className="sidebar-footer">
                     <button onClick={handleLogout} className="logout-btn">
-                        <LogOut size={20} /> Logout
+                        <LogOut size={20} /> <span>Logout</span>
                     </button>
                 </div>
             </aside>
@@ -169,27 +169,23 @@ const AdminLayout = () => {
             {/* Mobile Bottom Navigation */}
             <nav className={`admin-mobile-nav ${isSidebarOpen ? 'hidden' : ''}`}>
                 <Link to="/admin/dashboard" className={`mobile-nav-link ${location.pathname === '/admin/dashboard' ? 'active' : ''}`}>
-                    <LayoutDashboard size={22} />
+                    <LayoutDashboard size={26} />
                     <span>Home</span>
                 </Link>
                 <Link to="/admin/news" className={`mobile-nav-link ${location.pathname.startsWith('/admin/news') ? 'active' : ''}`}>
-                    <FileText size={22} />
+                    <FileText size={26} />
                     <span>News</span>
                 </Link>
-                <Link to="/admin/activity" className={`mobile-nav-link ${location.pathname.startsWith('/admin/activity') ? 'active' : ''}`}>
-                    <Activity size={22} />
-                    <span>Activity</span>
-                </Link>
                 <Link to="/admin/admissions" className={`mobile-nav-link ${location.pathname.startsWith('/admin/admissions') ? 'active' : ''}`}>
-                    <div className="mobile-nav-icon-wrapper">
-                        <Users size={22} />
+                    <div style={{ position: 'relative' }}>
+                        <Users size={26} />
                         {counts.admissions > 0 && <span className="mobile-badgeBadge">{counts.admissions}</span>}
                     </div>
                     <span>Admissions</span>
                 </Link>
                 <Link to="/admin/contact" className={`mobile-nav-link ${location.pathname.startsWith('/admin/contact') ? 'active' : ''}`}>
-                    <div className="mobile-nav-icon-wrapper">
-                        <MessageSquare size={22} />
+                    <div style={{ position: 'relative' }}>
+                        <MessageSquare size={26} />
                         {counts.contact > 0 && <span className="mobile-badgeBadge">{counts.contact}</span>}
                     </div>
                     <span>Contact</span>

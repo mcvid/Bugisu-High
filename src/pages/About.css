@@ -368,3 +368,22 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Responsive Visibility Utilities */
+.mobile-only-carousel {
+    display: block !important;
+}
+
+.desktop-only-grid {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    .mobile-only-carousel {
+        display: none !important;
+    }
+
+    .desktop-only-grid {
+        display: grid !important;
+    }
+}

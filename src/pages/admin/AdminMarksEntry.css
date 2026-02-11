@@ -1,43 +1,70 @@
-/* AdminMarksEntry.css */
+/* ========================================
+   ADMIN MARKS ENTRY - LUXURY DESIGN
+   ======================================== */
+
 .filters-bar {
     display: flex;
-    gap: 1rem;
+    gap: 1.25rem;
     background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid #e2e8f0;
-    margin-bottom: 1.5rem;
+    padding: 1.75rem;
+    border-radius: 16px;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    margin-bottom: 1.75rem;
     flex-wrap: wrap;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .filter-select {
-    padding: 0.75rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    min-width: 200px;
+    padding: 0.875rem 1rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 12px;
+    min-width: 220px;
     font-size: 0.95rem;
-    color: #334155;
-    background-color: #f8fafc;
+    color: #374151;
+    background: white;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #D4AF37;
+    box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+.filter-select:hover {
+    border-color: #D4AF37;
 }
 
 .mark-input {
-    width: 80px;
-    padding: 0.5rem;
-    border: 1px solid #cbd5e1;
-    border-radius: 4px;
+    width: 85px;
+    padding: 0.625rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
     text-align: center;
-    font-weight: 600;
+    font-weight: 700;
     font-size: 1rem;
-    transition: all 0.2s;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: white;
 }
 
 .mark-input:focus {
     outline: none;
-    border-color: var(--color-primary);
-    background-color: #f0fdf4;
+    border-color: #50C878;
+    background: #F0FDF4;
+    box-shadow: 0 0 0 4px rgba(80, 200, 120, 0.1);
+    transform: scale(1.05);
+}
+
+.mark-input:hover {
+    border-color: #D4AF37;
 }
 
 /* Hover row effect for better focus */
 .admin-table tbody tr:hover {
-    background-color: #f8fafc;
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.05) 0%, transparent 100%);
+    transition: background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

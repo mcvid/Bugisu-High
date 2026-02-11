@@ -45,24 +45,33 @@
 .album-card {
     background: white;
     border-radius: 0;
-    /* Sharp professional look */
     overflow: hidden;
-    box-shadow: none;
-    border: 1px solid transparent;
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    border: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     cursor: pointer;
+    position: relative;
 }
 
 .album-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .album-cover {
-    height: 220px;
+    height: 240px;
     background-size: cover;
     background-position: center;
     position: relative;
+    overflow: hidden;
+}
+
+/* Gradient overlay on hover */
+.album-card:hover .album-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
 }
 
 .album-category {
@@ -70,18 +79,24 @@
     top: 1rem;
     left: 1rem;
     right: auto;
-    background: var(--color-black);
+    /* Vibrant Gradient Tag */
+    background: linear-gradient(135deg, #f97316 0%, #dc2626 100%);
     color: white;
-    padding: 0.3rem 0.8rem;
-    border-radius: 0;
+    padding: 0.35rem 1rem;
+    border-radius: 2px;
     font-size: 0.7rem;
-    font-weight: 700;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    box-shadow: 0 4px 10px rgba(249, 115, 22, 0.4);
+    z-index: 5;
 }
 
 .album-info {
     padding: 1.5rem;
+    background: white;
+    position: relative;
+    z-index: 10;
 }
 
 .album-info h3 {
@@ -89,12 +104,20 @@
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
     color: var(--color-black);
+    font-weight: 700;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+}
+
+.album-card:hover .album-info h3 {
+    color: var(--color-orange);
 }
 
 .album-description {
     color: #64748b;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-family: var(--font-body-alt);
+    font-size: 0.95rem;
+    line-height: 1.6;
     margin-bottom: 1rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -108,7 +131,10 @@
     align-items: center;
     gap: 0.5rem;
     color: #94a3b8;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 /* Back Button */

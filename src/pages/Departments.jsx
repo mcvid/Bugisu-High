@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Search, Mail, Phone, GraduationCap, ChevronRight, Users } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import Footer from "../components/Footer";
-import StaffCarousel from "../components/academics/StaffCarousel";
+import ThreeDCarousel from "../components/academics/ThreeDCarousel";
 import "./Departments.css";
 
 const Departments = () => {
@@ -14,6 +14,7 @@ const Departments = () => {
     const [expandedDept, setExpandedDept] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [loading, setLoading] = useState(true);
+    const [errorMsg, setErrorMsg] = useState(null);
 
     useEffect(() => {
         fetchData();
@@ -22,16 +23,16 @@ const Departments = () => {
     const fetchData = async () => {
         try {
             const [deptsRes, subjectsRes, teachersRes, teacherSubjsRes] = await Promise.all([
-                supabase.from("departments").select("*").order("sort_order"),
+                supabase.from("departments").select("*").order("sort_order", { ascending: true }),
                 supabase.from("subjects").select("*").order("name"),
-                supabase.from("teachers").select("*").order("hierarchy_order"),
+                supabase.from("teachers").select("*"), // Removed order temporarily to prevent crash if column missing
                 supabase.from("teacher_subjects").select("teacher_id, subject_id, role")
             ]);
 
-            if (deptsRes.error) throw deptsRes.error;
-            if (subjectsRes.error) throw subjectsRes.error;
-            if (teachersRes.error) throw teachersRes.error;
-            if (teacherSubjsRes.error) throw teacherSubjsRes.error;
+            if (deptsRes.error) throw new Error("Depts: " + deptsRes.error.message);
+            if (subjectsRes.error) throw new Error("Subjects: " + subjectsRes.error.message);
+            if (teachersRes.error) throw new Error("Teachers: " + teachersRes.error.message);
+            if (teacherSubjsRes.error) throw new Error("TeacherSubjects: " + teacherSubjsRes.error.message);
 
             const transformedTeachers = (teachersRes.data || []).map(t => {
                 const links = (teacherSubjsRes.data || []).filter(ts => ts.teacher_id === t.id);
@@ -43,82 +44,81 @@ const Departments = () => {
                     subject_ids: links.map(ts => ts.subject_id),
                     subject_roles: roles
                 };
-            }).filter(t => t.id !== 'e376b0f7-ab4f-453f-9a1c-fa409e206c10');
+            }).filter(t => t);
 
             setDepartments(deptsRes.data || []);
             setSubjects(subjectsRes.data || []);
             setTeachers(transformedTeachers);
         } catch (error) {
             console.error("Error fetching departments data:", error);
+            setErrorMsg(error.message);
         } finally {
             setLoading(false);
         }
     };
 
-    // Filtered lists
-    const filteredTeachers = useMemo(() => {
-        let result = teachers;
-        if (selectedSubjectId) {
-            const selectedSubject = subjects.find(s => s.id === selectedSubjectId);
-            if (selectedSubject) {
-                result = result.filter(t => {
-                    const teacherSubjectIds = t.subject_ids || (t.primary_subject_id ? [t.primary_subject_id] : []);
-                    return teacherSubjectIds.some(sid => {
-                        const s = subjects.find(sub => sub.id === sid);
-                        return s?.name === selectedSubject.name;
-                    });
-                });
-            }
-        }
-        if (searchQuery) {
-            result = result.filter(t =>
-                t.name.toLowerCase().includes(searchQuery.toLowerCase())
-            );
-        }
-        return result;
-    }, [teachers, selectedSubjectId, searchQuery, subjects]);
-
-    // Grouping for HoD view (when no subject is selected)
-    const hods = useMemo(() => {
-        return teachers.filter(t => t.role?.toLowerCase() === 'hod');
-    }, [teachers]);
-
-    const uniqueSubjectsByDepartment = useMemo(() => {
-        const grouped = {};
-        subjects.forEach(s => {
-            if (!grouped[s.department_id]) grouped[s.department_id] = [];
-            if (!grouped[s.department_id].some(ext => ext.name === s.name)) {
-                grouped[s.department_id].push(s);
-            }
-        });
-        return grouped;
-    }, [subjects]);
-
     const selectedSubject = useMemo(() =>
         subjects.find(s => s.id === selectedSubjectId),
         [subjects, selectedSubjectId]);
 
-    const activeHoD = useMemo(() => {
-        if (!selectedSubject) return null;
-        return filteredTeachers.find(t => {
-            if (!t.subject_roles) return false;
-            const matchingSubjectIds = subjects
-                .filter(s => s.name === selectedSubject.name)
-                .map(s => s.id);
-            return matchingSubjectIds.some(sid => t.subject_roles?.[sid] === 'hod');
-        });
-    }, [selectedSubject, filteredTeachers, subjects]);
+    const filteredTeachers = useMemo(() => {
+        let list = teachers;
+        if (selectedSubjectId) {
+            list = list.filter(t => t.subject_ids?.includes(selectedSubjectId));
+        }
+        if (searchQuery) {
+            list = list.filter(t => t.name.toLowerCase().includes(searchQuery.toLowerCase()));
+        }
+        return list;
+    }, [teachers, selectedSubjectId, searchQuery]);
 
-    const otherTeachers = useMemo(() => {
-        if (!selectedSubject) return [];
-        const hodId = activeHoD?.id;
-        return filteredTeachers.filter(t => t.id !== hodId);
-    }, [selectedSubject, filteredTeachers, activeHoD]);
+    const activeHoD = useMemo(() =>
+        filteredTeachers.find(t => t.role === 'hod'),
+        [filteredTeachers]);
+
+    const otherTeachers = useMemo(() =>
+        filteredTeachers.filter(t => t.id !== activeHoD?.id),
+        [filteredTeachers, activeHoD]);
+
+    const uniqueSubjectsByDepartment = useMemo(() => {
+        const groups = {};
+        teachers.forEach(teacher => {
+            if (teacher.department_id) {
+                if (!groups[teacher.department_id]) {
+                    groups[teacher.department_id] = new Set();
+                }
+                const teacherSubjs = subjects.filter(s => teacher.subject_ids?.includes(s.id));
+                teacherSubjs.forEach(s => groups[teacher.department_id].add(JSON.stringify(s)));
+            }
+        });
+
+        Object.keys(groups).forEach(deptId => {
+            groups[deptId] = Array.from(groups[deptId]).map(s => JSON.parse(s));
+        });
+        return groups;
+    }, [teachers, subjects]);
 
     if (loading) {
         return (
             <div className="departments-page flex items-center justify-center pt-24">
                 <div className="w-10 h-10 border-4 border-slate-200 border-t-red-600 rounded-full animate-spin" />
+            </div>
+        );
+    }
+
+    if (errorMsg) {
+        return (
+            <div className="departments-page flex flex-col items-center justify-center pt-24 px-4 text-center">
+                <div className="text-red-600 text-xl font-bold mb-4">Something went wrong!</div>
+                <div className="bg-red-50 border border-red-200 p-4 rounded-lg max-w-lg text-slate-800">
+                    {errorMsg}
+                </div>
+                <button
+                    onClick={() => window.location.reload()}
+                    className="mt-6 px-6 py-2 bg-slate-900 text-white rounded-full text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-colors"
+                >
+                    Retry
+                </button>
             </div>
         );
     }
@@ -277,37 +277,71 @@ const Departments = () => {
                             <AnimatePresence mode="wait">
                                 {!selectedSubjectId ? (
                                     <motion.div
-                                        key="all-hods"
+                                        key="all-leadership"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -20 }}
                                         className="results-section"
                                     >
                                         <div className="section-header">
-                                            <h1 className="section-title">Academic Heads</h1>
+                                            <h1 className="section-title">Academic Leadership</h1>
                                             <div className="title-underline" />
+                                            <p className="section-subtitle">Heads of Departments</p>
                                         </div>
 
-                                        <div className="teacher-grid">
-                                            {/* Mobile Carousel */}
-                                            <div className="lg:hidden" style={{ gridColumn: '1 / -1' }}>
-                                                <StaffCarousel
-                                                    items={hods.map((teacher) => {
-                                                        const primarySubj = subjects.find(s => s.id === teacher.primary_subject_id)?.name;
-                                                        return <TeacherCard key={teacher.id} teacher={teacher} showRole subjectName={primarySubj} availableSubjects={subjects} />;
-                                                    })}
-                                                />
-                                            </div>
+                                        <div className="all-departments-list" style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
+                                            {departments.map(dept => {
+                                                const deptHods = teachers.filter(t => t.department_id === dept.id && t.role === 'hod');
+                                                if (deptHods.length === 0) return null;
 
-                                            {/* Desktop Grid */}
-                                            {hods.map((teacher) => {
-                                                const primarySubj = subjects.find(s => s.id === teacher.primary_subject_id)?.name;
                                                 return (
-                                                    <div key={teacher.id} className="hidden lg:block">
-                                                        <TeacherCard teacher={teacher} showRole subjectName={primarySubj} availableSubjects={subjects} />
+                                                    <div key={dept.id} className="dept-group-section">
+                                                        <div className="dept-header-row" style={{ marginBottom: '1.5rem', borderBottom: '1px solid #e2e8f0', paddingBottom: '0.5rem' }}>
+                                                            <h2 style={{ fontSize: '1.8rem', fontFamily: 'var(--font-serif)', color: 'var(--color-primary)' }}>
+                                                                {dept.name}
+                                                            </h2>
+                                                        </div>
+
+                                                        {/* Desktop Grid for HODs */}
+                                                        <div className="desktop-only-grid" style={{
+                                                            display: 'grid',
+                                                            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                                                            gap: '2rem',
+                                                            justifyItems: 'start'
+                                                        }}>
+                                                            {deptHods.map((teacher) => (
+                                                                <div key={teacher.id} style={{ width: '100%', maxWidth: '400px' }}>
+                                                                    <TeacherCard
+                                                                        teacher={teacher}
+                                                                        showRole={true}
+                                                                        availableSubjects={subjects}
+                                                                    />
+                                                                </div>
+                                                            ))}
+                                                        </div>
+
+                                                        {/* Mobile Carousel for HODs */}
+                                                        <div className="mobile-only-carousel">
+                                                            <ThreeDCarousel
+                                                                items={deptHods.map((teacher) => (
+                                                                    <TeacherCard
+                                                                        key={teacher.id}
+                                                                        teacher={teacher}
+                                                                        showRole={true}
+                                                                        availableSubjects={subjects}
+                                                                    />
+                                                                ))}
+                                                            />
+                                                        </div>
                                                     </div>
                                                 );
                                             })}
+
+                                            {teachers.filter(t => t.role === 'hod').length === 0 && (
+                                                <div className="empty-state">
+                                                    <p>No Academic Leaders assigned yet.</p>
+                                                </div>
+                                            )}
                                         </div>
                                     </motion.div>
                                 ) : (
@@ -338,17 +372,22 @@ const Departments = () => {
                                             ) : (
                                                 <div className="teacher-grid">
                                                     {/* Mobile Carousel */}
-                                                    <div className="lg:hidden" style={{ gridColumn: '1 / -1' }}>
-                                                        <StaffCarousel
+                                                    <div className="mobile-only-carousel" style={{ gridColumn: '1 / -1' }}>
+                                                        <ThreeDCarousel
                                                             items={otherTeachers.map((teacher) => (
-                                                                <TeacherCard key={teacher.id} teacher={teacher} availableSubjects={subjects} />
+                                                                <TeacherCard
+                                                                    key={teacher.id}
+                                                                    teacher={teacher}
+                                                                    showRole={teacher.role === 'hod'}
+                                                                    availableSubjects={subjects}
+                                                                />
                                                             ))}
                                                         />
                                                     </div>
 
                                                     {/* Desktop Grid */}
                                                     {otherTeachers.map((teacher) => (
-                                                        <div key={teacher.id} className="hidden lg:block">
+                                                        <div key={teacher.id} className="desktop-only-grid">
                                                             <TeacherCard teacher={teacher} availableSubjects={subjects} />
                                                         </div>
                                                     ))}

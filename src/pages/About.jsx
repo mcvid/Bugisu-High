@@ -5,6 +5,7 @@ import { cacheManager } from '../lib/cache';
 import SEO from '../components/SEO';
 import UniversalHero from '../components/ui/UniversalHero';
 import OptimizedImage from '../components/ui/OptimizedImage';
+import ThreeDCarousel from '../components/academics/ThreeDCarousel';
 import './About.css';
 
 const About = () => {
@@ -194,32 +195,66 @@ const About = () => {
                     {loading ? (
                         <div className="leadership-grid">{Array(3).fill(0).map((_, i) => <div key={i} className="skeleton-card" style={{ height: '300px', background: '#f3f4f6', borderRadius: '12px' }}></div>)}</div>
                     ) : (
-                        <div className="leadership-grid">
-                            {administration.map(person => (
-                                <div
-                                    key={person.id}
-                                    className={`leader-card ${focusedId === person.id.toString() ? 'focused' : ''}`}
-                                    data-id={person.id}
-                                >
-                                    <span className="leader-role">{person.role}</span>
-                                    <h3>{person.name}</h3>
-                                    {person.image_url ? (
-                                        <img
-                                            src={person.image_url}
-                                            alt={person.name}
-                                            loading="lazy"
-                                            style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
-                                            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
-                                        />
-                                    ) : (
-                                        <div style={{ width: '100%', height: '200px', background: '#f3f4f6', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
-                                            {t('common.no_image') || 'No Image'}
+                        <>
+                            {/* Desktop Grid */}
+                            <div className="leadership-grid desktop-only-grid">
+                                {administration.map(person => (
+                                    <div
+                                        key={person.id}
+                                        className={`leader-card ${focusedId === person.id.toString() ? 'focused' : ''}`}
+                                        data-id={person.id}
+                                    >
+                                        <span className="leader-role">{person.role}</span>
+                                        <h3>{person.name}</h3>
+                                        {person.image_url ? (
+                                            <img
+                                                src={person.image_url}
+                                                alt={person.name}
+                                                loading="lazy"
+                                                style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+                                                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
+                                            />
+                                        ) : (
+                                            <div style={{ width: '100%', height: '200px', background: '#f3f4f6', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
+                                                {t('common.no_image') || 'No Image'}
+                                            </div>
+                                        )}
+                                        <p className="leader-bio">Dedicated to academic excellence and nurturing the future leaders of Uganda through holistic education and strong moral values.</p>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Mobile 3D Carousel */}
+                            <div className="mobile-only-carousel">
+                                <ThreeDCarousel
+                                    items={administration.map(person => (
+                                        <div
+                                            key={person.id}
+                                            className={`leader-card ${focusedId === person.id.toString() ? 'focused' : ''}`}
+                                            data-id={person.id}
+                                            style={{ margin: 0, height: '100%' }} // Override grid margins
+                                        >
+                                            <span className="leader-role">{person.role}</span>
+                                            <h3>{person.name}</h3>
+                                            {person.image_url ? (
+                                                <img
+                                                    src={person.image_url}
+                                                    alt={person.name}
+                                                    loading="lazy"
+                                                    style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '8px', marginBottom: '1rem' }}
+                                                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
+                                                />
+                                            ) : (
+                                                <div style={{ width: '100%', height: '200px', background: '#f3f4f6', borderRadius: '8px', marginBottom: '1rem', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#9ca3af' }}>
+                                                    {t('common.no_image') || 'No Image'}
+                                                </div>
+                                            )}
+                                            <p className="leader-bio">Dedicated to academic excellence.</p>
                                         </div>
-                                    )}
-                                    <p className="leader-bio">Dedicated to academic excellence and nurturing the future leaders of Uganda through holistic education and strong moral values.</p>
-                                </div>
-                            ))}
-                        </div>
+                                    ))}
+                                />
+                            </div>
+                        </>
                     )}
                 </section>
 
@@ -234,28 +269,58 @@ const About = () => {
                     ) : teachers.length === 0 ? (
                         <p className="empty-text">{t('teachers_coming_soon')}</p>
                     ) : (
-                        <div className="teachers-grid">
-                            {teachers.map(teacher => (
-                                <div
-                                    key={teacher.id}
-                                    className="teacher-card"
-                                    data-id={teacher.id}
-                                >
-                                    <div className="teacher-image-container">
-                                        <img
-                                            src={teacher.image_url}
-                                            alt={teacher.name}
-                                            loading="lazy"
-                                            onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
-                                        />
+                        <>
+                            {/* Desktop Grid */}
+                            <div className="teachers-grid desktop-only-grid">
+                                {teachers.map(teacher => (
+                                    <div
+                                        key={teacher.id}
+                                        className="teacher-card"
+                                        data-id={teacher.id}
+                                    >
+                                        <div className="teacher-image-container">
+                                            <img
+                                                src={teacher.image_url}
+                                                alt={teacher.name}
+                                                loading="lazy"
+                                                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
+                                            />
+                                        </div>
+                                        <div className="teacher-info">
+                                            <h3>{teacher.name}</h3>
+                                            <p className="teacher-subject">{teacher.subject}</p>
+                                        </div>
                                     </div>
-                                    <div className="teacher-info">
-                                        <h3>{teacher.name}</h3>
-                                        <p className="teacher-subject">{teacher.subject}</p>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+                                ))}
+                            </div>
+
+                            {/* Mobile 3D Carousel */}
+                            <div className="mobile-only-carousel">
+                                <ThreeDCarousel
+                                    items={teachers.map(teacher => (
+                                        <div
+                                            key={teacher.id}
+                                            className="teacher-card"
+                                            data-id={teacher.id}
+                                            style={{ margin: 0, height: '100%' }}
+                                        >
+                                            <div className="teacher-image-container">
+                                                <img
+                                                    src={teacher.image_url}
+                                                    alt={teacher.name}
+                                                    loading="lazy"
+                                                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'; }}
+                                                />
+                                            </div>
+                                            <div className="teacher-info">
+                                                <h3>{teacher.name}</h3>
+                                                <p className="teacher-subject">{teacher.subject}</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                />
+                            </div>
+                        </>
                     )}
                 </section>
             </div>

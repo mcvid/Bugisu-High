@@ -75,8 +75,8 @@ const Gallery = () => {
             {/* Hero Section */}
             <UniversalHero pagePath="/gallery" height="35vh" showImage={false}>
                 <div style={{ textAlign: 'center' }}>
-                    <h1 style={{ color: 'white' }}>School Gallery</h1>
-                    <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>
+                    <h1>School Gallery</h1>
+                    <p className="page-subtitle">
                         {selectedGallery ? selectedGallery.title : 'A glimpse into life at Bugisu High School'}
                     </p>
                 </div>

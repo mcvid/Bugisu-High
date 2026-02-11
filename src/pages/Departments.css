@@ -293,19 +293,19 @@
 /* Grid Styling */
 .teacher-grid {
     display: grid;
-    grid-template-cols: 1;
+    grid-template-columns: 1fr;
     gap: 2rem;
 }
 
 @media (min-width: 768px) {
     .teacher-grid {
-        grid-template-cols: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
     .teacher-grid {
-        grid-template-cols: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -368,7 +368,7 @@
 .staff-card-image img {
     width: 100%;
     height: 100%;
-    object-cover: cover;
+    object-fit: cover;
     transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -430,6 +430,8 @@
     gap: 1.25rem;
     padding-top: 1rem;
     border-top: 1px solid #f1f5f9;
+    margin-top: auto;
+    /* Push to bottom if needed */
 }
 
 .staff-action-link {
@@ -438,15 +440,17 @@
     gap: 0.5rem;
     color: #94a3b8;
     text-decoration: none;
-    transition: color 0.3s;
+    transition: all 0.3s;
+    cursor: pointer;
 }
 
 .staff-action-link:hover {
     color: #dc2626;
+    transform: translateY(-2px);
 }
 
 .staff-action-text {
-    font-size: 0.65rem;
+    font-size: 0.7rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -526,6 +530,10 @@
 }
 
 @media (max-width: 1023px) {
+    .departments-container {
+        flex-direction: column;
+    }
+
     .dept-sidebar {
         display: none;
     }
@@ -552,4 +560,23 @@
     padding: 4rem 2rem;
     color: #94a3b8;
     font-style: italic;
+}
+
+/* Responsive Visibility Utilities */
+.mobile-only-carousel {
+    display: block !important;
+}
+
+.desktop-only-grid {
+    display: none !important;
+}
+
+@media (min-width: 1024px) {
+    .mobile-only-carousel {
+        display: none !important;
+    }
+
+    .desktop-only-grid {
+        display: grid !important;
+    }
 }

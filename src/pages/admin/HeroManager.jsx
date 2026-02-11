@@ -112,7 +112,6 @@ const HeroManager = () => {
     };
 
 
-    const [slides, setSlides] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [selectedPage, setSelectedPage] = useState('/');
     const [newSlide, setNewSlide] = useState({ title: '', subtitle: '', sort_order: 0 });
