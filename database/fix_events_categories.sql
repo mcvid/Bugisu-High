@@ -26,6 +26,7 @@ CHECK (category IN (
     'Holiday', 
     'Exam', 
     'Sports', 
+    'Announcement',
     'Other'
 ));
 

@@ -38,17 +38,23 @@ const AnnouncementsManager = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(true);
 
         try {
             const payload = {
                 ...formData,
-                status: 'draft'
+                status: 'draft',
+                created_at: new Date().toISOString()
             };
 
+            console.log('Saving announcement:', payload);
+
             if (editingId) {
-                await supabase.from('announcements').update(payload).eq('id', editingId);
+                const { error } = await supabase.from('announcements').update(payload).eq('id', editingId);
+                if (error) throw error;
             } else {
-                await supabase.from('announcements').insert([payload]);
+                const { error } = await supabase.from('announcements').insert([payload]);
+                if (error) throw error;
             }
 
             setShowForm(false);
@@ -65,7 +71,10 @@ const AnnouncementsManager = () => {
             });
             fetchAnnouncements();
         } catch (error) {
-            alert('Error saving announcement: ' + error.message);
+            console.error('Error saving announcement:', error);
+            alert('Error saving announcement: ' + (error.message || 'Unknown error'));
+        } finally {
+            setLoading(false);
         }
     };
 

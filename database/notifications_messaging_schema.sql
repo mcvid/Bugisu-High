@@ -57,13 +57,19 @@ CREATE TABLE IF NOT EXISTS public.leave_requests (
 );
 
 -- 4. EXTEND NOTIFICATIONS TABLE
+-- 4. EXTEND NOTIFICATIONS TABLE
+ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS student_id UUID REFERENCES public.students(id) ON DELETE CASCADE;
+ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS recipient_phone TEXT;
+ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS recipient_name TEXT;
+ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS message TEXT; -- frontend expects 'message'
 ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS notification_type TEXT 
     DEFAULT 'system' CHECK (notification_type IN ('sms', 'email', 'push', 'system'));
 ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS priority TEXT DEFAULT 'normal';
 ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS is_read BOOLEAN DEFAULT false;
 ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS read_at TIMESTAMP WITH TIME ZONE;
-ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS category TEXT 
-    CHECK (category IN ('fees', 'exams', 'results', 'attendance', 'announcements', 'general'));
+ALTER TABLE public.notifications DROP CONSTRAINT IF EXISTS notifications_category_check;
+ALTER TABLE public.notifications ADD CONSTRAINT notifications_category_check 
+    CHECK (category IN ('fees', 'exams', 'results', 'attendance', 'announcements', 'general', 'admission'));
 ALTER TABLE public.notifications ADD COLUMN IF NOT EXISTS data JSONB;
 
 -- 5. NOTIFICATION PREFERENCES TABLE

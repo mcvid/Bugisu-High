@@ -115,6 +115,7 @@ const EventsEditor = () => {
                             <select name="category" value={formData.category} onChange={handleChange}>
                                 <option value="General">General</option>
                                 <option value="Academics">Academics</option>
+                                <option value="Announcement">Announcement</option>
                                 <option value="Term Dates">Term Dates</option>
                                 <option value="Holiday">Holiday</option>
                                 <option value="Exam">Exam</option>
