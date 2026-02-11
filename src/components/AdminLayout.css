@@ -72,12 +72,26 @@
     border-right: 1px solid rgba(212, 175, 55, 0.1);
     box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
     overflow: visible;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
 }
 
 /* Desktop collapsed state - icon only */
 @media (min-width: 1025px) {
     .admin-sidebar.closed {
         width: 80px;
+    }
+
+    .admin-main {
+        margin-left: 280px;
+        transition: margin-left var(--transition-base);
+    }
+
+    .admin-sidebar.closed~.admin-main {
+        margin-left: 80px;
     }
 
     .admin-sidebar.closed .sidebar-header h2,
@@ -307,6 +321,8 @@
     overflow: hidden;
     width: 100%;
     min-width: 0;
+    margin-left: 280px;
+    height: 100vh;
 }
 
 /* Topbar */
@@ -368,6 +384,8 @@
     flex: 1;
     overflow-y: auto;
     padding: var(--space-2xl);
+    min-height: 100%;
+    background: linear-gradient(135deg, var(--luxury-beige) 0%, var(--luxury-cream) 100%);
 }
 
 .admin-content::-webkit-scrollbar {
