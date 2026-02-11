@@ -12,12 +12,13 @@ const Mission = () => {
                     <div className="gallery-column order-2">
                         <AspirationGallery
                             images={[
-                                "/images/about-hero.png", // Using existing available images
-                                "/hm.png",
-                                "/logo.png"
+                                "/images/students/stu.jpeg",
+                                "/images/students/girl.jpeg",
+                                "/images/students/achioeve.jpeg"
                             ]}
                         />
                     </div>
+
 
                     {/* RIGHT: CONTENT */}
                     <div className="content-column order-1 lg:order-2">

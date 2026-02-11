@@ -23,15 +23,15 @@ const FAB = () => {
     return (
         <div className={`fab-container ${isOpen ? 'open' : ''}`}>
             <div className="fab-options">
-                <a href="tel:+256000000000" className="fab-option" title="Call Us">
+                <a href="tel:+256781425483" className="fab-option" title="Call Us">
                     <span className="fab-label">Call</span>
                     <Phone size={20} />
                 </a>
-                <a href="https://wa.me/256000000000" target="_blank" rel="noopener noreferrer" className="fab-option" title="WhatsApp">
+                <a href="https://wa.me/256781425483" target="_blank" rel="noopener noreferrer" className="fab-option" title="WhatsApp">
                     <span className="fab-label">WhatsApp</span>
                     <MessageCircle size={20} />
                 </a>
-                <a href="mailto:info@bugisuhighschool.ac.ug" className="fab-option" title="Email Us">
+                <a href="mailto:bugisuhighschool@gmail.com" className="fab-option" title="Email Us">
                     <span className="fab-label">Email</span>
                     <Send size={20} />
                 </a>

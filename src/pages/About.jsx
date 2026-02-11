@@ -109,7 +109,7 @@ const About = () => {
                         </div>
                         <div className="history-image-container">
                             <OptimizedImage
-                                src="https://images.unsplash.com/photo-1523050853063-bd80e295ce7f?q=80&w=1000&auto=format&fit=crop"
+                                src="/images/students/infra.jpeg"
                                 alt="Our Campus"
                                 aspectRatio="4/3"
                             />
@@ -126,7 +126,7 @@ const About = () => {
                         >
                             <div className="card-image-mini">
                                 <OptimizedImage
-                                    src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1000&auto=format&fit=crop"
+                                    src="/images/students/stu.jpeg"
                                     alt="Mission"
                                     aspectRatio="16/9"
                                 />
@@ -140,7 +140,7 @@ const About = () => {
                         >
                             <div className="card-image-mini">
                                 <OptimizedImage
-                                    src="https://images.unsplash.com/photo-1497633762265-9a177c80b0f2?q=80&w=1000&auto=format&fit=crop"
+                                    src="/images/students/girl.jpeg"
                                     alt="Vision"
                                     aspectRatio="16/9"
                                 />

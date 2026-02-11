@@ -33,20 +33,44 @@
 }
 
 .page-header {
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
     text-align: center;
-    max-width: 700px;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
+    position: relative;
+    padding-bottom: 2rem;
+}
+
+.page-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-orange);
+}
+
+.page-header h1 {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
 }
 
 .page-subtitle {
     color: var(--color-grey-dark);
-    font-size: 1.1rem;
+    font-family: var(--font-body-alt);
+    font-size: 1.2rem;
     margin-top: 0.5rem;
+    font-weight: 300;
 }
 
+
 .news-grid {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 2.5rem;

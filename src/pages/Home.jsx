@@ -129,7 +129,7 @@ const Home = () => {
                         <div className="col-md-6">
                             <div className="tour-preview-card">
                                 <OptimizedImage
-                                    src={tourPreviewImage || "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=1000"}
+                                    src={tourPreviewImage || "/images/students/infra.jpeg"}
                                     alt="Virtual Tour Preview"
                                     aspectRatio="16/9"
                                 />
@@ -194,7 +194,7 @@ const Home = () => {
                                     <div className="admin-card-v2">
                                         <div className="admin-image-wrapper">
                                             <OptimizedImage
-                                                src={person.image_url || 'https://images.unsplash.com/photo-1544531696-2822a09966ce?auto=format&fit=crop&q=80&w=400'}
+                                                src={person.image_url || '/images/students/hm.jpeg'}
                                                 alt={person.name}
                                                 aspectRatio="1/1"
                                             />

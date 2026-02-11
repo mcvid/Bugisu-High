@@ -14,13 +14,14 @@ const ContactInfo = () => {
     }, []);
 
     const defaultInfo = {
-        address: 'Bugisu High School, Mbale, Uganda',
-        phone_main: '+256 000 000 000',
-        phone_admissions: '+256 000 000 001',
-        email_general: 'info@bugisuhighschool.com',
-        email_admissions: 'admissions@bugisuhighschool.com',
-        office_hours: 'Mon - Fri: 8:00 AM - 5:00 PM'
+        address: 'P.O.BOX 923, MBALE (U)',
+        phone_main: '0781425483',
+        phone_admissions: '0701814161',
+        email_general: 'bugisuhighschool@gmail.com',
+        email_admissions: 'bugisuhighschool@gmail.com',
+        office_hours: 'Mon - Fri: 8:00 AM - 6:00 PM'
     };
+
 
     const info = settings || defaultInfo;
 

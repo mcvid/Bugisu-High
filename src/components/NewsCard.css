@@ -1,11 +1,10 @@
 .news-card {
     background: white;
-    border-radius: 2.5rem;
-    /* Bento radius */
+    border-radius: 0;
+    /* Sharp edges for media look */
     overflow: hidden;
-    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -18,7 +17,7 @@
 @keyframes cardSlideUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
 
     to {
@@ -28,31 +27,35 @@
 }
 
 .news-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(0, 0, 0, 0.08);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
 .news-card-image {
     width: 100%;
-    height: 240px;
+    height: 260px;
     flex-shrink: 0;
     overflow: hidden;
+    position: relative;
 }
 
 .news-card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.7s ease;
+    filter: brightness(0.95);
 }
 
 .news-card:hover .news-card-image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    filter: brightness(1);
 }
 
 .news-card-content {
-    padding: 1.5rem;
+    padding: 1.5rem 0rem;
+    /* Removed side padding to align with image edge conceptually, or keep minimal */
+    padding-right: 1rem;
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -64,17 +67,20 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--color-orange);
-    font-size: 0.8rem;
-    margin-bottom: 0.4rem;
-    font-weight: 500;
+    color: var(--color-grey-medium);
+    font-size: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-body-alt);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .news-title {
-    font-size: 1.15rem;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: var(--color-black);
-    line-height: 1.4;
+    line-height: 1.3;
     font-weight: 700;
     text-align: left;
     display: -webkit-box;
@@ -85,21 +91,24 @@
 }
 
 .news-link {
-    color: var(--color-orange);
-    font-weight: 700;
-    font-size: 0.85rem;
+    color: var(--color-black);
+    font-family: var(--font-body-alt);
+    font-weight: 600;
+    font-size: 0.8rem;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 0.5rem;
+    gap: 6px;
+    margin-top: auto;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     transition: all 0.2s;
+    border-bottom: 1px solid transparent;
 }
 
 .news-link:hover {
-    color: var(--color-orange-dark);
-    gap: 8px;
+    color: var(--color-orange);
+    gap: 10px;
+    border-bottom-color: var(--color-orange);
 }
 
 @media (max-width: 600px) {

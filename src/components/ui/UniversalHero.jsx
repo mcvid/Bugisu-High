@@ -4,30 +4,17 @@ import './UniversalHero.css';
 import { useHeroSlides } from '../../hooks/useQueries';
 import { useSchool } from '../../contexts/SchoolContext';
 
-const UniversalHero = ({ pagePath, children, height = '60vh' }) => {
+const UniversalHero = ({ pagePath, children, height = '60vh', showImage = true }) => {
     const { school } = useSchool();
-    const { data: slides = [], isLoading } = useHeroSlides(pagePath);
+    const { data: slides = [], isLoading: slidesLoading } = useHeroSlides(pagePath);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     // Hardcoded professional fallbacks to prevent black/blank screens
     const fallbacks = [
         {
             id: 'fb-1',
-            image_url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1600&auto=format&fit=crop',
             title: 'BUGISU HIGH SCHOOL',
             subtitle: 'Excellence, Integrity, and Service'
-        },
-        {
-            id: 'fb-2',
-            image_url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1600&auto=format&fit=crop',
-            title: 'NURTURING LEADERS',
-            subtitle: 'Empowering Minds for a Brighter Future'
-        },
-        {
-            id: 'fb-3',
-            image_url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1600&auto=format&fit=crop',
-            title: 'ACADEMIC EXCELLENCE',
-            subtitle: 'Mbale\'s Premier Educational Institution'
         }
     ];
 
@@ -36,7 +23,7 @@ const UniversalHero = ({ pagePath, children, height = '60vh' }) => {
 
     // Use state to track if we should show the loader or the fallback
     // We want to show fallbacks immediately to prevent blank screens
-    const showLoading = isLoading && (!slides || slides.length === 0);
+    const showLoading = slidesLoading && (!slides || slides.length === 0);
 
     useEffect(() => {
         if (displaySlides.length <= 1) return;
@@ -60,23 +47,25 @@ const UniversalHero = ({ pagePath, children, height = '60vh' }) => {
     };
 
     return (
-        <section className="hero-carousel" style={containerStyle}>
+        <section className={`hero-carousel ${!showImage ? 'no-bg-image' : ''}`} style={containerStyle}>
             {displaySlides.map((slide, index) => {
                 const isActive = index === currentSlide;
+                const slideStyle = {
+                    display: isActive ? 'flex' : 'none',
+                    height: height
+                };
+
+                if (showImage) {
+                    slideStyle.backgroundImage = `url("${slide.image_url}")`;
+                }
+
                 return (
                     <div
                         key={slide.id}
                         className={`hero-slide ${isActive ? 'active' : ''}`}
-                        style={{
-                            backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url("${slide.image_url}")`,
-                            display: isActive ? 'flex' : 'none',
-                            height: height
-                            // The height is now controlled by the parent .hero-carousel and .hero-slide CSS
-                            // but we keep it here for explicit control if needed or for single slide case.
-                            // However, the CSS for .hero-slide sets height: 100% which will respect the parent's height.
-                        }}
+                        style={slideStyle}
                     >
-                        {slide.video_url && isActive && (
+                        {showImage && slide.video_url && isActive && (
                             <video
                                 className="hero-video"
                                 autoPlay

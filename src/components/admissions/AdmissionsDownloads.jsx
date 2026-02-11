@@ -27,11 +27,13 @@ const AdmissionsDownloads = () => {
     }, []);
 
     const defaultDownloads = [
-        { label: 'Application Form (PDF)', file_url: '#', file_type: 'PDF' },
-        { label: 'School Prospectus 2026', file_url: '#', file_type: 'PDF' },
+        { label: 'Admission Letter (PDF)', file_url: '#', file_type: 'PDF' },
+        { label: 'Requirements Checklist 2026', file_url: '#', file_type: 'PDF' },
+        { label: 'Medical Examination Form', file_url: '#', file_type: 'PDF' },
         { label: 'Fees Structure & Financial Policy', file_url: '#', file_type: 'PDF' },
-        { label: 'Student Code of Conduct', file_url: '#', file_type: 'PDF' }
+        { label: 'Admission Fee: Shs.20,000 (Non-Refundable)', file_url: '#', file_type: 'INFO' }
     ];
+
 
     const displayDownloads = downloads.length > 0 ? downloads : defaultDownloads;
 

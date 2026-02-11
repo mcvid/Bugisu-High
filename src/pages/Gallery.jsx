@@ -73,7 +73,7 @@ const Gallery = () => {
     return (
         <div className="section container gallery-page">
             {/* Hero Section */}
-            <UniversalHero pagePath="/gallery" height="40vh">
+            <UniversalHero pagePath="/gallery" height="35vh" showImage={false}>
                 <div style={{ textAlign: 'center' }}>
                     <h1 style={{ color: 'white' }}>School Gallery</h1>
                     <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>

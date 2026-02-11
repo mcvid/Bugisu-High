@@ -11,8 +11,9 @@ const CoreValues = () => {
 
                     {/* LEFT: IMAGE GALLERY */}
                     <div className="gallery-column order-2 lg:order-1">
-                        <AspirationGallery images={["/logo.png", "/hm.png", "/images/about-hero.png"]} />
+                        <AspirationGallery images={["/images/students/prom.jpeg", "/images/students/mdd.jpeg", "/images/students/foot2.jpeg"]} />
                     </div>
+
 
                     {/* RIGHT: CONTENT (Bullets) */}
                     <div className="content-column order-1 lg:order-2">

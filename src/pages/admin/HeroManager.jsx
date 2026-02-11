@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { supabase } from '../../lib/supabase';
-import { cacheManager } from '../../lib/cache';
-import { Trash2, Upload, GripVertical, Video } from 'lucide-react';
+import { Trash2, Upload, GripVertical, Video, RefreshCw } from 'lucide-react';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { useHeroSlides } from '../../hooks/useQueries';
 
 const HeroManager = () => {
     const PAGES = [
@@ -11,8 +10,6 @@ const HeroManager = () => {
         { label: 'About School', path: '/about' },
         { label: 'Contact Us', path: '/contact' },
         { label: 'Vacancies', path: '/vacancies' },
-        { label: 'Gallery', path: '/gallery' },
-        { label: 'News/Blog', path: '/news' },
     ];
 
     const SMART_SUGGESTIONS = {
@@ -114,25 +111,6 @@ const HeroManager = () => {
         ]
     };
 
-    const ASSET_LIBRARY = [
-        { id: 'acad', name: 'Academic', url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800' },
-        { id: 'campus', name: 'Campus', url: 'https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800' },
-        { id: 'comm', name: 'Community', url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800' },
-        { id: 'contact', name: 'Support', url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800' },
-        { id: 'staff', name: 'Faculty', url: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800' },
-        { id: 'labs', name: 'Science', url: 'https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&w=800' },
-        { id: 'assembly', name: 'Gathering', url: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800' },
-        { id: 'graduation', name: 'Success', url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800' },
-        { id: 'library', name: 'Library', url: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800' },
-        { id: 'sports', name: 'Athletics', url: 'https://images.unsplash.com/photo-1541252260730-0412e8e2108e?auto=format&fit=crop&w=800' }
-    ];
-
-    const VIDEO_LIBRARY = [
-        { id: 'hallway', name: 'Hallway', url: 'https://cdn.pixabay.com/vimeo/4435/mixkit-students-walking-in-a-hallway-4435-large.mp4' },
-        { id: 'library', name: 'Library Study', url: 'https://cdn.pixabay.com/vimeo/3740/mixkit-group-of-students-studying-in-a-library-3740-large.mp4' },
-        { id: 'classroom', name: 'Classroom', url: 'https://cdn.pixabay.com/vimeo/1154/mixkit-students-taking-notes-in-a-classroom-1154-large.mp4' },
-        { id: 'social', name: 'Social Life', url: 'https://cdn.pixabay.com/vimeo/4434/mixkit-group-of-students-eating-in-a-cafeteria-4434-large.mp4' }
-    ];
 
     const [slides, setSlides] = useState([]);
     const [uploading, setUploading] = useState(false);
@@ -143,56 +121,13 @@ const HeroManager = () => {
     const [selectedAssetUrl, setSelectedAssetUrl] = useState('');
     const [selectedVideoUrl, setSelectedVideoUrl] = useState('');
 
-    useEffect(() => {
-        fetchSlides();
-    }, [selectedPage]);
+    const queryClient = useQueryClient();
+    const { data: slides = [], isLoading: slidesLoading, refetch: fetchSlides } = useHeroSlides(selectedPage);
 
-    const fetchSlides = async () => {
-        const { data, error } = await supabase
-            .from('hero_slides')
-            .select('*')
-            .eq('page_path', selectedPage)
-            .order('sort_order', { ascending: true });
-        if (data) setSlides(data);
-    };
-
-    const applySuggestion = (suggestion) => {
-        setNewSlide({ ...newSlide, title: suggestion.title, subtitle: suggestion.subtitle });
-    };
-
-    const handleUpload = async () => {
-        if (!imageFile && !selectedAssetUrl) {
-            alert('Please select a professional asset or upload your own image!');
-            return;
-        }
-
-        setUploading(true);
-        try {
-            let imageUrl = selectedAssetUrl;
-            let videoUrl = selectedVideoUrl;
-
-            // 1. Upload Image (Only if a new file is provided, otherwise use selectedAssetUrl)
-            if (imageFile) {
-                const imgExt = imageFile.name.split('.').pop();
-                const imgName = `${Math.random()}.${imgExt}`;
-                const imgPath = `hero-slides/${imgName}`;
-                const { error: imgError } = await supabase.storage.from('images').upload(imgPath, imageFile);
-                if (imgError) throw imgError;
-                imageUrl = supabase.storage.from('images').getPublicUrl(imgPath).data.publicUrl;
-            }
-
-            // 2. Upload Video (Optional - local file overrides preset)
-            if (videoFile) {
-                const vidExt = videoFile.name.split('.').pop();
-                const vidName = `${Math.random()}.${vidExt}`;
-                const vidPath = `hero-videos/${vidName}`;
-                const { error: vidError } = await supabase.storage.from('images').upload(vidPath, videoFile);
-                if (vidError) throw vidError;
-                videoUrl = supabase.storage.from('images').getPublicUrl(vidPath).data.publicUrl;
-            }
-
-            // 3. Save to DB
-            const { error: dbError } = await supabase.from('hero_slides').insert([
+    // Mutation for adding a slide
+    const uploadMutation = useMutation({
+        mutationFn: async ({ imageUrl, videoUrl, newSlide, selectedPage }) => {
+            const { error } = await supabase.from('hero_slides').insert([
                 {
                     image_url: imageUrl,
                     video_url: videoUrl,
@@ -202,27 +137,26 @@ const HeroManager = () => {
                     sort_order: parseInt(newSlide.sort_order) || 0
                 }
             ]);
-            if (dbError) throw dbError;
-
-            fetchSlides();
-            cacheManager.invalidate('home_data');
+            if (error) throw error;
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['hero-slides', selectedPage]);
             setNewSlide({ title: '', subtitle: '', sort_order: 0 });
             setImageFile(null);
             setVideoFile(null);
             setSelectedAssetUrl('');
             setSelectedVideoUrl('');
             alert('Slide added successfully to ' + selectedPage);
-        } catch (error) {
+        },
+        onError: (error) => {
             console.error('Error uploading slide:', error);
             alert('Upload failed: ' + error.message);
-        } finally {
-            setUploading(false);
         }
-    };
+    });
 
-    const handleDelete = async (slide) => {
-        if (!window.confirm('Delete this slide?')) return;
-        try {
+    // Mutation for deleting a slide
+    const deleteMutation = useMutation({
+        mutationFn: async (slide) => {
             const getPath = (url) => url.split('/storage/v1/object/public/images/')[1];
             const filesToDelete = [];
             if (slide.image_url) {
@@ -240,14 +174,65 @@ const HeroManager = () => {
 
             const { error } = await supabase.from('hero_slides').delete().eq('id', slide.id);
             if (error) throw error;
-
-            setSlides(slides.filter(s => s.id !== slide.id));
-            cacheManager.invalidate('home_data');
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries(['hero-slides', selectedPage]);
             alert('Slide deleted!');
-        } catch (error) {
+        },
+        onError: (error) => {
             console.error('Delete failed:', error);
             alert('Delete failed. Check console.');
         }
+    });
+
+    const applySuggestion = (suggestion) => {
+        setNewSlide({ ...newSlide, title: suggestion.title, subtitle: suggestion.subtitle });
+    };
+
+    const handleUpload = async () => {
+        if (!imageFile && !selectedAssetUrl) {
+            alert('Please select a professional asset or upload your own image!');
+            return;
+        }
+
+        setUploading(true);
+        try {
+            let imageUrl = selectedAssetUrl;
+            let videoUrl = selectedVideoUrl;
+
+            // 1. Upload Image
+            if (imageFile) {
+                const imgExt = imageFile.name.split('.').pop();
+                const imgName = `${Math.random()}.${imgExt}`;
+                const imgPath = `hero-slides/${imgName}`;
+                const { error: imgError } = await supabase.storage.from('images').upload(imgPath, imageFile);
+                if (imgError) throw imgError;
+                imageUrl = supabase.storage.from('images').getPublicUrl(imgPath).data.publicUrl;
+            }
+
+            // 2. Upload Video
+            if (videoFile) {
+                const vidExt = videoFile.name.split('.').pop();
+                const vidName = `${Math.random()}.${vidExt}`;
+                const vidPath = `hero-videos/${vidName}`;
+                const { error: vidError } = await supabase.storage.from('images').upload(vidPath, videoFile);
+                if (vidError) throw vidError;
+                videoUrl = supabase.storage.from('images').getPublicUrl(vidPath).data.publicUrl;
+            }
+
+            // 3. Trigger Mutation
+            uploadMutation.mutate({ imageUrl, videoUrl, newSlide, selectedPage });
+        } catch (error) {
+            console.error('Error preparing upload:', error);
+            alert('Upload failed: ' + error.message);
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleDelete = (slide) => {
+        if (!window.confirm('Delete this slide?')) return;
+        deleteMutation.mutate(slide);
     };
 
     return (
@@ -327,122 +312,6 @@ const HeroManager = () => {
                     </div>
                 </div>
 
-                {/* Asset Gallery suggestions */}
-                <div style={{ marginTop: '1.5rem' }}>
-                    <p style={{ fontSize: '0.85rem', color: '#6b7280', marginBottom: '0.5rem', fontWeight: '600' }}>🖼️ School Asset Gallery (Reusable professional images):</p>
-                    <div style={{
-                        display: 'flex',
-                        overflowX: 'auto',
-                        gap: '1rem',
-                        padding: '0.5rem 0.25rem',
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: '#d1d5db transparent'
-                    }}>
-                        {ASSET_LIBRARY.map((asset) => (
-                            <div
-                                key={asset.id}
-                                onClick={() => {
-                                    setSelectedAssetUrl(asset.url);
-                                    setImageFile(null); // Clear local file if preset is selected
-                                }}
-                                style={{
-                                    flex: '0 0 120px',
-                                    cursor: 'pointer',
-                                    position: 'relative',
-                                    borderRadius: '8px',
-                                    overflow: 'hidden',
-                                    border: selectedAssetUrl === asset.url ? '3px solid #2563eb' : '2px solid transparent',
-                                    transition: 'all 0.2s',
-                                    perspective: '1000px'
-                                }}
-                            >
-                                <img src={asset.url} alt={asset.name} style={{ width: '100%', height: '80px', objectFit: 'cover', display: 'block' }} />
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    background: 'rgba(0,0,0,0.6)',
-                                    color: 'white',
-                                    fontSize: '0.65rem',
-                                    textAlign: 'center',
-                                    padding: '2px 0'
-                                }}>
-                                    {asset.name}
-                                </div>
-                                {selectedAssetUrl === asset.url && (
-                                    <div style={{ position: 'absolute', top: '5px', right: '5px', background: '#2563eb', color: 'white', borderRadius: '50%', width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyItems: 'center', fontSize: '10px', fontWeight: 'bold', paddingLeft: '4px' }}>
-                                        ✓
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Video Gallery suggestions */}
-                <div style={{ marginTop: '1.5rem' }}>
-                    <p style={{ fontSize: '0.85rem', color: '#6b7280', marginBottom: '0.5rem', fontWeight: '600' }}>🎞️ Professional Video Backgrounds:</p>
-                    <div style={{
-                        display: 'flex',
-                        overflowX: 'auto',
-                        gap: '1rem',
-                        padding: '0.5rem 0.25rem',
-                        scrollbarWidth: 'thin',
-                        scrollbarColor: '#d1d5db transparent'
-                    }}>
-                        {VIDEO_LIBRARY.map((vid) => (
-                            <div
-                                key={vid.id}
-                                onClick={() => {
-                                    setSelectedVideoUrl(vid.url);
-                                    setVideoFile(null); // Clear local file if preset is selected
-                                }}
-                                style={{
-                                    flex: '0 0 140px',
-                                    cursor: 'pointer',
-                                    position: 'relative',
-                                    borderRadius: '8px',
-                                    overflow: 'hidden',
-                                    border: selectedVideoUrl === vid.url ? '3px solid #2563eb' : '2px solid transparent',
-                                    transition: 'all 0.2s',
-                                    background: '#000'
-                                }}
-                            >
-                                <video
-                                    src={vid.url}
-                                    muted
-                                    loop
-                                    playsInline
-                                    onMouseOver={(e) => e.target.play()}
-                                    onMouseOut={(e) => e.target.pause()}
-                                    style={{ width: '100%', height: '80px', objectFit: 'cover', display: 'block', opacity: 0.8 }}
-                                />
-                                <div style={{
-                                    position: 'absolute',
-                                    bottom: 0,
-                                    left: 0,
-                                    right: 0,
-                                    background: 'rgba(37, 99, 235, 0.8)',
-                                    color: 'white',
-                                    fontSize: '0.65rem',
-                                    textAlign: 'center',
-                                    padding: '2px 0'
-                                }}>
-                                    {vid.name}
-                                </div>
-                                {selectedVideoUrl === vid.url && (
-                                    <div style={{ position: 'absolute', top: '5px', right: '5px', background: '#2563eb', color: 'white', borderRadius: '50%', width: '16px', height: '16px', display: 'flex', alignItems: 'center', justifyItems: 'center', fontSize: '10px', fontWeight: 'bold', paddingLeft: '4px' }}>
-                                        ✓
-                                    </div>
-                                )}
-                                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', opacity: 0.7 }}>
-                                    <Video size={16} color="white" />
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
                     <div style={{

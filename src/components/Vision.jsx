@@ -18,8 +18,9 @@ const Vision = () => {
 
                     {/* RIGHT: IMAGE GALLERY */}
                     <div className="gallery-column">
-                        <AspirationGallery images={["/images/about-hero.png", "/logo.png", "/hm.png"]} />
+                        <AspirationGallery images={["/images/students/infra.jpeg", "/images/students/lab.jpeg", "/images/students/bus.jpeg"]} />
                     </div>
+
 
                 </div>
             </div>

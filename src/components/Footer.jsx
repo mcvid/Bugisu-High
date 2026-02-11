@@ -71,9 +71,9 @@ const Footer = () => {
                         {t('footer.about')}
                     </p>
                     <div className="footer-contact">
-                        <p><strong>{t('footer.address')}:</strong> {school?.address || 'P.O. Box 123, Mbale, Uganda'}</p>
-                        <p><strong>{t('footer.phone')}:</strong> {school?.contact_phone || '+256 700 123 456'}</p>
-                        <p><strong>{t('footer.email')}:</strong> {school?.contact_email || 'info@bugisuhigh.ac.ug'}</p>
+                        <p><strong>{t('footer.address')}:</strong> {school?.address || 'P.O.BOX 923, MBALE (U)'}</p>
+                        <p><strong>{t('footer.phone')}:</strong> <a href="tel:0781425483">0781 425483</a> / <a href="tel:0701814161">0701 814161</a></p>
+                        <p><strong>{t('footer.email')}:</strong> <a href="mailto:bugisuhighschool@gmail.com">bugisuhighschool@gmail.com</a></p>
                     </div>
                 </div>
 

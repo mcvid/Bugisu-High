@@ -14,7 +14,7 @@ const AssessmentTransparency = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1454165833767-027ffea9e77b?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/lab.jpeg"
                             alt="Assessment Frequency"
                             aspectRatio="16/10"
                         />
@@ -34,7 +34,7 @@ const AssessmentTransparency = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1551288049-bbda3865c670?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/achioeve.jpeg"
                             alt="Performance Tracking"
                             aspectRatio="16/10"
                         />
@@ -54,7 +54,7 @@ const AssessmentTransparency = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1586281380117-5a60ae2050cc?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/prom.jpeg"
                             alt="Integrity & Standards"
                             aspectRatio="16/10"
                         />

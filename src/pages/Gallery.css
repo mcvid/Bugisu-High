@@ -5,29 +5,33 @@
     margin-bottom: 3rem;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .filter-btn {
-    padding: 0.6rem 1.8rem;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    background: white;
-    border-radius: 2rem;
-    /* Bento pill */
+    padding: 0.5rem 1rem;
+    border: none;
+    background: transparent;
+    border-radius: 0;
+    font-family: var(--font-body-alt);
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
-    color: #64748b;
+    transition: all 0.3s ease;
+    color: var(--color-grey-medium);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-size: 0.8rem;
+    border-bottom: 2px solid transparent;
 }
 
 .filter-btn:hover {
-    border-color: #1e90ff;
-    color: #1e90ff;
+    color: var(--color-black);
 }
 
 .filter-btn.active {
-    background: #1e90ff;
-    border-color: #1e90ff;
-    color: white;
+    background: transparent;
+    color: var(--color-black);
+    border-bottom-color: var(--color-orange);
 }
 
 /* Albums Grid */
@@ -40,18 +44,18 @@
 
 .album-card {
     background: white;
-    border-radius: 2.5rem;
-    /* Large Bento radius */
+    border-radius: 0;
+    /* Sharp professional look */
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: none;
+    border: 1px solid transparent;
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .album-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .album-cover {
@@ -64,15 +68,16 @@
 .album-category {
     position: absolute;
     top: 1rem;
-    right: 1rem;
-    background: rgba(255, 255, 255, 0.95);
-    padding: 0.4rem 1rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
+    left: 1rem;
+    right: auto;
+    background: var(--color-black);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0;
+    font-size: 0.7rem;
     font-weight: 700;
-    color: #1e90ff;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 }
 
 .album-info {
@@ -80,9 +85,10 @@
 }
 
 .album-info h3 {
-    font-size: 1.25rem;
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
-    color: #1e293b;
+    color: var(--color-black);
 }
 
 .album-description {

@@ -46,7 +46,7 @@ const StudentSpotlight = () => {
                         <div key={item.id} className="spotlight-card">
                             <div
                                 className="spotlight-image"
-                                style={{ backgroundImage: `url(${item.image_url || 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&q=80'})` }}
+                                style={{ backgroundImage: `url(${item.image_url || '/images/students/girl.jpeg'})` }}
                             >
                                 <div className="spotlight-category">{item.category}</div>
                             </div>

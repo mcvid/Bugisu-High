@@ -45,7 +45,7 @@ const News = () => {
                 <RefreshCw size={24} className={isRefreshing ? 'spin' : ''} />
             </div>
 
-            <UniversalHero pagePath="/news" height="40vh">
+            <UniversalHero pagePath="/news" height="35vh" showImage={false}>
                 <div style={{ textAlign: 'center' }}>
                     <h1 style={{ color: 'white' }}>News & Announcements</h1>
                     <p className="page-subtitle" style={{ color: 'rgba(255,255,255,0.9)' }}>Stay updated with the latest happenings at Bugisu High School.</p>

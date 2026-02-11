@@ -48,6 +48,7 @@ const AdmissionsHero = () => {
                         background: getStatusColor(settings?.status)
                     }}></span>
                     {t('admissions:status_label')} {settings?.status || 'OPEN'} — {settings?.academic_year || '2026'} {t('admissions:status_intake')}
+
                 </div>
 
                 <h1>{t('admissions:hero_title')}</h1>

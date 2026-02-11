@@ -14,7 +14,7 @@ const SupportCare = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/stu.jpeg"
                             alt="Remedial Support"
                             aspectRatio="16/10"
                         />
@@ -34,7 +34,7 @@ const SupportCare = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/girl.jpeg"
                             alt="Guidance & Counseling"
                             aspectRatio="16/10"
                         />
@@ -54,7 +54,7 @@ const SupportCare = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/hm.jpeg"
                             alt="Teacher Accessibility"
                             aspectRatio="16/10"
                         />

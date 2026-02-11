@@ -14,7 +14,7 @@ const AcademicScope = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/WhatsApp Image 2026-02-08 at 14.13.28.jpeg"
                             alt="Secondary Education"
                             aspectRatio="16/10"
                         />
@@ -34,7 +34,7 @@ const AcademicScope = () => {
                 <div className="academic-alternating-row">
                     <div className="academic-image-container">
                         <OptimizedImage
-                            src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=1000&auto=format&fit=crop"
+                            src="/images/students/WhatsApp Image 2026-02-08 at 14.13.32.jpeg"
                             alt="National Certification"
                             aspectRatio="16/10"
                         />

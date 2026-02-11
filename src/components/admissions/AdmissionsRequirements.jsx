@@ -28,11 +28,15 @@ const AdmissionsRequirements = () => {
 
     const defaultRequirements = [
         { document_name: 'PLE / UCE Results Slip', purpose: 'Evidence of standard academic qualification for O or A Level entry.', is_mandatory: true },
-        { document_name: 'Previous Academic Reports', purpose: 'The last two termly reports from the student’s previous school.', is_mandatory: true },
+        { document_name: 'Previous Academic Reports', purpose: 'Last two termly reports from the student’s previous school.', is_mandatory: true },
         { document_name: 'Birth Certificate Copy', purpose: 'Required for age verification and official records.', is_mandatory: true },
-        { document_name: 'Passport Photos (3)', purpose: 'Standard studio photos for identity card and student files.', is_mandatory: true },
-        { document_name: 'Transfer / Leaving Letter', purpose: 'Required for students transferring between secondary schools.', is_mandatory: false }
+        { document_name: 'Passport Photos (4)', purpose: 'Standard studio photos for identity card and student files.', is_mandatory: true },
+        { document_name: 'School Rules Agreement', purpose: 'Carefully study and sign the school rules provided in admission.', is_mandatory: true },
+        { document_name: 'Medical Examination Report', purpose: 'Completed and signed by a qualified doctor.', is_mandatory: true },
+        { document_name: 'School Fees Payment Proof', purpose: 'Required at the time of reporting for enrollment.', is_mandatory: true },
+        { document_name: 'Ream of paper (S1-S4: Photocopying, S5-S6: Ruled)', purpose: 'Annual academic requirement for all students.', is_mandatory: true }
     ];
+
 
     const displayRequirements = requirements.length > 0 ? requirements : defaultRequirements;
 

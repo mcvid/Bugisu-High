@@ -63,14 +63,15 @@ const JourneySection = () => {
                             <span>Contact Us</span>
                         </Link>
 
-                        <Link
-                            to="https://maps.app.goo.gl/uXYebSwMza8Gres77"
+                        <a
+                            href="https://maps.app.goo.gl/uXYebSwMza8Gres77"
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="aside-link"
                         >
                             <MapPin size={20} />
                             <span>Our Location</span>
-                        </Link>
+                        </a>
 
                         <Link
                             to="/about#history"
