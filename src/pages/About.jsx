@@ -81,17 +81,7 @@ const About = () => {
                 url="/about"
             />
             {/* Opening Section */}
-            <UniversalHero pagePath="/about" height="50vh">
-                <div className="center-hero">
-                    <h1>
-                        <span className="desktop-title">{t('hero_title')}</span>
-                        <span className="mobile-title">{t('hero_title_mobile')}</span>
-                    </h1>
-                    <p className="lead">
-                        {t('hero_desc')}
-                    </p>
-                </div>
-            </UniversalHero>
+            <UniversalHero pagePath="/about" height="50vh" />
 
             <div className="container">
                 {/* School Overview */}
